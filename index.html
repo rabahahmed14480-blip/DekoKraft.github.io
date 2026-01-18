@@ -4,165 +4,120 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>DekoKraft</title>
-  <link rel="stylesheet" href="style.css?v=3">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0b0d14;
+      color: #fff;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    .container { padding: 16px; }
+
+    /* GRID */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: #121622;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,.4);
+    }
+
+    /* IMAGE FIX */
+    .card img {
+      width: 100%;
+      height: 200px;           /* ⬅️ مهم */
+      object-fit: cover;       /* ⬅️ مهم */
+      display: block;
+    }
+
+    .card-body {
+      padding: 14px;
+    }
+
+    .card-body h3 {
+      margin: 0 0 6px;
+      font-size: 18px;
+    }
+
+    .card-body p {
+      margin: 0;
+      opacity: .8;
+      font-size: 14px;
+    }
+
+    h1 {
+      text-align: center;
+      margin: 24px 0;
+    }
+  </style>
 </head>
 
 <body>
-  <!-- NAV -->
-  <div class="nav">
-    <div class="nav-inner">
-      <a class="brand" href="index.html" aria-label="DekoKraft Home">
-        <div class="logo">D</div>
-        <div>
-          <h1>DekoKraft</h1>
-          <p>شموع • ديكور • هدايا</p>
-        </div>
-      </a>
 
-      <div class="menu">
-        <a href="index.html">الرئيسية</a>
-        <a href="collections.html">المجموعات</a>
-        <a href="candles.html">الشموع</a>
-        <a href="decor.html">الديكور</a>
-        <a href="gifts.html">الهدايا</a>
-        <a href="gallery.html">معرض الصور</a>
-        <a href="articles.html">المقالات</a>
-      </div>
-
-      <!-- زر القائمة للموبايل -->
-      <button class="menu-btn" id="menuBtn" aria-label="فتح القائمة" aria-expanded="false">
-        ☰
-      </button>
-    </div>
-
-    <!-- قائمة الموبايل -->
-    <div class="mobile-menu" id="mobileMenu" hidden>
-      <a href="index.html">الرئيسية</a>
-      <a href="collections.html">المجموعات</a>
-      <a href="candles.html">الشموع</a>
-      <a href="decor.html">الديكور</a>
-      <a href="gifts.html">الهدايا</a>
-      <a href="gallery.html">معرض الصور</a>
-      <a href="articles.html">المقالات</a>
-    </div>
-  </div>
+  <h1>DekoKraft</h1>
 
   <div class="container">
-    <!-- HERO -->
-    <section class="hero">
-      <h2>مرحباً بكم في DekoKraft</h2>
-      <p>
-        هنا ستجدون شموعًا مصنوعة بعناية، أفكار ديكور دافئة، وهدايا جميلة.
-        اختاروا مجموعة وشاهدوا التفاصيل.
-      </p>
-
-      <div class="hero-actions">
-        <a class="btn primary" href="collections.html">استعرض المجموعات</a>
-        <a class="btn" href="gallery.html">شاهد معرض الصور</a>
-      </div>
-    </section>
-
-    <!-- CARDS -->
-    <section class="grid" aria-label="الأقسام">
+    <section class="grid">
 
       <a class="card" href="collections.html">
-        <div class="card-media">
-          <img src="assets/images/home/collections.webp" alt="المجموعات" loading="lazy" decoding="async">
-          <span class="badge">⭐ المجموعات</span>
-        </div>
+        <img src="assets/images/home/collections.jpg" loading="lazy" alt="المجموعات">
         <div class="card-body">
           <h3>المجموعات</h3>
-          <p>صفحات مجموعات جاهزة: شموع تزيينية، هدايا، ديكور…</p>
-          <div class="meta"><span>اضغط للدخول</span></div>
+          <p>شموع، ديكور، هدايا</p>
         </div>
       </a>
 
       <a class="card" href="candles.html">
-        <div class="card-media">
-          <img src="assets/images/home/candles.webp" alt="الشموع" loading="lazy" decoding="async">
-          <span class="badge">🕯️ الشموع</span>
-        </div>
+        <img src="assets/images/home/candles.jpg" loading="lazy" alt="الشموع">
         <div class="card-body">
           <h3>الشموع</h3>
-          <p>تشكيلة الشموع وروائحها وأحجامها، مع عرض جميل للمنتجات.</p>
-          <div class="meta"><span>اضغط للدخول</span></div>
+          <p>روائح وأشكال مختلفة</p>
         </div>
       </a>
 
       <a class="card" href="decor.html">
-        <div class="card-media">
-          <img src="assets/images/home/decor.webp" alt="الديكور" loading="lazy" decoding="async">
-          <span class="badge">🏠 الديكور</span>
-        </div>
+        <img src="assets/images/home/decor.jpg" loading="lazy" alt="الديكور">
         <div class="card-body">
           <h3>الديكور</h3>
-          <p>قطع ديكور بسيطة وأنيقة تناسب كل غرفة.</p>
-          <div class="meta"><span>اضغط للدخول</span></div>
+          <p>قطع بسيطة وأنيقة</p>
         </div>
       </a>
 
       <a class="card" href="gifts.html">
-        <div class="card-media">
-          <img src="assets/images/home/gifts.webp" alt="الهدايا" loading="lazy" decoding="async">
-          <span class="badge">🎁 الهدايا</span>
-        </div>
+        <img src="assets/images/home/gifts.jpg" loading="lazy" alt="الهدايا">
         <div class="card-body">
           <h3>الهدايا</h3>
-          <p>أفكار هدايا جاهزة (تغليف + اقتراحات) لأجمل المناسبات.</p>
-          <div class="meta"><span>اضغط للدخول</span></div>
+          <p>أفكار جاهزة للمناسبات</p>
         </div>
       </a>
 
       <a class="card" href="gallery.html">
-        <div class="card-media">
-          <img src="assets/images/home/gallery.webp" alt="معرض الصور" loading="lazy" decoding="async">
-          <span class="badge">🖼️ معرض الصور</span>
-        </div>
+        <img src="assets/images/home/gallery.jpg" loading="lazy" alt="معرض الصور">
         <div class="card-body">
           <h3>معرض الصور</h3>
-          <p>صور منتجات ومشاريع وتجارب — اضغط لمشاهدة المعرض.</p>
-          <div class="meta"><span>اضغط للدخول</span></div>
+          <p>صور المنتجات</p>
         </div>
       </a>
 
       <a class="card" href="articles.html">
-        <div class="card-media">
-          <img src="assets/images/home/articles.webp" alt="المقالات" loading="lazy" decoding="async">
-          <span class="badge">📝 المقالات</span>
-        </div>
+        <img src="assets/images/home/articles.jpg" loading="lazy" alt="المقالات">
         <div class="card-body">
           <h3>المقالات</h3>
-          <p>نصائح عن الشموع والروائح، والعناية بالديكور، وأفكار تصميم.</p>
-          <div class="meta"><span>اضغط للدخول</span></div>
+          <p>نصائح وأفكار</p>
         </div>
       </a>
 
     </section>
-
-    <div class="footer">
-      <div>©️ <span id="y"></span> DekoKraft</div>
-      <div>Instagram • WhatsApp • Email</div>
-    </div>
   </div>
 
-  <script>
-    // سنة الحقوق
-    document.getElementById("y").textContent = new Date().getFullYear();
-
-    // قائمة الموبايل (زر ☰)
-    const btn = document.getElementById("menuBtn");
-    const menu = document.getElementById("mobileMenu");
-
-    btn.addEventListener("click", () => {
-      const isOpen = !menu.hasAttribute("hidden");
-      if (isOpen) {
-        menu.setAttribute("hidden", "");
-        btn.setAttribute("aria-expanded", "false");
-      } else {
-        menu.removeAttribute("hidden");
-        btn.setAttribute("aria-expanded", "true");
-      }
-    });
-  </script>
 </body>
 </html>
