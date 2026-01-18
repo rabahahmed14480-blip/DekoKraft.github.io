@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>المجموعة</title>
+  <style>
+    body{font-family:system-ui; margin:0; background:#fafafa; color:#111}
+    header{padding:28px 16px; text-align:center; background:white; border-bottom:1px solid #eee}
+    .grid{max-width:1000px; margin:24px auto; padding:0 16px;
+          display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px;}
+    .card{background:white; border:1px solid #eee; border-radius:14px; overflow:hidden}
+    .card img{width:100%; height:180px; object-fit:cover; display:block}
+    .card .txt{padding:12px}
+    a{color:inherit; text-decoration:none}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>مجموعة الشموع التزيينية</h1>
+    <p>هنا سنعرض صور المنتجات والمجموعات.</p>
+    <p><a href="index.html">⬅ العودة للرئيسية</a></p>
+  </header>
+
+  <main class="grid">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=1200&q=80" alt="شمعة" />
+      <div class="txt">
+        <strong>شموع معطرة</strong>
+        <div>وصف قصير…</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1528825871115-3581a5387919?auto=format&fit=crop&w=1200&q=80" alt="ديكور" />
+      <div class="txt">
+        <strong>ديكور منزلي</strong>
+        <div>وصف قصير…</div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
