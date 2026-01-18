@@ -4,151 +4,225 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>DekoKraft | الصفحة الرئيسية</title>
+  <meta name="description" content="DekoKraft - شموع تزيينية معطرة، مجموعات، أفكار وهدايا." />
+
+  <!-- خط عربي -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
 
   <style>
+    :root{
+      --bg:#fbf7f4;
+      --card:#ffffff;
+      --text:#2b2b2b;
+      --muted:#6b6b6b;
+      --brand:#7b3f3f;
+      --line:#efe4dd;
+      --shadow: 0 10px 30px rgba(0,0,0,.06);
+      --radius:18px;
+    }
     *{box-sizing:border-box}
     body{
       margin:0;
-      font-family: system-ui, -apple-system, "Segoe UI", Tahoma, Arial;
-      background:#f7f7f7;
-      color:#222;
+      font-family:"Tajawal", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1200px 500px at 80% -100px, #ffe8df 0%, rgba(255,232,223,0) 60%),
+                  radial-gradient(900px 500px at 10% 0px, #fff2e8 0%, rgba(255,242,232,0) 55%),
+                  var(--bg);
+      color:var(--text);
+    }
+    a{color:inherit; text-decoration:none}
+    .container{
+      width:min(1100px, 92%);
+      margin:0 auto;
+    }
+
+    /* Header */
+    header{
+      position:sticky;
+      top:0;
+      backdrop-filter: blur(10px);
+      background: rgba(251,247,244,.72);
+      border-bottom:1px solid var(--line);
+      z-index:50;
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:14px 0;
+      gap:12px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:700;
+      letter-spacing:.2px;
+    }
+    .logo{
+      width:40px;height:40px;border-radius:12px;
+      background: linear-gradient(135deg, #8a4a4a, #c07a6a);
+      box-shadow: var(--shadow);
+    }
+    .nav a.btn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 14px;
+      border-radius:14px;
+      background:var(--card);
+      border:1px solid var(--line);
+      box-shadow: 0 6px 18px rgba(0,0,0,.05);
+      color:var(--brand);
+      font-weight:600;
+    }
+
+    /* Hero */
+    .hero{
+      padding:34px 0 18px;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:22px;
+      align-items:stretch;
+    }
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr}
+    }
+    .hero-card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding:22px;
+    }
+    h1{
+      margin:0 0 10px;
+      font-size: clamp(26px, 3.2vw, 40px);
+      line-height:1.15;
+      color:var(--brand);
+    }
+    .lead{
+      margin:0 0 18px;
+      color:var(--muted);
+      font-size:18px;
       line-height:1.7;
     }
-
-    header{
-      background:#fff;
-      border-bottom:1px solid #eee;
-      padding:40px 16px;
-      text-align:center;
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
     }
+    .primary{
+      background: linear-gradient(135deg, #8a4a4a, #c07a6a);
+      color:white;
+      border:none;
+      padding:12px 16px;
+      border-radius:14px;
+      font-weight:700;
+      cursor:pointer;
+    }
+    .secondary{
+      background:transparent;
+      border:1px solid var(--line);
+      padding:12px 16px;
+      border-radius:14px;
+      font-weight:700;
+      color:var(--brand);
+      cursor:pointer;
+    }
+    .hero-side{
+      display:grid;
+      gap:12px;
+    }
+    .mini{
+      background:rgba(255,255,255,.75);
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      padding:16px;
+    }
+    .mini b{color:var(--brand)}
+    .mini p{margin:8px 0 0; color:var(--muted); line-height:1.6}
 
-    header h1{
+    /* Sections */
+    .section{
+      padding:10px 0 34px;
+    }
+    .section-title{
+      display:flex;
+      align-items:end;
+      justify-content:space-between;
+      gap:10px;
+      margin:10px 0 14px;
+    }
+    .section-title h2{
       margin:0;
-      font-size:32px;
-      color:#7a4a2e;
+      font-size:22px;
+      color:var(--text);
+    }
+    .section-title span{
+      color:var(--muted);
+      font-size:14px;
     }
 
-    header p{
-      margin-top:10px;
-      color:#555;
-      font-size:16px;
-    }
-
-    main{
-      max-width:1100px;
-      margin:40px auto;
-      padding:0 16px;
-    }
-
-    h2{
-      margin-bottom:20px;
-      color:#333;
-    }
-
+    /* Grid cards */
     .grid{
       display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-      gap:20px;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
     }
+    @media (max-width:950px){ .grid{grid-template-columns:repeat(2, 1fr)} }
+    @media (max-width:620px){ .grid{grid-template-columns:1fr} }
 
     .card{
-      background:#fff;
-      border:1px solid #eee;
-      border-radius:16px;
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
       overflow:hidden;
-      text-decoration:none;
-      color:#222;
-      transition:transform .2s, box-shadow .2s;
+      display:flex;
+      flex-direction:column;
+      min-height: 320px;
     }
-
-    .card:hover{
-      transform:translateY(-4px);
-      box-shadow:0 10px 25px rgba(0,0,0,.08);
+    .thumb{
+      position:relative;
+      height:170px;
+      background: #f3e7e1;
+      overflow:hidden;
     }
-
-    .card img{
+    .thumb img{
       width:100%;
-      height:220px;
+      height:100%;
       object-fit:cover;
       display:block;
+      transform: scale(1.02);
     }
-
-    .card .content{
-      padding:14px;
+    .badge{
+      position:absolute;
+      top:12px; right:12px;
+      background: rgba(255,255,255,.88);
+      border:1px solid var(--line);
+      padding:6px 10px;
+      border-radius: 999px;
+      font-size:12px;
+      color:var(--brand);
+      font-weight:700;
     }
-
-    .card .content strong{
+    .card-body{
+      padding:14px 14px 16px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      flex:1;
+    }
+    .card h3{
+      margin:0;
       font-size:18px;
-      display:block;
-      margin-bottom:6px;
+      color:var(--text);
     }
-
-    .card .content span{
-      font-size:14px;
-      color:#666;
-    }
-
-    footer{
-      margin-top:60px;
-      padding:24px 16px;
-      text-align:center;
-      font-size:14px;
-      color:#777;
-    }
-  </style>
-</head>
-
-<body>
-
-  <!-- العنوان الرئيسي -->
-  <header>
-    <h1>مرحبًا بكم في DekoKraft</h1>
-    <p>هنا أعرض أعمالي في الشموع التزيينية والديكور المنزلي</p>
-  </header>
-
-  <!-- المحتوى -->
-  <main>
-    <h2>المجموعات</h2>
-
-    <div class="grid">
-
-      <!-- بطاقة مجموعة الشموع -->
-      <a class="card" href="collections.html">
-        <img src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=1200&q=80"
-             alt="شموع تزيينية">
-        <div class="content">
-          <strong>مجموعة الشموع التزيينية</strong>
-          <span>صور ومقالات عن الشموع المعطرة والديكور</span>
-        </div>
-      </a>
-
-      <!-- بطاقة مجموعة الديكور -->
-      <a class="card" href="collections.html">
-        <img src="https://images.unsplash.com/photo-1528825871115-3581a5387919?auto=format&fit=crop&w=1200&q=80"
-             alt="ديكور منزلي">
-        <div class="content">
-          <strong>ديكور منزلي</strong>
-          <span>أفكار وتصاميم للمنزل</span>
-        </div>
-      </a>
-
-      <!-- بطاقة مقالات -->
-      <a class="card" href="collections.html">
-        <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=1200&q=80"
-             alt="مقالات">
-        <div class="content">
-          <strong>مقالات ونصائح</strong>
-          <span>إلهام وأفكار جديدة</span>
-        </div>
-      </a>
-
-    </div>
-  </main>
-
-  <!-- الفوتر -->
-  <footer>
-    ©️ 2026 DekoKraft – جميع الحقوق محفوظة
-  </footer>
-
-</body>
-</html>
+    .card p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.65;
+      font-size:15px;
+      flex
