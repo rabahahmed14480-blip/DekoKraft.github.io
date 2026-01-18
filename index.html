@@ -2,130 +2,121 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>DekoKraft</title>
-  <link rel="stylesheet" href="style.css?v=1">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css?v=2">
 </head>
 
 <body>
-  <!-- NAV -->
-  <div class="nav">
+
+  <!-- ========== NAVBAR ========== -->
+  <header class="nav">
     <div class="nav-inner">
       <a class="brand" href="index.html">
         <div class="logo">D</div>
-        <div>
+        <div class="brand-text">
           <h1>DekoKraft</h1>
           <p>شموع • ديكور • هدايا</p>
         </div>
       </a>
 
-      <div class="menu">
+      <nav class="menu">
         <a href="index.html">الرئيسية</a>
         <a href="collections.html">المجموعات</a>
         <a href="candles.html">الشموع</a>
         <a href="decor.html">الديكور</a>
         <a href="gifts.html">الهدايا</a>
-        <a href="gallery.html">معرض الصور</a>
+        <a href="gallery.html">المعرض</a>
         <a href="articles.html">المقالات</a>
-      </div>
+      </nav>
     </div>
-  </div>
+  </header>
 
-  <div class="container">
+  <!-- ========== MAIN CONTENT ========== -->
+  <main class="container">
+
     <!-- HERO -->
     <section class="hero">
       <h2>مرحباً بكم في DekoKraft</h2>
       <p>
-        هنا ستجدون شموعًا مصنوعة بعناية، أفكار ديكور دافئة، وهدايا جميلة.
-        اختاروا مجموعة وشاهدوا التفاصيل.
+        شموع مصنوعة بحب، ديكور دافئ، وأفكار هدايا أنيقة لكل المناسبات.
       </p>
 
       <div class="hero-actions">
         <a class="btn primary" href="collections.html">استعرض المجموعات</a>
-        <a class="btn" href="gallery.html">شاهد معرض الصور</a>
+        <a class="btn" href="gallery.html">معرض الصور</a>
       </div>
     </section>
 
-    <!-- CARDS (الصور/الأقسام في الرئيسية) -->
-    <section class="grid" aria-label="الأقسام">
+    <!-- ========== SECTIONS GRID ========== -->
+    <section class="grid" aria-label="أقسام الموقع">
+
+      <!-- CARD -->
       <a class="card" href="collections.html">
-        <div class="card-media">
-          <span class="badge">⭐ المجموعات</span>
-        </div>
+        <div class="card-media" style="background-image:url('images/collections.jpg');"></div>
         <div class="card-body">
           <h3>المجموعات</h3>
-          <p>صفحات مجموعات جاهزة: شموع تزيينية، هدايا، ديكور…</p>
-          <div class="meta">
-            <span>اضغط للدخول</span>
-          </div>
+          <p>كل المجموعات الخاصة بالشموع والديكور.</p>
         </div>
       </a>
 
       <a class="card" href="candles.html">
-        <div class="card-media">
-          <span class="badge">🕯️ الشموع</span>
-        </div>
+        <div class="card-media" style="background-image:url('images/candles.jpg');"></div>
         <div class="card-body">
           <h3>الشموع</h3>
-          <p>تشكيلة الشموع وروائحها وأحجامها، مع عرض جميل للمنتجات.</p>
-          <div class="meta"><span>اضغط للدخول</span></div>
+          <p>تشكيلة شموع بروائح وأحجام مختلفة.</p>
         </div>
       </a>
 
       <a class="card" href="decor.html">
-        <div class="card-media">
-          <span class="badge">🏠 الديكور</span>
-        </div>
+        <div class="card-media" style="background-image:url('images/decor.jpg');"></div>
         <div class="card-body">
           <h3>الديكور</h3>
-          <p>قطع ديكور بسيطة وأنيقة تناسب كل غرفة.</p>
-          <div class="meta"><span>اضغط للدخول</span></div>
+          <p>قطع ديكور بسيطة وأنيقة.</p>
         </div>
       </a>
 
       <a class="card" href="gifts.html">
-        <div class="card-media">
-          <span class="badge">🎁 الهدايا</span>
-        </div>
+        <div class="card-media" style="background-image:url('images/gifts.jpg');"></div>
         <div class="card-body">
           <h3>الهدايا</h3>
-          <p>أفكار هدايا جاهزة (تغليف + اقتراحات) لأجمل المناسبات.</p>
-          <div class="meta"><span>اضغط للدخول</span></div>
+          <p>هدايا جاهزة ومميزة لكل المناسبات.</p>
         </div>
       </a>
 
       <a class="card" href="gallery.html">
-        <div class="card-media">
-          <span class="badge">🖼️ معرض الصور</span>
-        </div>
+        <div class="card-media" style="background-image:url('images/gallery.jpg');"></div>
         <div class="card-body">
           <h3>معرض الصور</h3>
-          <p>صور منتجات ومشاريع وتجارب — اضغط لمشاهدة المعرض.</p>
-          <div class="meta"><span>اضغط للدخول</span></div>
+          <p>صور من أعمالنا ومنتجاتنا.</p>
         </div>
       </a>
 
       <a class="card" href="articles.html">
-        <div class="card-media">
-          <span class="badge">📝 المقالات</span>
-        </div>
+        <div class="card-media" style="background-image:url('images/articles.jpg');"></div>
         <div class="card-body">
           <h3>المقالات</h3>
-          <p>نصائح عن الشموع والروائح، والعناية بالديكور، وأفكار تصميم.</p>
-          <div class="meta"><span>اضغط للدخول</span></div>
+          <p>نصائح وأفكار عن الشموع والديكور.</p>
         </div>
       </a>
+
     </section>
 
-    <div class="footer">
-      <div>©️ <span id="y"></span> DekoKraft</div>
-      <div>Instagram • WhatsApp • Email</div>
-    </div>
-  </div>
+  </main>
 
-  <script src="script.js?v=1"></script>
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <p>©️ <span id="year"></span> DekoKraft</p>
+    <p>Instagram • WhatsApp • Email</p>
+  </footer>
+
+  <!-- JS -->
+  <script src="script.js?v=2"></script>
   <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
+    document.getElementById("year").textContent = new Date().getFullYear();
   </script>
+
 </body>
 </html>
