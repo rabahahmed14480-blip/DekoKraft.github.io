@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>المجموعات | DekoKraft</title>
+  <link rel="stylesheet" href="style.css?v=22">
+</head>
+
+<body>
+  <!-- NAV -->
+  <div class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html">
+        <div class="logo">D</div>
+        <div>
+          <h1>DekoKraft</h1>
+          <p>شموع • ديكور • هدايا</p>
+        </div>
+      </a>
+
+      <div class="menu">
+        <a href="index.html">الرئيسية</a>
+        <a href="collections.html" class="active">المجموعات</a>
+        <a href="candles.html">الشموع</a>
+        <a href="decor.html">الديكور</a>
+        <a href="gifts.html">الهدايا</a>
+        <a href="gallery.html">معرض الصور</a>
+        <a href="articles.html">المقالات</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <section class="hero" style="text-align:center;">
+      <h2>المجموعات</h2>
+      <p>اختاري مجموعة وشاهدي الصور والتفاصيل.</p>
+      <div class="hero-actions">
+        <a class="btn" href="index.html">← العودة للرئيسية</a>
+      </div>
+    </section>
+
+    <section class="grid" aria-label="قائمة المجموعات">
+
+      <!-- مجموعة 1 -->
+      <a class="card" href="candles.html">
+        <div class="card-media">
+          <img
+            src="assets/images/collections/decorative-candles-600.webp"
+            srcset="assets/images/collections/decorative-candles-600.webp 600w, assets/images/collections/decorative-candles-1200.webp 1200w"
+            sizes="(max-width: 768px) 100vw, 520px"
+            alt="شموع تزيينية"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+          />
+          <span class="badge">🕯️ الشموع</span>
+        </div>
+        <div class="card-body">
+          <h3>شموع تزيينية</h3>
+          <p>روائح دافئة وأشكال أنيقة للمناسبات والديكور.</p>
+          <div class="meta"><span>اضغط للدخول</span></div>
+        </div>
+      </a>
+
+      <!-- مجموعة 2 -->
+      <a class="card" href="decor.html">
+        <div class="card-media">
+          <img
+            src="assets/images/collections/modern-decor-600.webp"
+            srcset="assets/images/collections/modern-decor-600.webp 600w, assets/images/collections/modern-decor-1200.webp 1200w"
+            sizes="(max-width: 768px) 100vw, 520px"
+            alt="ديكور عصري"
+            loading="lazy"
+            decoding="async"
+          />
+          <span class="badge">🏠 الديكور</span>
+        </div>
+        <div class="card-body">
+          <h3>ديكور عصري</h3>
+          <p>قطع بسيطة وأنيقة للمكتب والبيت.</p>
+          <div class="meta"><span>اضغط للدخول</span></div>
+        </div>
+      </a>
+
+      <!-- مجموعة 3 -->
+      <a class="card" href="gifts.html">
+        <div class="card-media">
+          <img
+            src="assets/images/collections/gift-ideas-600.webp"
+            srcset="assets/images/collections/gift-ideas-600.webp 600w, assets/images/collections/gift-ideas-1200.webp 1200w"
+            sizes="(max-width: 768px) 100vw, 520px"
+            alt="هدايا"
+            loading="lazy"
+            decoding="async"
+          />
+          <span class="badge">🎁 الهدايا</span>
+        </div>
+        <div class="card-body">
+          <h3>هدايا جاهزة</h3>
+          <p>تغليف + أفكار مناسبة لأجمل اللحظات.</p>
+          <div class="meta"><span>اضغط للدخول</span></div>
+        </div>
+      </a>
+
+      <!-- مجموعة 4 -->
+      <a class="card" href="gallery.html">
+        <div class="card-media">
+          <img
+            src="assets/images/collections/gallery-feature-600.webp"
+            srcset="assets/images/collections/gallery-feature-600.webp 600w, assets/images/collections/gallery-feature-1200.webp 1200w"
+            sizes="(max-width: 768px) 100vw, 520px"
+            alt="معرض الصور"
+            loading="lazy"
+            decoding="async"
+          />
+          <span class="badge">🖼️ صور</span>
+        </div>
+        <div class="card-body">
+          <h3>صور المنتجات</h3>
+          <p>شاهدي صور الأعمال والتفاصيل.</p>
+          <div class="meta"><span>اضغط للدخول</span></div>
+        </div>
+      </a>
+
+      <!-- مجموعة 5 -->
+      <a class="card" href="articles.html">
+        <div class="card-media">
+          <img
+            src="assets/images/collections/articles-cover-600.webp"
+            srcset="assets/images/collections/articles-cover-600.webp 600w, assets/images/collections/articles-cover-1200.webp 1200w"
+            sizes="(max-width: 768px) 100vw, 520px"
+            alt="مقالات"
+            loading="lazy"
+            decoding="async"
+          />
+          <span class="badge">📝 مقالات</span>
+        </div>
+        <div class="card-body">
+          <h3>مقالات ونصائح</h3>
+          <p>عناية بالشموع، أفكار ديكور، واقتراحات روائح.</p>
+          <div class="meta"><span>اضغط للدخول</span></div>
+        </div>
+      </a>
+
+      <!-- مجموعة 6 -->
+      <a class="card" href="collections.html">
+        <div class="card-media">
+          <img
+            src="assets/images/collections/new-collection-600.webp"
+            srcset="assets/images/collections/new-collection-600.webp 600w, assets/images/collections/new-collection-1200.webp 1200w"
+            sizes="(max-width: 768px) 100vw, 520px"
+            alt="مجموعة جديدة"
+            loading="lazy"
+            decoding="async"
+          />
+          <span class="badge">✨ جديد</span>
+        </div>
+        <div class="card-body">
+          <h3>مجموعة جديدة</h3>
+          <p>هنا نضع مجموعة موسمية (شتاء / رمضان / عيد...).</p>
+          <div class="meta"><span>اضغط للدخول</span></div>
+        </div>
+      </a>
+
+    </section>
+
+    <div class="footer">
+      <div>©️ <span id="y"></span> DekoKraft</div>
+      <div>Instagram • WhatsApp • Email</div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
