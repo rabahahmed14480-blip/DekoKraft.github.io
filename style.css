@@ -1,350 +1,174 @@
-:root{
-  --bg:#0b0c14;
-  --card:#111325;
-  --card2:#0f1420;
-  --text:#e9ecff;
-  --muted:#b7bde0;
-  --line:rgba(255,255,255,.08);
-  --accent:#7c4dff;
-  --accent2:#ffb74d;
-  --radius:22px;
+/* ===== RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
-*{box-sizing:border-box}
-html,body{margin:0;padding:0}
-body{
-  background: radial-gradient(900px 400px at 70% 10%, rgba(124,77,255,.25), transparent 60%),
-              radial-gradient(700px 380px at 10% 40%, rgba(255,183,77,.12), transparent 55%),
-              var(--bg);
-  color:var(--text);
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+body {
+  background: radial-gradient(1200px 600px at top right, #2a2358, #0b0e16);
+  color: #fff;
+  line-height: 1.6;
 }
 
-/* NAV */
-.nav{
-  position:sticky; top:0; z-index:10;
+/* ===== NAV ===== */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(10, 12, 22, 0.85);
   backdrop-filter: blur(12px);
-  background: rgba(11,12,20,.65);
-  border-bottom:1px solid var(--line);
-}
-.nav-inner{
-  max-width:1100px; margin:0 auto;
-  display:flex; align-items:center; justify-content:space-between;
-  padding:14px 16px;
-  gap:12px;
-}
-.brand{display:flex; gap:12px; align-items:center; text-decoration:none; color:inherit}
-.logo{
-  width:44px;height:44px;border-radius:16px;
-  display:grid; place-items:center;
-  background: linear-gradient(135deg, rgba(124,77,255,.9), rgba(255,183,77,.35));
-  font-weight:800;
-}
-.brand h1{margin:0; font-size:18px; line-height:1.1}
-.brand p{margin:2px 0 0; font-size:12px; color:var(--muted)}
-
-.menu{
-  display:flex; gap:10px; flex-wrap:wrap;
-  justify-content:flex-end;
-}
-.menu a{
-  color:var(--muted);
-  text-decoration:none;
-  padding:8px 10px;
-  border-radius:999px;
-  border:1px solid transparent;
-  font-size:13px;
-}
-.menu a:hover{
-  border-color:var(--line);
-  color:var(--text);
-  background: rgba(255,255,255,.03);
 }
 
-.container{max-width:1100px; margin:0 auto; padding:18px 16px 28px}
-
-/* HERO */
-.hero{
-  margin-top:14px;
-  padding:22px;
-  border-radius: var(--radius);
-  background:
-    radial-gradient(650px 260px at 70% 20%, rgba(124,77,255,.22), transparent 55%),
-    radial-gradient(520px 240px at 20% 80%, rgba(255,183,77,.12), transparent 60%),
-    linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-  border:1px solid var(--line);
-}
-.hero h2{margin:0 0 10px; font-size:26px}
-.hero p{margin:0 0 16px; color:var(--muted); line-height:1.7; max-width:720px}
-
-.hero-actions{display:flex; gap:12px; flex-wrap:wrap}
-.btn{
-  display:inline-flex; align-items:center; justify-content:center;
-  padding:12px 16px;
-  border-radius: 16px;
-  text-decoration:none;
-  border:1px solid var(--line);
-  color:var(--text);
-  background: rgba(255,255,255,.03);
-}
-.btn.primary{
-  background: rgba(124,77,255,.22);
-  border-color: rgba(124,77,255,.35);
+.nav-inner {
+  max-width: 1200px;
+  margin: auto;
+  padding: 14px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-/* GRID CARDS */
-.grid{
-  display:grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap:14px;
-  margin-top:16px;
-}
-.card{
-  grid-column: span 6;
-  text-decoration:none;
-  color:inherit;
-  border-radius: var(--radius);
-  overflow:hidden;
-  border:1px solid var(--line);
-  background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-  transform: translateY(0);
-  transition: transform .15s ease, border-color .15s ease;
-}
-.card:hover{
-  transform: translateY(-2px);
-  border-color: rgba(255,255,255,.16);
-}
-.card-media{
-  height:160px;
-  background:
-    radial-gradient(600px 200px at 50% 20%, rgba(124,77,255,.22), transparent 60%),
-    linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-  position:relative;
-}
-.badge{
-  position:absolute; left:14px; top:14px;
-  background: rgba(0,0,0,.35);
-  border:1px solid rgba(255,255,255,.14);
-  padding:8px 10px;
-  border-radius:999px;
-  font-size:13px;
-}
-.card-body{padding:16px}
-.card-body h3{margin:0 0 8px; font-size:18px}
-.card-body p{margin:0 0 10px; color:var(--muted); line-height:1.6}
-.meta{color:rgba(255,255,255,.7); font-size:13px}
-
-/* FOOTER */
-.footer{
-  margin-top:18px;
-  padding:16px;
-  border:1px solid var(--line);
-  border-radius: var(--radius);
-  background: rgba(255,255,255,.02);
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  flex-wrap:wrap;
-  color:var(--muted);
+.brand {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  text-decoration: none;
+  color: #fff;
 }
 
-/* RESPONSIVE */
-@media (max-width: 900px){
-  .menu{display:none;} /* على الموبايل نخفي القائمة العلوية (يمكن لاحقاً نعمل زر منيو) */
-  .card{grid-column: span 12;}
-  .hero h2{font-size:22px}
+.logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #7c5cff, #ffb86c);
+  display: grid;
+  place-items: center;
+  font-weight: bold;
 }
 
-/* =========================================================
-   ✅ صور الصفحة الرئيسية (ضع الصور في assets/images/home/)
-   ========================================================= */
-
-.bg-collections{
-  background-image: url("assets/images/home/collections.jpg");
-  background-size: cover;
-  background-position: center;
+.menu {
+  display: flex;
+  gap: 16px;
 }
 
-.bg-candles{
-  background-image: url("assets/images/home/candles.jpg");
-  background-size: cover;
-  background-position: center;
+.menu a {
+  color: #cfcfff;
+  text-decoration: none;
+  font-size: 14px;
 }
 
-.bg-decor{
-  background-image: url("assets/images/home/decor.jpg");
-  background-size: cover;
-  background-position: center;
+/* ===== LAYOUT ===== */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 24px 16px 60px;
 }
 
-.bg-gifts{
-  background-image: url("assets/images/home/gifts.jpg");
-  background-size: cover;
-  background-position: center;
+/* ===== HERO ===== */
+.hero {
+  background: linear-gradient(135deg, #2f2964, #14182b);
+  border-radius: 22px;
+  padding: 36px 22px;
+  margin-bottom: 40px;
+  text-align: center;
 }
 
-.bg-gallery{
-  background-image: url("assets/images/home/gallery.jpg");
-  background-size: cover;
-  background-position: center;
+.hero h2 {
+  font-size: 28px;
+  margin-bottom: 12px;
 }
 
-.bg-articles{
-  background-image: url("assets/images/home/articles.jpg");
-  background-size: cover;
-  background-position: center;
+.hero p {
+  color: #d6d7ff;
+  margin-bottom: 20px;
 }
-<!doctype html>
-<html lang="ar" dir="rtl">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>DekoKraft</title>
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="style.css?v=10">
-</head>
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
 
-<body>
+.btn {
+  padding: 12px 18px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  text-decoration: none;
+}
 
-  <!-- NAVBAR -->
-  <div class="nav">
-    <div class="nav-inner">
+.btn.primary {
+  background: linear-gradient(135deg, #7c5cff, #ffb86c);
+  color: #000;
+}
 
-      <!-- Mobile menu button -->
-      <button class="menu-btn" aria-label="القائمة">☰</button>
+/* ===== GRID ===== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 22px;
+}
 
-      <a class="brand" href="index.html">
-        <div class="logo">D</div>
-        <div>
-          <h1>DekoKraft</h1>
-          <p>شموع • ديكور • هدايا</p>
-        </div>
-      </a>
+/* ===== CARD ===== */
+.card {
+  background: rgba(255,255,255,0.06);
+  border-radius: 20px;
+  overflow: hidden;
+  text-decoration: none;
+  color: #fff;
+}
 
-      <div class="menu">
-        <a href="index.html">الرئيسية</a>
-        <a href="collections.html">المجموعات</a>
-        <a href="candles.html">الشموع</a>
-        <a href="decor.html">الديكور</a>
-        <a href="gifts.html">الهدايا</a>
-        <a href="gallery.html">معرض الصور</a>
-        <a href="articles.html">المقالات</a>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- CONTENT -->
-  <div class="container">
-
-    <!-- HERO -->
-    <section class="hero">
-      <h2>مرحباً بكم في DekoKraft</h2>
-      <p>
-        هنا ستجدون شموعًا مصنوعة بعناية، أفكار ديكور دافئة، وهدايا جميلة.
-        اختاروا مجموعة وشاهدوا التفاصيل.
-      </p>
-
-      <div class="hero-actions">
-        <a class="btn primary" href="collections.html">استعرض المجموعات</a>
-        <a class="btn" href="gallery.html">شاهد معرض الصور</a>
-      </div>
-    </section>
-
-    <!-- CARDS -->
-    <section class="grid" aria-label="الأقسام">
-
-      <a class="card" href="collections.html">
-        <div class="card-media" style="background-image:url('assets/images/collections.jpg')">
-          <span class="badge">⭐ المجموعات</span>
-        </div>
-        <div class="card-body">
-          <h3>المجموعات</h3>
-          <p>صفحات مجموعات جاهزة: شموع تزيينية، هدايا، ديكور…</p>
-        </div>
-      </a>
-
-      <a class="card" href="candles.html">
-        <div class="card-media" style="background-image:url('assets/images/candles.jpg')">
-          <span class="badge">🕯️ الشموع</span>
-        </div>
-        <div class="card-body">
-          <h3>الشموع</h3>
-          <p>تشكيلة الشموع وروائحها وأحجامها.</p>
-        </div>
-      </a>
-
-      <a class="card" href="decor.html">
-        <div class="card-media" style="background-image:url('assets/images/decor.jpg')">
-          <span class="badge">🏠 الديكور</span>
-        </div>
-        <div class="card-body">
-          <h3>الديكور</h3>
-          <p>قطع ديكور بسيطة وأنيقة لكل مساحة.</p>
-        </div>
-      </a>
-
-      <a class="card" href="gifts.html">
-        <div class="card-media" style="background-image:url('assets/images/gifts.jpg')">
-          <span class="badge">🎁 الهدايا</span>
-        </div>
-        <div class="card-body">
-          <h3>الهدايا</h3>
-          <p>أفكار هدايا جاهزة للمناسبات.</p>
-        </div>
-      </a>
-
-      <a class="card" href="gallery.html">
-        <div class="card-media" style="background-image:url('assets/images/gallery.jpg')">
-          <span class="badge">🖼️ معرض الصور</span>
-        </div>
-        <div class="card-body">
-          <h3>معرض الصور</h3>
-          <p>صور المنتجات والمشاريع.</p>
-        </div>
-      </a>
-
-      <a class="card" href="articles.html">
-        <div class="card-media" style="background-image:url('assets/images/articles.jpg')">
-          <span class="badge">📝 المقالات</span>
-        </div>
-        <div class="card-body">
-          <h3>المقالات</h3>
-          <p>نصائح وأفكار عن الشموع والديكور.</p>
-        </div>
-      </a>
-
-    </section>
-
-    <!-- FOOTER -->
-    <div class="footer">
-      <div>©️ <span id="y"></span> DekoKraft</div>
-      <div>Instagram • WhatsApp • Email</div>
-    </div>
-
-  </div>
-
-  <!-- JS -->
-  <script src="script.js?v=10"></script>
-  <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
-  </script>
-
-</body>
-</html>
-/* === Images inside cards === */
+/* ⭐⭐ أهم جزء ⭐⭐ */
 .card-media {
   position: relative;
   width: 100%;
-  height: 220px;          /* ارتفاع موحّد للكروت */
-  overflow: hidden;
-  border-radius: 16px;
+  aspect-ratio: 4 / 5;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-.card-media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;     /* يملأ المربع بدون تشويه */
-  display: block;
+/* شارة */
+.badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(0,0,0,0.55);
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+}
+
+.card-body {
+  padding: 16px;
+}
+
+.card-body h3 {
+  margin-bottom: 6px;
+}
+
+.card-body p {
+  color: #cfd2ff;
+  font-size: 14px;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  margin-top: 60px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #aaa;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 600px) {
+  .menu {
+    display: none;
+  }
 }
