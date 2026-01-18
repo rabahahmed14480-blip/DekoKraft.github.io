@@ -1,177 +1,366 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>DekoKraft</title>
 
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    :root{
+      --bg:#0b0b10;
+      --card:#141421;
+      --card2:#10101a;
+      --text:#eaeaf2;
+      --muted:#b7b7c6;
+      --accent:#7c5cff;
+      --line:rgba(255,255,255,.08);
+      --shadow: 0 16px 40px rgba(0,0,0,.35);
+      --r:18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+      background: radial-gradient(900px 500px at 70% 10%, rgba(124,92,255,.22), transparent 60%),
+                  radial-gradient(900px 500px at 20% 40%, rgba(255,255,255,.06), transparent 60%),
+                  var(--bg);
+      color:var(--text);
+    }
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1100px;margin:0 auto;padding:18px}
+
+    /* Header */
+    header{
+      position:sticky; top:0; z-index:10;
+      backdrop-filter: blur(10px);
+      background: rgba(10,10,16,.55);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:800; letter-spacing:.2px;
+    }
+    .logo{
+      width:40px;height:40px;border-radius:14px;
+      display:grid;place-items:center;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.25), transparent 55%),
+                  linear-gradient(135deg, rgba(124,92,255,.95), rgba(124,92,255,.35));
+      box-shadow: var(--shadow);
+      font-weight:900;
+    }
+    .subtitle{color:var(--muted); font-weight:600; font-size:13px}
+    .menuBtn{
+      width:44px;height:44px;border-radius:14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color:var(--text);
+      display:grid;place-items:center;
+      cursor:pointer;
+    }
+    .links{
+      display:flex; align-items:center; gap:14px;
+    }
+    .links a{
+      padding:10px 12px;
+      border-radius:12px;
+      color:var(--muted);
+      font-weight:700;
+      font-size:14px;
+    }
+    .links a:hover{background:rgba(255,255,255,.05);color:var(--text)}
+
+    /* Mobile drawer */
+    .drawer{
+      position:fixed; inset:0;
+      background: rgba(0,0,0,.55);
+      display:none;
+      z-index:100;
+    }
+    .drawer.open{display:block}
+    .panel{
+      position:absolute; top:0; right:0;
+      width:min(320px, 88vw);
+      height:100%;
+      background: rgba(14,14,22,.95);
+      border-left:1px solid var(--line);
+      padding:18px;
+      box-shadow: var(--shadow);
+    }
+    .panel .row{display:flex;justify-content:space-between;align-items:center}
+    .panel .close{
+      width:40px;height:40px;border-radius:12px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:var(--text);
+      cursor:pointer;
+    }
+    .panel nav{margin-top:16px;display:grid;gap:8px}
+    .panel nav a{
+      padding:12px 12px;border-radius:12px;
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.06);
+      color:var(--text);
+      font-weight:800;
     }
 
-    body {
-      background: #fafafa;
-      color: #111;
+    /* Hero */
+    .hero{
+      margin-top:18px;
+      background: linear-gradient(180deg, rgba(124,92,255,.18), rgba(255,255,255,.03));
+      border:1px solid var(--line);
+      border-radius:26px;
+      padding:22px;
+      box-shadow: var(--shadow);
+    }
+    .hero h1{margin:0 0 8px; font-size:34px}
+    .hero p{margin:0 0 18px; color:var(--muted); font-weight:600; line-height:1.7}
+    .cta{display:flex; gap:12px; flex-wrap:wrap}
+    .btn{
+      padding:12px 16px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:var(--text);
+      font-weight:900;
+      cursor:pointer;
+    }
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(124,92,255,.95), rgba(124,92,255,.35));
+      border-color: rgba(124,92,255,.55);
     }
 
-    /* ===== HEADER ===== */
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 14px 18px;
-      background: #fff;
-      border-bottom: 1px solid #eee;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+    /* Cards */
+    .grid{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap:16px;
+    }
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid var(--line);
+      border-radius: var(--r);
+      overflow:hidden;
+      box-shadow: 0 12px 28px rgba(0,0,0,.28);
+      min-height:220px;
+      display:flex;
+      flex-direction:column;
+    }
+    .thumb{
+      position:relative;
+      height:170px;
+      background: rgba(255,255,255,.03);
+    }
+    .thumb img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+    .badge{
+      position:absolute;
+      top:12px; right:12px;
+      padding:7px 10px;
+      border-radius:999px;
+      background: rgba(0,0,0,.45);
+      border:1px solid rgba(255,255,255,.14);
+      font-weight:900;
+      font-size:13px;
+      backdrop-filter: blur(8px);
+    }
+    .body{padding:14px}
+    .body h3{margin:0 0 6px; font-size:20px}
+    .body p{margin:0; color:var(--muted); font-weight:650; line-height:1.6; font-size:14px}
+
+    footer{
+      margin:26px 0 10px;
+      color:rgba(255,255,255,.45);
+      text-align:center;
+      font-weight:700;
     }
 
-    .logo {
-      font-size: 20px;
-      font-weight: 700;
+    /* Responsive */
+    @media (max-width: 980px){
+      .grid{grid-template-columns: repeat(2, minmax(0,1fr))}
+      .hero h1{font-size:30px}
+      .links{display:none}
     }
-
-    .menu-btn {
-      font-size: 26px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      display: none;
-    }
-
-    nav {
-      display: flex;
-      gap: 18px;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: #111;
-      font-weight: 500;
-    }
-
-    /* ===== MOBILE MENU ===== */
-    @media (max-width: 768px) {
-      .menu-btn {
-        display: block;
-      }
-
-      nav {
-        position: absolute;
-        top: 60px;
-        left: 0;
-        right: 0;
-        background: #fff;
-        flex-direction: column;
-        padding: 16px;
-        gap: 12px;
-        display: none;
-        border-bottom: 1px solid #eee;
-      }
-
-      nav.active {
-        display: flex;
-      }
-    }
-
-    /* ===== MAIN ===== */
-    main {
-      padding: 20px;
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    h1 {
-      font-size: 22px;
-      margin-bottom: 16px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 18px;
-    }
-
-    .card {
-      background: #fff;
-      border-radius: 14px;
-      overflow: hidden;
-      text-decoration: none;
-      color: inherit;
-      border: 1px solid #eee;
-    }
-
-    .card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      display: block;
-    }
-
-    .card h3 {
-      padding: 14px;
-      font-size: 16px;
-      text-align: center;
+    @media (max-width: 560px){
+      .grid{grid-template-columns: 1fr}
+      .hero{padding:18px}
+      .hero h1{font-size:26px}
     }
   </style>
 </head>
 
 <body>
-
-  <!-- ===== HEADER ===== -->
   <header>
-    <button class="menu-btn" onclick="toggleMenu()">☰</button>
-    <div class="logo">DekoKraft</div>
+    <div class="container nav">
+      <button class="menuBtn" id="openMenu" aria-label="فتح القائمة">☰</button>
 
-    <nav id="nav">
-      <a href="index.html">الرئيسية</a>
-      <a href="collections.html">المجموعات</a>
-      <a href="articles.html">المقالات</a>
-      <a href="gallery.html">المعرض</a>
-      <a href="gifts.html">الهدايا</a>
-    </nav>
+      <div class="brand">
+        <div>
+          <div style="display:flex;align-items:baseline;gap:8px">
+            <div style="font-size:22px">DekoKraft</div>
+          </div>
+          <div class="subtitle">شموع • ديكور • هدايا</div>
+        </div>
+        <div class="logo">D</div>
+      </div>
+
+      <div class="links">
+        <a href="index.html">الرئيسية</a>
+        <a href="collections.html">المجموعات</a>
+        <a href="candles.html">الشموع</a>
+        <a href="decor.html">الديكور</a>
+        <a href="gifts.html">الهدايا</a>
+        <a href="articles.html">المقالات</a>
+        <a href="gallery.html">معرض الصور</a>
+      </div>
+    </div>
   </header>
 
-  <!-- ===== MAIN ===== -->
-  <main>
-    <h1>مجموعاتنا</h1>
+  <!-- Mobile drawer -->
+  <div class="drawer" id="drawer" aria-hidden="true">
+    <div class="panel">
+      <div class="row">
+        <strong style="font-size:18px">القائمة</strong>
+        <button class="close" id="closeMenu" aria-label="إغلاق">✕</button>
+      </div>
+      <nav>
+        <a href="index.html">الرئيسية</a>
+        <a href="collections.html">المجموعات</a>
+        <a href="candles.html">الشموع</a>
+        <a href="decor.html">الديكور</a>
+        <a href="gifts.html">الهدايا</a>
+        <a href="articles.html">المقالات</a>
+        <a href="gallery.html">معرض الصور</a>
+      </nav>
+    </div>
+  </div>
 
-    <div class="grid">
+  <main class="container">
+    <section class="hero">
+      <h1>مرحباً بكم في DekoKraft</h1>
+      <p>هنا ستجدون شموعاً مصنوعة بعناية، أفكار ديكور دافئة، وهدايا جميلة. اختاروا مجموعة وشاهدوا التفاصيل.</p>
+      <div class="cta">
+        <a class="btn primary" href="collections.html">استعرض المجموعات</a>
+        <a class="btn" href="gallery.html">شاهد معرض الصور</a>
+      </div>
+    </section>
 
-      <!-- ===== COLLECTION CARD ===== -->
-      <a href="collections.html" class="card">
-        <picture>
-          <source
-            type="image/webp"
-            srcset="
-              assets/images/collections/decorative-candles-600.webp 600w,
-              assets/images/collections/decorative-candles-1200.webp 1200w
-            "
-            sizes="(max-width: 768px) 100vw, 400px"
-          />
-          <img
-            src="assets/images/collections/decorative-candles-600.webp"
-            alt="الشموع التزيينية"
-            loading="lazy"
-          />
-        </picture>
-        <h3>الشموع التزيينية</h3>
+    <section class="grid" aria-label="أقسام الموقع">
+      <!-- المجموعات (بطاقة مثال) -->
+      <a class="card" href="collections.html" aria-label="اذهب إلى صفحة المجموعات">
+        <div class="thumb">
+          <img src="assets/images/collections.jpg" alt="المجموعات" loading="lazy">
+          <div class="badge">⭐ المجموعات</div>
+        </div>
+        <div class="body">
+          <h3>المجموعات</h3>
+          <p>صفحات مجموعات جاهزة: شموع تزيينية، هدايا، ديكور…</p>
+        </div>
       </a>
 
-    </div>
+      <!-- الشموع (هنا التعديل المهم: الصور الجديدة) -->
+      <a class="card" href="collections.html" aria-label="اذهب إلى الشموع التزيينية">
+        <div class="thumb">
+          <picture>
+            <source
+              type="image/webp"
+              srcset="
+                assets/images/decorative-candles-600.webp 600w,
+                assets/images/decorative-candles-1200.webp 1200w
+              "
+              sizes="(max-width: 768px) 100vw, 400px"
+            />
+            <img
+              src="assets/images/decorative-candles-600.webp"
+              alt="الشموع التزيينية"
+              loading="lazy"
+            />
+          </picture>
+          <div class="badge">🕯️ الشموع</div>
+        </div>
+        <div class="body">
+          <h3>الشموع</h3>
+          <p>تشكيلة الشموع وروائحها وأحجامها…</p>
+        </div>
+      </a>
+
+      <!-- الديكور -->
+      <a class="card" href="decor.html" aria-label="اذهب إلى الديكور">
+        <div class="thumb">
+          <img src="assets/images/decor.jpg" alt="الديكور" loading="lazy">
+          <div class="badge">🏠 الديكور</div>
+        </div>
+        <div class="body">
+          <h3>الديكور</h3>
+          <p>قطع ديكور بسيطة وأنيقة لكل مساحة.</p>
+        </div>
+      </a>
+
+      <!-- الهدايا -->
+      <a class="card" href="gifts.html" aria-label="اذهب إلى الهدايا">
+        <div class="thumb">
+          <img src="assets/images/gifts.jpg" alt="الهدايا" loading="lazy">
+          <div class="badge">🎁 الهدايا</div>
+        </div>
+        <div class="body">
+          <h3>الهدايا</h3>
+          <p>أفكار هدايا جاهزة للمناسبات.</p>
+        </div>
+      </a>
+
+      <!-- المقالات -->
+      <a class="card" href="articles.html" aria-label="اذهب إلى المقالات">
+        <div class="thumb">
+          <img src="assets/images/articles.jpg" alt="المقالات" loading="lazy">
+          <div class="badge">📝 المقالات</div>
+        </div>
+        <div class="body">
+          <h3>المقالات</h3>
+          <p>نصائح وأفكار عن الشموع والديكور.</p>
+        </div>
+      </a>
+
+      <!-- معرض الصور -->
+      <a class="card" href="gallery.html" aria-label="اذهب إلى معرض الصور">
+        <div class="thumb">
+          <img src="assets/images/gallery.jpg" alt="معرض الصور" loading="lazy">
+          <div class="badge">🖼️ معرض الصور</div>
+        </div>
+        <div class="body">
+          <h3>معرض الصور</h3>
+          <p>صور المنتجات والمشاريع.</p>
+        </div>
+      </a>
+    </section>
+
+    <footer>©️ DekoKraft 2026</footer>
   </main>
 
-  <!-- ===== SCRIPT ===== -->
   <script>
-    function toggleMenu() {
-      document.getElementById("nav").classList.toggle("active");
-    }
-  </script>
+    const drawer = document.getElementById('drawer');
+    const openMenu = document.getElementById('openMenu');
+    const closeMenu = document.getElementById('closeMenu');
 
+    function openDrawer(){
+      drawer.classList.add('open');
+      drawer.setAttribute('aria-hidden','false');
+    }
+    function closeDrawer(){
+      drawer.classList.remove('open');
+      drawer.setAttribute('aria-hidden','true');
+    }
+
+    openMenu.addEventListener('click', openDrawer);
+    closeMenu.addEventListener('click', closeDrawer);
+    drawer.addEventListener('click', (e)=>{ if(e.target === drawer) closeDrawer(); });
+  </script>
 </body>
 </html>
