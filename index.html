@@ -5,19 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>DekoKraft</title>
 
-  <!-- (اختياري) يمنع بعض مشاكل الكاش -->
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
-
   <style>
     :root{
       --bg:#0b0b12;
-      --card:#111122;
       --muted:#a9a9c2;
       --text:#f2f2ff;
       --accent:#6b5cff;
-      --accent2:#2b244d;
       --border: rgba(255,255,255,.08);
       --shadow: 0 18px 50px rgba(0,0,0,.45);
       --radius: 22px;
@@ -34,7 +27,6 @@
     }
     a{color:inherit; text-decoration:none}
 
-    /* Header */
     header{
       position: sticky;
       top: 0;
@@ -64,9 +56,7 @@
       display:grid;place-items:center;
       font-weight:800;
     }
-    .brand .title{
-      line-height:1.1;
-    }
+    .brand .title{line-height:1.1}
     .brand .title b{display:block;font-size:18px}
     .brand .title span{display:block;font-size:12px;color:var(--muted)}
 
@@ -97,7 +87,6 @@
       background: rgba(255,255,255,.04);
     }
 
-    /* Mobile menu */
     .mobile-panel{
       display:none;
       border-top: 1px solid var(--border);
@@ -114,7 +103,6 @@
       color: var(--text);
     }
 
-    /* Layout */
     main{
       max-width:1100px;
       margin: 0 auto;
@@ -131,32 +119,18 @@
       display:grid;
       gap: 14px;
     }
-    .hero h1{
-      margin:0;
-      font-size: clamp(22px, 3.4vw, 34px);
-    }
-    .hero p{
-      margin:0;
-      color: var(--muted);
-      line-height:1.7;
-      font-size: 15px;
-    }
-    .hero-actions{
-      display:flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
+    .hero h1{margin:0;font-size: clamp(22px, 3.4vw, 34px)}
+    .hero p{margin:0;color: var(--muted);line-height:1.7;font-size: 15px}
+    .hero-actions{display:flex;gap: 12px;flex-wrap: wrap}
     .btn{
       padding: 12px 14px;
       border-radius: 14px;
       border: 1px solid var(--border);
       background: rgba(255,255,255,.06);
       color: var(--text);
-      cursor:pointer;
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      gap:8px;
       min-width: 150px;
     }
     .btn.primary{
@@ -170,6 +144,7 @@
       grid-template-columns: repeat(12, 1fr);
       gap: 14px;
     }
+
     .card{
       grid-column: span 6;
       border-radius: var(--radius);
@@ -178,13 +153,14 @@
       overflow:hidden;
       box-shadow: var(--shadow);
       position: relative;
-      min-height: 220px;
+      /* هذا يمنع أن بطاقة “تنزل تحت” بسبب اختلاف تحميل الصور */
+      aspect-ratio: 16 / 9;
+      min-height: 240px;
     }
 
     .card .media{
       position:absolute;
       inset:0;
-      opacity: .95;
     }
     .card img{
       width:100%;
@@ -197,7 +173,7 @@
       content:"";
       position:absolute;
       inset:0;
-      background: linear-gradient(90deg, rgba(10,10,18,.78), rgba(10,10,18,.15));
+      background: linear-gradient(90deg, rgba(10,10,18,.78), rgba(10,10,18,.12));
     }
     .card .content{
       position:relative;
@@ -220,30 +196,14 @@
       color: var(--text);
       font-size: 13px;
     }
-    .card h2{
-      margin:0;
-      font-size: 20px;
-    }
-    .card p{
-      margin:0;
-      color: rgba(242,242,255,.85);
-      line-height:1.6;
-      max-width: 80%;
-      font-size: 14px;
-    }
+    .card h2{margin:0;font-size: 20px}
+    .card p{margin:0;color: rgba(242,242,255,.85);line-height:1.6;max-width: 90%;font-size: 14px}
 
-    footer{
-      margin-top: 22px;
-      color: var(--muted);
-      text-align:center;
-      font-size: 13px;
-    }
+    footer{margin-top: 22px;color: var(--muted);text-align:center;font-size: 13px}
 
-    /* Responsive */
     @media (max-width: 860px){
       .links{display:none}
-      .mobile-panel{display:none}
-      .card{grid-column: span 12; min-height: 230px;}
+      .card{grid-column: span 12;}
       .card p{max-width: 100%;}
     }
     @media (min-width: 861px){
@@ -276,7 +236,6 @@
       </nav>
     </div>
 
-    <!-- قائمة الهاتف -->
     <div class="mobile-panel" id="mobilePanel">
       <a href="index.html">الرئيسية</a>
       <a href="collections.html">المجموعات</a>
@@ -300,24 +259,20 @@
     </section>
 
     <section class="grid" aria-label="الأقسام">
-      <!-- المجموعات (استخدمنا صورك الجديدة decorative-candles) -->
+
+      <!-- المجموعات -->
       <a class="card" href="collections.html">
         <div class="media">
           <picture>
-            <source
-              type="image/webp"
+            <source type="image/webp"
               srcset="
-                assets/images/decorative-candles-600.webp 600w,
-                assets/images/decorative-candles-1200.webp 1200w
+                assets/images/collections-600.webp 600w,
+                assets/images/collections-1200.webp 1200w
               "
               sizes="(max-width: 860px) 100vw, 50vw"
             />
-            <img
-              src="assets/images/decorative-candles-1200.webp"
-              alt="المجموعات"
-              loading="lazy"
-              decoding="async"
-            />
+            <!-- Fallback JPG (موجود عندك غالبًا) -->
+            <img src="assets/images/collections.jpg" alt="المجموعات" loading="lazy" decoding="async" />
           </picture>
         </div>
         <div class="content">
@@ -335,7 +290,7 @@
               srcset="assets/images/candles-600.webp 600w, assets/images/candles-1200.webp 1200w"
               sizes="(max-width: 860px) 100vw, 50vw"
             />
-            <img src="assets/images/candles-1200.webp" alt="الشموع" loading="lazy" decoding="async" />
+            <img src="assets/images/candles.jpg" alt="الشموع" loading="lazy" decoding="async" />
           </picture>
         </div>
         <div class="content">
@@ -353,7 +308,7 @@
               srcset="assets/images/decor-600.webp 600w, assets/images/decor-1200.webp 1200w"
               sizes="(max-width: 860px) 100vw, 50vw"
             />
-            <img src="assets/images/decor-1200.webp" alt="الديكور" loading="lazy" decoding="async" />
+            <img src="assets/images/decor.jpg" alt="الديكور" loading="lazy" decoding="async" />
           </picture>
         </div>
         <div class="content">
@@ -371,7 +326,7 @@
               srcset="assets/images/gifts-600.webp 600w, assets/images/gifts-1200.webp 1200w"
               sizes="(max-width: 860px) 100vw, 50vw"
             />
-            <img src="assets/images/gifts-1200.webp" alt="الهدايا" loading="lazy" decoding="async" />
+            <img src="assets/images/gifts.jpg" alt="الهدايا" loading="lazy" decoding="async" />
           </picture>
         </div>
         <div class="content">
@@ -389,7 +344,7 @@
               srcset="assets/images/articles-600.webp 600w, assets/images/articles-1200.webp 1200w"
               sizes="(max-width: 860px) 100vw, 50vw"
             />
-            <img src="assets/images/articles-1200.webp" alt="المقالات" loading="lazy" decoding="async" />
+            <img src="assets/images/articles.jpg" alt="المقالات" loading="lazy" decoding="async" />
           </picture>
         </div>
         <div class="content">
@@ -407,7 +362,7 @@
               srcset="assets/images/gallery-600.webp 600w, assets/images/gallery-1200.webp 1200w"
               sizes="(max-width: 860px) 100vw, 50vw"
             />
-            <img src="assets/images/gallery-1200.webp" alt="معرض الصور" loading="lazy" decoding="async" />
+            <img src="assets/images/gallery.jpg" alt="معرض الصور" loading="lazy" decoding="async" />
           </picture>
         </div>
         <div class="content">
@@ -416,13 +371,13 @@
           <p>صور المنتجات والمشاريع.</p>
         </div>
       </a>
+
     </section>
 
     <footer>©️ DekoKraft 2026</footer>
   </main>
 
   <script>
-    // زر القائمة للهاتف
     const btn = document.getElementById("menuBtn");
     const panel = document.getElementById("mobilePanel");
 
@@ -431,8 +386,6 @@
         const isOpen = panel.style.display === "block";
         panel.style.display = isOpen ? "none" : "block";
       });
-
-      // إغلاق القائمة عند الضغط على رابط
       panel.querySelectorAll("a").forEach(a => {
         a.addEventListener("click", () => { panel.style.display = "none"; });
       });
