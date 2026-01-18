@@ -2,15 +2,12 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>DekoKraft</title>
-
-  <!-- CSS (رفعنا الرقم لتجاوز الكاش) -->
-  <link rel="stylesheet" href="style.css?v=3">
+  <link rel="stylesheet" href="style.css?v=2">
 </head>
 
 <body>
-
   <!-- NAV -->
   <div class="nav">
     <div class="nav-inner">
@@ -22,11 +19,7 @@
         </div>
       </a>
 
-      <!-- زر القائمة للموبايل -->
-      <button class="menu-btn" id="menuBtn" aria-label="القائمة">☰</button>
-
-      <!-- القائمة -->
-      <div class="menu" id="navMenu">
+      <div class="menu">
         <a href="index.html">الرئيسية</a>
         <a href="collections.html">المجموعات</a>
         <a href="candles.html">الشموع</a>
@@ -44,7 +37,7 @@
       <h2>مرحباً بكم في DekoKraft</h2>
       <p>
         هنا ستجدون شموعًا مصنوعة بعناية، أفكار ديكور دافئة، وهدايا جميلة.
-        اختاروا مجموعة وشاهدوا التفاصيل.
+        اختاروا قسمًا وشاهدوا التفاصيل.
       </p>
 
       <div class="hero-actions">
@@ -55,8 +48,11 @@
 
     <!-- CARDS -->
     <section class="grid" aria-label="الأقسام">
+
       <a class="card" href="collections.html">
-        <div class="card-media"><span class="badge">⭐ المجموعات</span></div>
+        <div class="card-media bg-collections">
+          <span class="badge">⭐ المجموعات</span>
+        </div>
         <div class="card-body">
           <h3>المجموعات</h3>
           <p>صفحات مجموعات جاهزة: شموع تزيينية، هدايا، ديكور…</p>
@@ -65,7 +61,9 @@
       </a>
 
       <a class="card" href="candles.html">
-        <div class="card-media"><span class="badge">🕯️ الشموع</span></div>
+        <div class="card-media bg-candles">
+          <span class="badge">🕯️ الشموع</span>
+        </div>
         <div class="card-body">
           <h3>الشموع</h3>
           <p>تشكيلة الشموع وروائحها وأحجامها، مع عرض جميل للمنتجات.</p>
@@ -74,7 +72,9 @@
       </a>
 
       <a class="card" href="decor.html">
-        <div class="card-media"><span class="badge">🏠 الديكور</span></div>
+        <div class="card-media bg-decor">
+          <span class="badge">🏠 الديكور</span>
+        </div>
         <div class="card-body">
           <h3>الديكور</h3>
           <p>قطع ديكور بسيطة وأنيقة تناسب كل غرفة.</p>
@@ -83,7 +83,9 @@
       </a>
 
       <a class="card" href="gifts.html">
-        <div class="card-media"><span class="badge">🎁 الهدايا</span></div>
+        <div class="card-media bg-gifts">
+          <span class="badge">🎁 الهدايا</span>
+        </div>
         <div class="card-body">
           <h3>الهدايا</h3>
           <p>أفكار هدايا جاهزة (تغليف + اقتراحات) لأجمل المناسبات.</p>
@@ -92,7 +94,9 @@
       </a>
 
       <a class="card" href="gallery.html">
-        <div class="card-media"><span class="badge">🖼️ معرض الصور</span></div>
+        <div class="card-media bg-gallery">
+          <span class="badge">🖼️ معرض الصور</span>
+        </div>
         <div class="card-body">
           <h3>معرض الصور</h3>
           <p>صور منتجات ومشاريع وتجارب — اضغط لمشاهدة المعرض.</p>
@@ -101,13 +105,16 @@
       </a>
 
       <a class="card" href="articles.html">
-        <div class="card-media"><span class="badge">📝 المقالات</span></div>
+        <div class="card-media bg-articles">
+          <span class="badge">📝 المقالات</span>
+        </div>
         <div class="card-body">
           <h3>المقالات</h3>
           <p>نصائح عن الشموع والروائح، والعناية بالديكور، وأفكار تصميم.</p>
           <div class="meta"><span>اضغط للدخول</span></div>
         </div>
       </a>
+
     </section>
 
     <div class="footer">
@@ -116,8 +123,6 @@
     </div>
   </div>
 
-  <!-- JS (رفعنا الرقم لتجاوز الكاش) -->
-  <script src="script.js?v=3"></script>
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
   </script>
