@@ -153,22 +153,11 @@
       overflow:hidden;
       box-shadow: var(--shadow);
       position: relative;
-      /* هذا يمنع أن بطاقة “تنزل تحت” بسبب اختلاف تحميل الصور */
       aspect-ratio: 16 / 9;
       min-height: 240px;
     }
-
-    .card .media{
-      position:absolute;
-      inset:0;
-    }
-    .card img{
-      width:100%;
-      height:100%;
-      object-fit: cover;
-      display:block;
-      filter: saturate(1.05) contrast(1.05);
-    }
+    .card .media{ position:absolute; inset:0; }
+    .card img{ width:100%; height:100%; object-fit: cover; display:block; }
     .card::after{
       content:"";
       position:absolute;
@@ -260,20 +249,10 @@
 
     <section class="grid" aria-label="الأقسام">
 
-      <!-- المجموعات -->
+      <!-- المجموعات (يعمل بالـ JPG الموجود) -->
       <a class="card" href="collections.html">
         <div class="media">
-          <picture>
-            <source type="image/webp"
-              srcset="
-                assets/images/collections-600.webp 600w,
-                assets/images/collections-1200.webp 1200w
-              "
-              sizes="(max-width: 860px) 100vw, 50vw"
-            />
-            <!-- Fallback JPG (موجود عندك غالبًا) -->
-            <img src="assets/images/collections.jpg" alt="المجموعات" loading="lazy" decoding="async" />
-          </picture>
+          <img src="assets/images/collections.jpg" alt="المجموعات" loading="lazy" decoding="async" />
         </div>
         <div class="content">
           <span class="tag">⭐ المجموعات</span>
@@ -282,12 +261,12 @@
         </div>
       </a>
 
-      <!-- الشموع -->
+      <!-- الشموع (يستخدم webp الذي عندك: decorative-candles-600/1200) -->
       <a class="card" href="candles.html">
         <div class="media">
           <picture>
             <source type="image/webp"
-              srcset="assets/images/candles-600.webp 600w, assets/images/candles-1200.webp 1200w"
+              srcset="assets/images/decorative-candles-600.webp 600w, assets/images/decorative-candles-1200.webp 1200w"
               sizes="(max-width: 860px) 100vw, 50vw"
             />
             <img src="assets/images/candles.jpg" alt="الشموع" loading="lazy" decoding="async" />
@@ -300,16 +279,10 @@
         </div>
       </a>
 
-      <!-- الديكور -->
+      <!-- الديكور (JPG الحالي) -->
       <a class="card" href="decor.html">
         <div class="media">
-          <picture>
-            <source type="image/webp"
-              srcset="assets/images/decor-600.webp 600w, assets/images/decor-1200.webp 1200w"
-              sizes="(max-width: 860px) 100vw, 50vw"
-            />
-            <img src="assets/images/decor.jpg" alt="الديكور" loading="lazy" decoding="async" />
-          </picture>
+          <img src="assets/images/decor.jpg" alt="الديكور" loading="lazy" decoding="async" />
         </div>
         <div class="content">
           <span class="tag">🏠 الديكور</span>
@@ -318,16 +291,10 @@
         </div>
       </a>
 
-      <!-- الهدايا -->
+      <!-- الهدايا (JPG الحالي) -->
       <a class="card" href="gifts.html">
         <div class="media">
-          <picture>
-            <source type="image/webp"
-              srcset="assets/images/gifts-600.webp 600w, assets/images/gifts-1200.webp 1200w"
-              sizes="(max-width: 860px) 100vw, 50vw"
-            />
-            <img src="assets/images/gifts.jpg" alt="الهدايا" loading="lazy" decoding="async" />
-          </picture>
+          <img src="assets/images/gifts.jpg" alt="الهدايا" loading="lazy" decoding="async" />
         </div>
         <div class="content">
           <span class="tag">🎁 الهدايا</span>
@@ -336,16 +303,10 @@
         </div>
       </a>
 
-      <!-- المقالات -->
+      <!-- المقالات (JPG الحالي) -->
       <a class="card" href="articles.html">
         <div class="media">
-          <picture>
-            <source type="image/webp"
-              srcset="assets/images/articles-600.webp 600w, assets/images/articles-1200.webp 1200w"
-              sizes="(max-width: 860px) 100vw, 50vw"
-            />
-            <img src="assets/images/articles.jpg" alt="المقالات" loading="lazy" decoding="async" />
-          </picture>
+          <img src="assets/images/articles.jpg" alt="المقالات" loading="lazy" decoding="async" />
         </div>
         <div class="content">
           <span class="tag">📝 المقالات</span>
@@ -354,16 +315,10 @@
         </div>
       </a>
 
-      <!-- معرض الصور -->
+      <!-- معرض الصور (JPG الحالي) -->
       <a class="card" href="gallery.html">
         <div class="media">
-          <picture>
-            <source type="image/webp"
-              srcset="assets/images/gallery-600.webp 600w, assets/images/gallery-1200.webp 1200w"
-              sizes="(max-width: 860px) 100vw, 50vw"
-            />
-            <img src="assets/images/gallery.jpg" alt="معرض الصور" loading="lazy" decoding="async" />
-          </picture>
+          <img src="assets/images/gallery.jpg" alt="معرض الصور" loading="lazy" decoding="async" />
         </div>
         <div class="content">
           <span class="tag">🖼️ معرض الصور</span>
@@ -380,15 +335,11 @@
   <script>
     const btn = document.getElementById("menuBtn");
     const panel = document.getElementById("mobilePanel");
-
     if (btn && panel) {
       btn.addEventListener("click", () => {
-        const isOpen = panel.style.display === "block";
-        panel.style.display = isOpen ? "none" : "block";
+        panel.style.display = (panel.style.display === "block") ? "none" : "block";
       });
-      panel.querySelectorAll("a").forEach(a => {
-        a.addEventListener("click", () => { panel.style.display = "none"; });
-      });
+      panel.querySelectorAll("a").forEach(a => a.addEventListener("click", () => panel.style.display = "none"));
     }
   </script>
 </body>
