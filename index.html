@@ -34,7 +34,8 @@
       </nav>
 
       <!-- Mobile button -->
-      <button class="menu-btn" id="menuBtn" type="button" aria-label="فتح القائمة" aria-expanded="false" aria-controls="mobileMenu">
+      <button class="menu-btn" id="menuBtn" type="button"
+              aria-label="فتح القائمة" aria-expanded="false" aria-controls="mobileMenu">
         <span class="menu-icon">☰</span>
       </button>
     </div>
@@ -154,29 +155,5 @@
   </main>
 
   <script src="script.js"></script>
-
-  <!-- سكربت بسيط لو لم يكن موجود في script.js -->
-  <script>
-    // سنة تلقائية
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    // قائمة الموبايل
-    const btn = document.getElementById("menuBtn");
-    const menu = document.getElementById("mobileMenu");
-
-    if (btn && menu) {
-      btn.addEventListener("click", () => {
-        const isOpen = !menu.hasAttribute("hidden");
-        if (isOpen) {
-          menu.setAttribute("hidden", "");
-          btn.setAttribute("aria-expanded", "false");
-        } else {
-          menu.removeAttribute("hidden");
-          btn.setAttribute("aria-expanded", "true");
-        }
-      });
-    }
-  </script>
-
 </body>
 </html>
