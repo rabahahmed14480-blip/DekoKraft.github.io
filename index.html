@@ -2,345 +2,248 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>DekoKraft</title>
 
-  <style>
-    :root{
-      --bg:#0b0b12;
-      --muted:#a9a9c2;
-      --text:#f2f2ff;
-      --accent:#6b5cff;
-      --border: rgba(255,255,255,.08);
-      --shadow: 0 18px 50px rgba(0,0,0,.45);
-      --radius: 22px;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family: system-ui, -apple-system, "Segoe UI", Tahoma, Arial, sans-serif;
-      background: radial-gradient(1200px 800px at 80% 15%, #2b2450 0%, rgba(43,36,80,0) 55%),
-                  radial-gradient(900px 700px at 20% 70%, #1a1840 0%, rgba(26,24,64,0) 60%),
-                  var(--bg);
-      color:var(--text);
-      min-height:100vh;
-    }
-    a{color:inherit; text-decoration:none}
-
-    header{
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: blur(10px);
-      background: rgba(10,10,18,.6);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav{
-      max-width:1100px;
-      margin:0 auto;
-      padding: 14px 16px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 12px;
-    }
-    .brand{
-      display:flex;
-      align-items:center;
-      gap: 10px;
-      min-width: 160px;
-    }
-    .brand .logo{
-      width:44px;height:44px;border-radius: 16px;
-      background: linear-gradient(135deg, #6b5cff, #b56bff);
-      display:grid;place-items:center;
-      font-weight:800;
-    }
-    .brand .title{line-height:1.1}
-    .brand .title b{display:block;font-size:18px}
-    .brand .title span{display:block;font-size:12px;color:var(--muted)}
-
-    .menu-btn{
-      width:44px;height:44px;border-radius: 14px;
-      border:1px solid var(--border);
-      background: rgba(255,255,255,.06);
-      color:var(--text);
-      display:grid;place-items:center;
-      cursor:pointer;
-      font-size:22px;
-    }
-
-    .links{
-      display:flex;
-      align-items:center;
-      gap: 14px;
-    }
-    .links a{
-      padding:10px 12px;
-      border-radius: 12px;
-      color: var(--muted);
-      border:1px solid transparent;
-    }
-    .links a:hover{
-      color: var(--text);
-      border-color: var(--border);
-      background: rgba(255,255,255,.04);
-    }
-
-    .mobile-panel{
-      display:none;
-      border-top: 1px solid var(--border);
-      padding: 10px 12px 16px;
-      background: rgba(10,10,18,.85);
-    }
-    .mobile-panel a{
-      display:block;
-      padding: 12px 10px;
-      border-radius: 12px;
-      border:1px solid var(--border);
-      background: rgba(255,255,255,.04);
-      margin-top:10px;
-      color: var(--text);
-    }
-
-    main{
-      max-width:1100px;
-      margin: 0 auto;
-      padding: 18px 16px 60px;
-    }
-
-    .hero{
-      margin-top: 12px;
-      padding: 22px;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      box-shadow: var(--shadow);
-      display:grid;
-      gap: 14px;
-    }
-    .hero h1{margin:0;font-size: clamp(22px, 3.4vw, 34px)}
-    .hero p{margin:0;color: var(--muted);line-height:1.7;font-size: 15px}
-    .hero-actions{display:flex;gap: 12px;flex-wrap: wrap}
-    .btn{
-      padding: 12px 14px;
-      border-radius: 14px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,.06);
-      color: var(--text);
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-width: 150px;
-    }
-    .btn.primary{
-      background: linear-gradient(135deg, var(--accent), #a05cff);
-      border-color: transparent;
-    }
-
-    .grid{
-      margin-top: 18px;
-      display:grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 14px;
-    }
-
-    .card{
-      grid-column: span 6;
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,.03);
-      overflow:hidden;
-      box-shadow: var(--shadow);
-      position: relative;
-      aspect-ratio: 16 / 9;
-      min-height: 240px;
-    }
-    .card .media{ position:absolute; inset:0; }
-    .card img{ width:100%; height:100%; object-fit: cover; display:block; }
-    .card::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background: linear-gradient(90deg, rgba(10,10,18,.78), rgba(10,10,18,.12));
-    }
-    .card .content{
-      position:relative;
-      padding: 18px;
-      height:100%;
-      display:flex;
-      flex-direction:column;
-      justify-content:flex-end;
-      gap: 8px;
-    }
-    .tag{
-      display:inline-flex;
-      align-items:center;
-      gap: 6px;
-      padding: 8px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: rgba(0,0,0,.25);
-      width: fit-content;
-      color: var(--text);
-      font-size: 13px;
-    }
-    .card h2{margin:0;font-size: 20px}
-    .card p{margin:0;color: rgba(242,242,255,.85);line-height:1.6;max-width: 90%;font-size: 14px}
-
-    footer{margin-top: 22px;color: var(--muted);text-align:center;font-size: 13px}
-
-    @media (max-width: 860px){
-      .links{display:none}
-      .card{grid-column: span 12;}
-      .card p{max-width: 100%;}
-    }
-    @media (min-width: 861px){
-      .menu-btn{display:none}
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css?v=1" />
 </head>
 
 <body>
-  <header>
-    <div class="nav">
-      <button class="menu-btn" id="menuBtn" aria-label="القائمة">☰</button>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-avatar">D</span>
+        <span class="brand-text">
+          <strong>DekoKraft</strong>
+          <small>شموع · ديكور · هدايا</small>
+        </span>
+      </a>
 
-      <div class="brand">
-        <div class="title">
-          <b>DekoKraft</b>
-          <span>شموع · ديكور · هدايا</span>
-        </div>
-        <div class="logo">D</div>
-      </div>
+      <button class="menu-btn" id="menuBtn" aria-label="فتح القائمة" aria-expanded="false" aria-controls="mobileMenu">
+        <span class="menu-icon">≡</span>
+      </button>
 
-      <nav class="links" aria-label="روابط">
-        <a href="index.html">الرئيسية</a>
-        <a href="collections.html">المجموعات</a>
-        <a href="candles.html">الشموع</a>
-        <a href="decor.html">الديكور</a>
-        <a href="gifts.html">الهدايا</a>
-        <a href="articles.html">المقالات</a>
-        <a href="gallery.html">معرض الصور</a>
+      <nav class="nav-desktop" aria-label="القائمة الرئيسية">
+        <a href="index.html" class="nav-link active">الرئيسية</a>
+        <a href="collections.html" class="nav-link">المجموعات</a>
+        <a href="candles.html" class="nav-link">الشموع</a>
+        <a href="decor.html" class="nav-link">الديكور</a>
+        <a href="gifts.html" class="nav-link">الهدايا</a>
+        <a href="articles.html" class="nav-link">المقالات</a>
+        <a href="gallery.html" class="nav-link">معرض الصور</a>
       </nav>
     </div>
 
-    <div class="mobile-panel" id="mobilePanel">
-      <a href="index.html">الرئيسية</a>
-      <a href="collections.html">المجموعات</a>
-      <a href="candles.html">الشموع</a>
-      <a href="decor.html">الديكور</a>
-      <a href="gifts.html">الهدايا</a>
-      <a href="articles.html">المقالات</a>
-      <a href="gallery.html">معرض الصور</a>
+    <!-- Mobile menu -->
+    <div class="mobile-menu" id="mobileMenu" hidden>
+      <div class="container mobile-menu-inner">
+        <a href="index.html" class="mobile-link active">الرئيسية</a>
+        <a href="collections.html" class="mobile-link">المجموعات</a>
+        <a href="candles.html" class="mobile-link">الشموع</a>
+        <a href="decor.html" class="mobile-link">الديكور</a>
+        <a href="gifts.html" class="mobile-link">الهدايا</a>
+        <a href="articles.html" class="mobile-link">المقالات</a>
+        <a href="gallery.html" class="mobile-link">معرض الصور</a>
+      </div>
     </div>
   </header>
 
-  <main>
+  <main class="container">
+    <!-- Hero -->
     <section class="hero">
-      <h1>مرحبًا بكم في DekoKraft</h1>
-      <p>هنا ستجدون شموعًا مصنوعة بعناية، أفكار ديكور دافئة، وهدايا جميلة. اختاروا قسمًا وشاهدوا التفاصيل.</p>
+      <div class="hero-card">
+        <h1>مرحباً بكم في <span class="accent">DekoKraft</span></h1>
+        <p>
+          هنا ستجدون شموعاً مصنوعة بعناية، أفكار ديكور دافئة، وهدايا جميلة.
+          اختاروا قسماً وشاهدوا التفاصيل.
+        </p>
 
-      <div class="hero-actions">
-        <a class="btn primary" href="collections.html">استعرض المجموعات</a>
-        <a class="btn" href="gallery.html">شاهد معرض الصور</a>
+        <div class="hero-actions">
+          <a class="btn primary" href="collections.html">استعرض المجموعات</a>
+          <a class="btn" href="gallery.html">شاهد معرض الصور</a>
+        </div>
       </div>
     </section>
 
-    <section class="grid" aria-label="الأقسام">
-
-      <!-- المجموعات (يعمل بالـ JPG الموجود) -->
-      <a class="card" href="collections.html">
-        <div class="media">
-          <img src="assets/images/collections.jpg" alt="المجموعات" loading="lazy" decoding="async" />
-        </div>
-        <div class="content">
-          <span class="tag">⭐ المجموعات</span>
-          <h2>المجموعات</h2>
-          <p>صفحات مجموعات جاهزة: شموع تزيينية، هدايا، ديكور...</p>
-        </div>
-      </a>
-
-      <!-- الشموع (يستخدم webp الذي عندك: decorative-candles-600/1200) -->
-      <a class="card" href="candles.html">
-        <div class="media">
+    <!-- Cards Grid -->
+    <section class="grid" aria-label="الأقسام الرئيسية">
+      <!-- Collections -->
+      <a class="card" href="collections.html" aria-label="المجموعات">
+        <div class="card-media">
           <picture>
-            <source type="image/webp"
-              srcset="assets/images/decorative-candles-600.webp 600w, assets/images/decorative-candles-1200.webp 1200w"
-              sizes="(max-width: 860px) 100vw, 50vw"
+            <source
+              srcset="assets/images/collections-600.webp 600w, assets/images/collections-1200.webp 1200w"
+              sizes="(max-width: 600px) 92vw, (max-width: 1024px) 45vw, 360px"
+              type="image/webp"
             />
-            <img src="assets/images/candles.jpg" alt="الشموع" loading="lazy" decoding="async" />
+            <img
+              src="assets/images/collections-1200.webp"
+              alt="المجموعات"
+              loading="lazy"
+              decoding="async"
+              width="1200"
+              height="800"
+            />
           </picture>
+
+          <span class="pill">⭐ المجموعات</span>
         </div>
-        <div class="content">
-          <span class="tag">🕯️ الشموع</span>
-          <h2>الشموع</h2>
-          <p>تشكيلة الشموع وروائحها وأحجامها.</p>
+
+        <div class="card-body">
+          <h2>المجموعات</h2>
+          <p>صفحات مجموعات جاهزة: شموع تزيينية، هدايا، ديكور…</p>
         </div>
       </a>
 
-      <!-- الديكور (JPG الحالي) -->
-      <a class="card" href="decor.html">
-        <div class="media">
-          <img src="assets/images/decor.jpg" alt="الديكور" loading="lazy" decoding="async" />
+      <!-- Candles -->
+      <a class="card" href="candles.html" aria-label="الشموع">
+        <div class="card-media">
+          <picture>
+            <source
+              srcset="assets/images/candles-600.webp 600w, assets/images/candles-1200.webp 1200w"
+              sizes="(max-width: 600px) 92vw, (max-width: 1024px) 45vw, 360px"
+              type="image/webp"
+            />
+            <img
+              src="assets/images/candles-1200.webp"
+              alt="الشموع"
+              loading="lazy"
+              decoding="async"
+              width="1200"
+              height="800"
+            />
+          </picture>
+
+          <span class="pill">🕯️ الشموع</span>
         </div>
-        <div class="content">
-          <span class="tag">🏠 الديكور</span>
+
+        <div class="card-body">
+          <h2>الشموع</h2>
+          <p>تشكيلة الشموع وروائحها وأحجامها…</p>
+        </div>
+      </a>
+
+      <!-- Decor -->
+      <a class="card" href="decor.html" aria-label="الديكور">
+        <div class="card-media">
+          <picture>
+            <source
+              srcset="assets/images/decor-600.webp 600w, assets/images/decor-1200.webp 1200w"
+              sizes="(max-width: 600px) 92vw, (max-width: 1024px) 45vw, 360px"
+              type="image/webp"
+            />
+            <img
+              src="assets/images/decor-1200.webp"
+              alt="الديكور"
+              loading="lazy"
+              decoding="async"
+              width="1200"
+              height="800"
+            />
+          </picture>
+
+          <span class="pill">🏠 الديكور</span>
+        </div>
+
+        <div class="card-body">
           <h2>الديكور</h2>
           <p>قطع ديكور بسيطة وأنيقة لكل مساحة.</p>
         </div>
       </a>
 
-      <!-- الهدايا (JPG الحالي) -->
-      <a class="card" href="gifts.html">
-        <div class="media">
-          <img src="assets/images/gifts.jpg" alt="الهدايا" loading="lazy" decoding="async" />
+      <!-- Gifts -->
+      <a class="card" href="gifts.html" aria-label="الهدايا">
+        <div class="card-media">
+          <picture>
+            <source
+              srcset="assets/images/gifts-600.webp 600w, assets/images/gifts-1200.webp 1200w"
+              sizes="(max-width: 600px) 92vw, (max-width: 1024px) 45vw, 360px"
+              type="image/webp"
+            />
+            <img
+              src="assets/images/gifts-1200.webp"
+              alt="الهدايا"
+              loading="lazy"
+              decoding="async"
+              width="1200"
+              height="800"
+            />
+          </picture>
+
+          <span class="pill">🎁 الهدايا</span>
         </div>
-        <div class="content">
-          <span class="tag">🎁 الهدايا</span>
+
+        <div class="card-body">
           <h2>الهدايا</h2>
-          <p>أفكار هدايا جاهزة للمناسبات.</p>
+          <p>أفكار هدايا جميلة للمناسبات.</p>
         </div>
       </a>
 
-      <!-- المقالات (JPG الحالي) -->
-      <a class="card" href="articles.html">
-        <div class="media">
-          <img src="assets/images/articles.jpg" alt="المقالات" loading="lazy" decoding="async" />
+      <!-- Articles -->
+      <a class="card" href="articles.html" aria-label="المقالات">
+        <div class="card-media">
+          <picture>
+            <source
+              srcset="assets/images/articles-600.webp 600w, assets/images/articles-1200.webp 1200w"
+              sizes="(max-width: 600px) 92vw, (max-width: 1024px) 45vw, 360px"
+              type="image/webp"
+            />
+            <img
+              src="assets/images/articles-1200.webp"
+              alt="المقالات"
+              loading="lazy"
+              decoding="async"
+              width="1200"
+              height="800"
+            />
+          </picture>
+
+          <span class="pill">📝 المقالات</span>
         </div>
-        <div class="content">
-          <span class="tag">📝 المقالات</span>
+
+        <div class="card-body">
           <h2>المقالات</h2>
-          <p>نصائح وأفكار عن الشمع والديكور.</p>
+          <p>نصائح وأفكار للشموع والديكور والهدايا.</p>
         </div>
       </a>
 
-      <!-- معرض الصور (JPG الحالي) -->
-      <a class="card" href="gallery.html">
-        <div class="media">
-          <img src="assets/images/gallery.jpg" alt="معرض الصور" loading="lazy" decoding="async" />
+      <!-- Gallery -->
+      <a class="card" href="gallery.html" aria-label="معرض الصور">
+        <div class="card-media">
+          <picture>
+            <source
+              srcset="assets/images/gallery-600.webp 600w, assets/images/gallery-1200.webp 1200w"
+              sizes="(max-width: 600px) 92vw, (max-width: 1024px) 45vw, 360px"
+              type="image/webp"
+            />
+            <img
+              src="assets/images/gallery-1200.webp"
+              alt="معرض الصور"
+              loading="lazy"
+              decoding="async"
+              width="1200"
+              height="800"
+            />
+          </picture>
+
+          <span class="pill">🖼️ معرض الصور</span>
         </div>
-        <div class="content">
-          <span class="tag">🖼️ معرض الصور</span>
+
+        <div class="card-body">
           <h2>معرض الصور</h2>
           <p>صور المنتجات والمشاريع.</p>
         </div>
       </a>
-
     </section>
-
-    <footer>©️ DekoKraft 2026</footer>
   </main>
 
-  <script>
-    const btn = document.getElementById("menuBtn");
-    const panel = document.getElementById("mobilePanel");
-    if (btn && panel) {
-      btn.addEventListener("click", () => {
-        panel.style.display = (panel.style.display === "block") ? "none" : "block";
-      });
-      panel.querySelectorAll("a").forEach(a => a.addEventListener("click", () => panel.style.display = "none"));
-    }
-  </script>
+  <footer class="footer">
+    <div class="container">
+      <small>©️ <span id="year"></span> DekoKraft</small>
+    </div>
+  </footer>
+
+  <script src="script.js?v=1"></script>
 </body>
 </html>
