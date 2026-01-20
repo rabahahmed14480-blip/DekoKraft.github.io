@@ -1,19 +1,40 @@
-(function(){
-  const path = location.pathname.split("/").pop() || "index.html";
+(function () {
+  const menuBtn = document.getElementById("menuBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
 
-  // تمييز الرابط النشط في القائمة
-  document.querySelectorAll(".menu a").forEach(a => {
-    const href = (a.getAttribute("href") || "").split("?")[0];
-    if (href === path) a.classList.add("active");
+  // year
+  const y = document.getElementById("year");
+  if (y) y.textContent = new Date().getFullYear();
+
+  if (!menuBtn || !mobileMenu) return;
+
+  function setOpen(isOpen) {
+    menuBtn.setAttribute("aria-expanded", String(isOpen));
+    if (isOpen) {
+      mobileMenu.hidden = false;
+    } else {
+      mobileMenu.hidden = true;
+    }
+  }
+
+  menuBtn.addEventListener("click", () => {
+    const isOpen = menuBtn.getAttribute("aria-expanded") === "true";
+    setOpen(!isOpen);
   });
 
-  // فتح/إغلاق قائمة الموبايل
-  const btn = document.getElementById("menuBtn");
-  const menu = document.getElementById("navMenu");
+  // close menu when clicking a link
+  mobileMenu.addEventListener("click", (e) => {
+    const a = e.target.closest("a");
+    if (a) setOpen(false);
+  });
 
-  if (btn && menu){
-    btn.addEventListener("click", () => {
-      menu.classList.toggle("open");
-    });
-  }
+  // close menu on ESC
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") setOpen(false);
+  });
+
+  // close menu when resizing to desktop
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 760) setOpen(false);
+  });
 })();
