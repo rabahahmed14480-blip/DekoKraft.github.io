@@ -24,7 +24,7 @@ body{
 
 .container{
   max-width:1100px;
-  margin-inline:auto;     /* ✅ مهم للـRTL + centering */
+  margin-inline:auto;
   margin-block:0;
   padding:0 16px;
 }
@@ -79,9 +79,11 @@ body{
 .nav-link:hover{color:var(--text); border-color:var(--line); background:rgba(255,255,255,.03)}
 .nav-link.active{color:var(--text); background:rgba(124,92,255,.18); border-color:rgba(124,92,255,.35)}
 
-/* Menu button (mobile) */
+/* ✅ Menu button (يظهر افتراضياً على الأجهزة اللمسية) */
 .menu-btn{
-  display:none;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
   border:1px solid var(--line);
   background: rgba(255,255,255,.03);
   color:var(--text);
@@ -128,7 +130,7 @@ body{
   border-radius: var(--radius);
   padding:22px;
   box-shadow: var(--shadow);
-  margin-inline:auto;   /* ✅ مركز دائمًا */
+  margin-inline:auto;
 }
 .hero h1{margin:0 0 10px 0; font-size:32px}
 .hero p{
@@ -158,9 +160,9 @@ body{
   box-shadow: 0 12px 28px rgba(124,92,255,.22);
 }
 
-/* ✅ Grid: على الكمبيوتر 2×2 بقوة */
+/* Grid */
 .grid{
-  width:100%; /* ✅ مهم */
+  width:100%;
   display:grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap:22px;
@@ -169,7 +171,7 @@ body{
 
 /* Card */
 .card{
-  width:100%; /* ✅ مهم */
+  width:100%;
   display:block;
   text-decoration:none;
   color:var(--text);
@@ -187,7 +189,7 @@ body{
   background: rgba(255,255,255,.03);
 }
 
-/* ✅ الصورة تظهر كاملة */
+/* Image: show full */
 .card-media{
   position:relative;
   height:280px;
@@ -206,3 +208,51 @@ body{
   position:absolute;
   inset:0;
   background: linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.35));
+  pointer-events:none;
+}
+
+/* pill */
+.pill{
+  position:absolute;
+  top:12px;
+  inset-inline-start:12px;
+  padding:8px 12px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.14);
+  background: rgba(0,0,0,.35);
+  backdrop-filter: blur(10px);
+  font-size:13px;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+}
+
+.card-body{padding:14px 16px 16px}
+.card-body h2{margin:0 0 8px 0; font-size:22px}
+.card-body p{margin:0; color:var(--muted); line-height:1.7}
+
+/* Footer */
+.footer{
+  border-top:1px solid var(--line);
+  padding:18px 0;
+  color:rgba(236,235,255,.65);
+}
+
+/* Responsive */
+@media (max-width: 1024px){
+  .card-media{height:240px}
+  .grid{gap:18px}
+}
+
+@media (max-width: 760px){
+  .nav-desktop{display:none}
+  .hero h1{font-size:26px}
+  .grid{grid-template-columns: 1fr; gap:16px;}
+  .card-media{height:210px}
+  .card:hover{transform:none}
+}
+
+/* ✅ على الكمبيوتر (غير اللمسي) نخفي زر ☰ ونبقي قائمة الكمبيوتر */
+@media (hover:hover) and (pointer:fine){
+  .menu-btn{display:none}
+}
