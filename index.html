@@ -5,62 +5,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>DekoKraft</title>
 
-  <!-- تحسين الأداء -->
   <meta name="theme-color" content="#1e1b2e" />
 
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<header class="header">
-  <div class="logo">DekoKraft</div>
-</header>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="العودة للرئيسية">
+        <div class="brand-avatar">D</div>
+        <div class="brand-text">
+          <strong>DekoKraft</strong>
+          <small>شموع • ديكور • هدايا</small>
+        </div>
+      </a>
 
-<main class="container">
+      <!-- Desktop nav -->
+      <nav class="nav-desktop" aria-label="القائمة الرئيسية">
+        <a class="nav-link active" href="index.html">الرئيسية</a>
+        <a class="nav-link" href="collections.html">المجموعات</a>
+        <a class="nav-link" href="candles.html">الشموع</a>
+        <a class="nav-link" href="decor.html">الديكور</a>
+        <a class="nav-link" href="gifts.html">الهدايا</a>
+        <a class="nav-link" href="gallery.html">معرض الصور</a>
+        <a class="nav-link" href="articles.html">المقالات</a>
+      </nav>
 
-  <section class="hero">
-    <h1>مرحباً بكم في DekoKraft</h1>
-    <p>شموع • ديكور • هدايا مصنوعة بعناية</p>
-  </section>
+      <!-- Mobile button -->
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="فتح القائمة" aria-expanded="false" aria-controls="mobileMenu">
+        <span class="menu-icon">☰</span>
+      </button>
+    </div>
 
-  <section class="cards">
-
-    <article class="card">
-      <img
-        src="assets/images/candles-600.webp"
-        loading="lazy"
-        alt="الشموع">
-      <h2>الشموع</h2>
-    </article>
-
-    <article class="card">
-      <img
-        src="assets/images/decor-600.webp"
-        loading="lazy"
-        alt="الديكور">
-      <h2>الديكور</h2>
-    </article>
-
-    <article class="card">
-      <img
-        src="assets/images/gifts-600.webp"
-        loading="lazy"
-        alt="الهدايا">
-      <h2>الهدايا</h2>
-    </article>
-
-    <article class="card">
-      <img
-        src="assets/images/collections-600.webp"
-        loading="lazy"
-        alt="المجموعات">
-      <h2>المجموعات</h2>
-    </article>
-
-  </section>
-
-</main>
-
-<script src="script.js"></script>
-</body>
-</html>
+    <!-- Mobile menu -->
+    <div class="mobile-menu" id="mobileMenu" hidden>
+      <div class="container mobile-menu-inner">
+        <a class="mobile-link active" href="index.html">الرئيسية</a>
+        <a class="mobile-link" href="collections.html">المجموعات</a>
+        <a class="mobile-link" href="candles.html">الشموع</a>
+        <a class="mobile-link" href="decor.html">الديكور</a>
+        <a class="mobile-link" href="gifts.html">الهدايا</a>
+        <a class="mobile-link" href="gallery.html">معرض الصور</a>
+        <a class="
