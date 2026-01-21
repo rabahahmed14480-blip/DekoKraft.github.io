@@ -1,191 +1,31 @@
-/* =========================
-   Base
-========================= */
+/* TEST MODE – يجب أن تتغير الخلفية إلى الأحمر */
+
 * {
   box-sizing: border-box;
 }
 
-/* ❗ ملاحظة مهمة:
-   تم حذف:
-   html, body { height: 100%; }
-   لأنها كانت سبب خروج الصفحة عن الشاشة
-*/
-
 body{
   margin: 0;
   min-height: 100vh;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   direction: rtl;
-  background:
-    radial-gradient(1200px 700px at 30% 0%, #2a3dff33 0%, transparent 60%),
-    linear-gradient(180deg, #0b1030 0%, #0a0f28 45%, #070b1c 100%);
-  color: #fff;
+  background: red !important;
+  color: white;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
-a{
-  color: inherit;
-  text-decoration: none;
-}
-
-/* =========================
-   Layout
-========================= */
 .container{
   max-width: 1100px;
   margin: 0 auto;
-  padding: 18px 14px 60px;
+  padding: 40px 20px;
 }
 
-/* =========================
-   Navbar
-========================= */
 .topnav{
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  backdrop-filter: blur(10px);
-  background: #0b1030cc;
-  border: 1px solid #ffffff1a;
-  border-radius: 16px;
-  padding: 10px 12px;
-  margin: 10px 0 18px;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
+  background: black;
+  padding: 20px;
 }
 
-.brand{
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.brand img{
-  height: 34px;
-  width: auto;
-  display: block;
-}
-
-.brand span{
-  font-weight: 700;
-}
-
-/* Navigation links */
-.nav-links{
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.nav-links a{
-  padding: 10px 14px;
-  border-radius: 999px;
-  border: 1px solid #ffffff22;
-  background: #ffffff0f;
-  font-weight: 600;
-}
-
-/* Menu button */
-.menu-btn{
-  display: none;
-  border: 1px solid #ffffff22;
-  background: #ffffff0f;
-  color: #fff;
-  padding: 10px 12px;
-  border-radius: 12px;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-/* Mobile */
-@media (max-width: 760px){
-  .menu-btn{
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .nav-links{
-    display: none;
-    width: 100%;
-    padding-top: 10px;
-  }
-
-  .topnav.open{
-    flex-wrap: wrap;
-  }
-
-  .topnav.open .nav-links{
-    display: flex;
-  }
-}
-
-/* =========================
-   Hero
-========================= */
-.hero{
-  text-align: center;
-  padding: 24px 10px 18px;
-}
-
-.hero h1{
-  margin: 0 0 12px;
-  font-size: clamp(28px, 4.5vw, 54px);
-}
-
-.hero p{
-  max-width: 760px;
-  margin: 0 auto;
-  line-height: 1.9;
-  opacity: .9;
-}
-
-/* =========================
-   Grid
-========================= */
 .grid{
   display: grid;
-  gap: 18px;
-  margin-top: 24px;
-}
-
-@media (max-width: 899px){
-  .grid{
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (min-width: 900px){
-  .grid{
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-.grid-card{
-  background: linear-gradient(180deg, #ffffff12, #ffffff08);
-  border: 1px solid #ffffff1f;
-  border-radius: 18px;
-  padding: 22px 18px;
-  box-shadow: 0 18px 40px #00000035;
-}
-
-.grid-card h2{
-  margin: 0 0 10px;
-}
-
-.grid-card p{
-  margin: 0 0 18px;
-  line-height: 1.9;
-}
-
-.grid-card a{
-  padding: 10px 14px;
-  border-radius: 999px;
-  border: 1px solid #ffffff22;
-  background: #00000022;
-  font-weight: 700;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
 }
