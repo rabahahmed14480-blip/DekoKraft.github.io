@@ -4,62 +4,70 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>DekoKraft | الرئيسية</title>
+
+  <!-- IMPORTANT: cache busting -->
   <link rel="stylesheet" href="style.css?v=4003">
 </head>
+
 <body>
 
-<header class="topnav">
-  <a href="index.html">الرئيسية</a>
-  <a href="Geschenke.html">Geschenke</a>
-  <a href="Dekoration.html">Dekoration</a>
-  <a href="Kinder-Geschenke.html">Kinder-Geschenke</a>
-  <a href="service.html">Service</a>
-  <a href="Grupen-Fotos.html">Grupen-Fotos</a>
-</header>
+  <div class="container">
 
-<main class="container">
-  <h1>مرحبًا بكم في DekoKraft</h1>
-  <p>
-    هنا تجدون هدايا مصنوعة بعناية، ديكور مميز للأطفال،
-    وخدمات متنوعة.
-  </p>
+    <!-- ====== NAV ====== -->
+    <header class="topnav">
+      <a href="index.html">الرئيسية</a>
+      <a href="Geschenke.html">Geschenke</a>
+      <a href="Dekoration.html">Dekoration</a>
+      <a href="Kinder-Geschenke.html">Kinder-Geschenke</a>
+      <a href="service.html">Service</a>
+      <a href="Grupen-Fotos.html">Grupen-Fotos</a>
+    </header>
 
-  <section class="grid">
+    <!-- ====== HERO ====== -->
+    <section class="hero">
+      <h1>مرحبًا بكم في <strong>DekoKraft</strong></h1>
+      <p>
+        هنا تجدون هدايا مصنوعة بعناية، ديكور مميز للأطفال،
+        وخدمات متنوعة.
+      </p>
+    </section>
 
-    <a class="card" href="Geschenke.html">
-      <img src="assets/images/Homepage/Geschenke-GH-P/GH-P01-1200.webp" alt="Geschenke">
-      <div class="body">
-        <div class="title">Geschenke</div>
-        <div class="desc">أفكار هدايا متنوعة ومميزة لكل المناسبات.</div>
+    <!-- ====== GRID SECTIONS ====== -->
+    <section class="grid">
+
+      <div class="grid-card">
+        <h2>🎁 Geschenke</h2>
+        <p>أفكار هدايا مميزة لكل المناسبات.</p>
+        <a href="Geschenke.html">عرض القسم →</a>
       </div>
-    </a>
 
-    <a class="card" href="Dekoration.html">
-      <img src="assets/images/Homepage/Dekoration-DK-P/DK-P01-1200.webp" alt="Dekoration">
-      <div class="body">
-        <div class="title">Dekoration</div>
-        <div class="desc">لمسات ديكور وزخرفة تضيف جمالًا للمكان.</div>
+      <div class="grid-card">
+        <h2>🏠 Dekoration</h2>
+        <p>لمسات ديكور تضيف جمالًا للمكان.</p>
+        <a href="Dekoration.html">عرض القسم →</a>
       </div>
-    </a>
 
-    <a class="card" href="Kinder-Geschenke.html">
-      <img src="assets/images/Homepage/Kinder-Geschenke-KG-P/KG-P01-1200.webp" alt="Kinder-Geschenke">
-      <div class="body">
-        <div class="title">Kinder-Geschenke</div>
-        <div class="desc">هدايا لطيفة وآمنة للأطفال.</div>
+      <div class="grid-card">
+        <h2>🧸 Kinder-Geschenke</h2>
+        <p>هدايا ممتعة وآمنة للأطفال.</p>
+        <a href="Kinder-Geschenke.html">عرض القسم →</a>
       </div>
-    </a>
 
-    <a class="card" href="service.html">
-      <img src="assets/images/Homepage/Service-SV-P/SV-P01-1200.webp" alt="Service">
-      <div class="body">
-        <div class="title">Service</div>
-        <div class="desc">خدمات متنوعة حسب الطلب.</div>
+      <div class="grid-card">
+        <h2>🛠 Service</h2>
+        <p>خدمات مخصصة حسب الطلب.</p>
+        <a href="service.html">عرض القسم →</a>
       </div>
-    </a>
 
-  </section>
-</main>
+      <div class="grid-card">
+        <h2>📷 Grupen-Fotos</h2>
+        <p>صور المجموعات والأعمال.</p>
+        <a href="Grupen-Fotos.html">عرض الصور →</a>
+      </div>
+
+    </section>
+
+  </div>
 
 </body>
 </html>
