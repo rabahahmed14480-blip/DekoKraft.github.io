@@ -190,3 +190,10 @@ a{ color: inherit; text-decoration: none; }
   background: #00000022;
   font-weight: 700;
 }
+/* Grid direction fix (RTL-safe) */
+.grid{
+  direction: ltr;
+}
+.grid-card{
+  direction: rtl;
+}
