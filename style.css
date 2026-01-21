@@ -205,3 +205,28 @@ img{
   background: #00000022;
   font-weight: 700;
 }
+/* كودك القديم */
+/* ... */
+
+/* =========================
+   MOBILE MENU FIX
+========================= */
+@media (max-width: 760px){
+  .nav-links{ 
+    display: none !important;
+    width: 100%;
+    padding-top: 10px;
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  .topnav.open .nav-links{
+    display: flex !important;
+  }
+
+  .nav-links a{
+    width: 100%;
+    text-align: center;
+  }
+}
