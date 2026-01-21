@@ -1,99 +1,29 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>DekoKraft | الرئيسية</title>
-  <link rel="stylesheet" href="style.css?v=4014" />
-
-  <!-- تحسين سريع للصور/المسافات (إذا CSS الحالي لا يعالج المشكلة) -->
-  <style>
-    .cards {display:grid; gap:18px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));}
-    .card {border-radius:22px; overflow:hidden;}
-    .card img {width:100%; height: clamp(180px, 28vw, 320px); object-fit:cover; display:block;}
-    .card-body {padding:14px 16px;}
-    .card-title {margin:0 0 6px; font-size:1.4rem;}
-    .card-desc {margin:0; opacity:.85;}
-    .brand {display:flex; align-items:center; gap:12px; text-decoration:none;}
-    .brand img {border-radius:12px;}
-    .topnav {display:flex; gap:12px; flex-wrap:wrap; align-items:center; justify-content:space-between; padding:12px 14px;}
-    .links {display:flex; gap:10px; flex-wrap:wrap;}
-    .links a {text-decoration:none; padding:10px 14px; border-radius:999px;}
-    .container {max-width:1100px; margin:0 auto; padding:0 14px 30px;}
-    .hero {padding:18px 0 22px;}
-    .hero h1 {margin:0 0 10px;}
-  </style>
+  <link rel="stylesheet" href="style.css?v=4014">
 </head>
 
 <body>
-  <header class="topnav">
-    <a class="brand" href="index.html" aria-label="العودة إلى الرئيسية">
-      <img src="assets/images/logo/logo-dekokraft-600.webp" width="56" height="56" alt="شعار DekoKraft" />
-      <div>
-        <div style="font-weight:800;font-size:1.25rem;">DekoKraft</div>
-        <div style="opacity:.85;">هدايا · ديكور · خدمات</div>
-      </div>
-    </a>
 
-    <nav class="links">
-      <a href="index.html">الرئيسية</a>
-      <a href="geschenke.html">Geschenke</a>
-      <a href="dekoration.html">Dekoration</a>
-      <a href="kinder-geschenke.html">Kinder-Geschenke</a>
-      <a href="service.html">Service</a>
-      <a href="gruppen-fotos.html">Gruppen-Fotos</a>
-    </nav>
-  </header>
+<header class="topnav">
+  <a href="index.html">الرئيسية</a>
+  <a href="Geschenke.html">Geschenke</a>
+  <a href="Dekoration.html">Dekoration</a>
+  <a href="Kinder-Geschenke.html">Kinder-Geschenke</a>
+  <a href="service.html">Service</a>
+  <a href="Grupen-Fotos.html">Grupen-Fotos</a>
+</header>
 
-  <main class="container">
-    <section class="hero">
-      <h1>مرحباً بكم في DekoKraft</h1>
-      <p>هنا ستجدون هدايا مصنوعة بعناية، أفكار ديكور جميلة، هدايا للأطفال وخدمات متنوعة.</p>
-    </section>
+<main class="container">
+  <h1>مرحبًا بكم في DekoKraft</h1>
+  <p>
+    هنا تجدون هدايا مصنوعة بعناية، ديكور مميز، هدايا للأطفال، وخدمات متنوعة.
+  </p>
+</main>
 
-    <section>
-      <h2 style="margin:0 0 14px;">المجموعات</h2>
-
-      <div class="cards">
-        <a class="card" href="geschenke.html">
-          <img src="assets/images/Homepage/Geschenke-GH-P/GH-P01-1200.webp" alt="Geschenke" loading="lazy">
-          <div class="card-body">
-            <h3 class="card-title">Geschenke</h3>
-            <p class="card-desc">أفكار هدايا متنوعة ومميزة لكل المناسبات.</p>
-          </div>
-        </a>
-
-        <a class="card" href="dekoration.html">
-          <img src="assets/images/Homepage/Dekoration-DK-P/DK-P01-1200.webp" alt="Dekoration" loading="lazy">
-          <div class="card-body">
-            <h3 class="card-title">Dekoration</h3>
-            <p class="card-desc">لمسات ديكور وزخرفة تضيف جمالاً للمكان.</p>
-          </div>
-        </a>
-
-        <a class="card" href="kinder-geschenke.html">
-          <img src="assets/images/Homepage/Kinder-Geschenke-KG-P/KG-P01-1200.webp" alt="Kinder-Geschenke" loading="lazy">
-          <div class="card-body">
-            <h3 class="card-title">Kinder-Geschenke</h3>
-            <p class="card-desc">هدايا وأفكار جميلة ومناسبة للأطفال.</p>
-          </div>
-        </a>
-
-        <a class="card" href="service.html">
-          <img src="assets/images/Homepage/Service-SV-P/SV-P01-1200.webp" alt="Service" loading="lazy">
-          <div class="card-body">
-            <h3 class="card-title">Service</h3>
-            <p class="card-desc">خدمات متنوعة حسب الطلب.</p>
-          </div>
-        </a>
-      </div>
-    </section>
-  </main>
-
-  <footer style="text-align:center; padding:18px; opacity:.8;">
-    ©️ DekoKraft
-  </footer>
-
-  <script src="script.js?v=4014"></script>
 </body>
 </html>
