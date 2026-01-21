@@ -4,7 +4,8 @@
 
   if (!topnav || !menuBtn) return;
 
-  menuBtn.addEventListener("click", () => {
+  menuBtn.addEventListener("click", (e) => {
+    e.preventDefault();
     topnav.classList.toggle("open");
   });
 })();
