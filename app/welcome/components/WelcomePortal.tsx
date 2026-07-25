@@ -1,47 +1,60 @@
 "use client";
 
 import { DkButton, DkGlassPanel } from "../../components/ui";
+import { useLanguage } from "../../components/LanguageProvider";
 import PublicPageShell from "../../components/PublicPageShell";
 import WelcomeCard from "./WelcomeCard";
 
 type WelcomeCardDefinition = {
-  id: string;
-  title: string;
+  id:
+    | "home"
+    | "market"
+    | "artisans"
+    | "join"
+    | "login"
+    | "about"
+    | "comments"
+    | "suggestions"
+    | "services"
+    | "studio";
   icon: string;
   href: string;
 };
 
 const cards: WelcomeCardDefinition[] = [
-  { id: "home", title: "الصفحة الرئيسية", icon: "🏠", href: "/" },
-  { id: "market", title: "السوق", icon: "🛍️", href: "/market" },
-  { id: "crafts", title: "استكشف أعمال الحرفيين", icon: "🎨", href: "/info/artisans" },
-  { id: "join", title: "انضم كمشارك", icon: "🧑‍🎨", href: "/register" },
-  { id: "login", title: "تسجيل الدخول", icon: "🔑", href: "/seller/login" },
-  { id: "about", title: "من نحن", icon: "ℹ️", href: "/info/about" },
-  { id: "comments", title: "التعليقات", icon: "💬", href: "/info/comments" },
-  { id: "suggestions", title: "اقتراحات", icon: "💡", href: "/info/suggestions" },
-  { id: "services", title: "مركز الخدمات", icon: "🛠️", href: "/info/services" },
-  { id: "studio", title: "الاستوديوهات الذكية", icon: "🧠", href: "/studio" },
+  { id: "home", icon: "🏠", href: "/" },
+  { id: "market", icon: "🛍️", href: "/market" },
+  { id: "artisans", icon: "🎨", href: "/info/artisans" },
+  { id: "join", icon: "🧑‍🎨", href: "/register" },
+  { id: "login", icon: "🔑", href: "/seller/login" },
+  { id: "about", icon: "ℹ️", href: "/info/about" },
+  { id: "comments", icon: "💬", href: "/info/comments" },
+  { id: "suggestions", icon: "💡", href: "/info/suggestions" },
+  { id: "services", icon: "🛠️", href: "/info/services" },
+  { id: "studio", icon: "🧠", href: "/studio" },
 ];
 
 export default function WelcomePortal() {
+  const { direction, t } = useLanguage();
+  const title = t("welcome.title");
+
   return (
     <PublicPageShell className="welcomePublicShell">
-      <main className="welcomePage" dir="rtl">
+      <main className="welcomePage" dir={direction}>
         <div className="welcomePageContent">
           <DkGlassPanel as="section" strength="subtle" className="welcomePortalPanel">
             <header className="welcomePortalHeader">
               <h1>
-                مرحبًا بكم في <span>DekoKraft</span>
+                {title.replace("DekoKraft", "").trim()} <span>DekoKraft</span>
               </h1>
-              <p>منصة تجمع الإبداع، الحرف، التعلم والخدمات في مساحة واحدة</p>
+              <p>{t("welcome.subtitle")}</p>
             </header>
 
-            <nav className="welcomePortalGrid" aria-label="روابط الترحيب">
+            <nav className="welcomePortalGrid" aria-label={t("welcome.navigationLabel")}>
               {cards.map((card) => (
                 <WelcomeCard
                   key={card.id}
-                  title={card.title}
+                  title={t(`welcome.cards.${card.id}`)}
                   icon={card.icon}
                   href={card.href}
                 />
@@ -55,7 +68,7 @@ export default function WelcomePortal() {
               variant="transparent"
               onClick={() => window.location.reload()}
             >
-              إعادة تشغيل الترحيب
+              {t("welcome.replay")}
             </DkButton>
           </DkGlassPanel>
         </div>

@@ -8,7 +8,9 @@ export type WelcomeCardKey =
   | "login"
   | "about"
   | "comments"
-  | "suggestions";
+  | "suggestions"
+  | "services"
+  | "studio";
 
 export type WelcomeMessages = {
   title: string;
@@ -41,6 +43,8 @@ export const welcomeTranslations: Record<Lang, WelcomeMessages> = {
       about: "من نحن",
       comments: "التعليقات",
       suggestions: "اقتراحات",
+      services: "مركز الخدمات",
+      studio: "الاستوديوهات الذكية",
     },
   },
   de: {
@@ -61,6 +65,8 @@ export const welcomeTranslations: Record<Lang, WelcomeMessages> = {
       about: "Über uns",
       comments: "Kommentare",
       suggestions: "Vorschläge",
+      services: "Servicezentrum",
+      studio: "Intelligente Studios",
     },
   },
   en: {
@@ -81,6 +87,8 @@ export const welcomeTranslations: Record<Lang, WelcomeMessages> = {
       about: "About us",
       comments: "Comments",
       suggestions: "Suggestions",
+      services: "Service center",
+      studio: "Smart studios",
     },
   },
   fr: {
@@ -101,6 +109,8 @@ export const welcomeTranslations: Record<Lang, WelcomeMessages> = {
       about: "À propos",
       comments: "Commentaires",
       suggestions: "Suggestions",
+      services: "Centre de services",
+      studio: "Studios intelligents",
     },
   },
 };

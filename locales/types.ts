@@ -706,6 +706,8 @@ export type LocaleMessages = {
       about: string;
       comments: string;
       suggestions: string;
+      services: string;
+      studio: string;
     };
   };
   home: {

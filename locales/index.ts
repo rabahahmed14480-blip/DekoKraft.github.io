@@ -24,8 +24,8 @@ export const defaultLanguage: Lang = "ar";
 
 export const languageOptions: LanguageOption[] = [
   { value: "ar", code: "AR", label: "العربية" },
-  { value: "en", code: "EN", label: "English" },
   { value: "de", code: "DE", label: "Deutsch" },
+  { value: "en", code: "EN", label: "English" },
   { value: "fr", code: "FR", label: "Français" },
 ];
 

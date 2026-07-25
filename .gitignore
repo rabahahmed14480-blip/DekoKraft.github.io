@@ -52,3 +52,4 @@ next-env.d.ts
 # DekoClean local reports, manifests, and quarantine
 /.dekoclean/
 /public/generated/performance-build-report.json
+.vscode/extensions.json
