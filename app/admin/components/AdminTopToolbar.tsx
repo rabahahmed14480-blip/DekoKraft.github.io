@@ -1,6 +1,6 @@
 "use client";
 
-import { Heart, Home, Megaphone, Menu, Settings, UserRound } from "lucide-react";
+import { BellRing, Heart, Home, Megaphone, Menu, Settings, UserRound } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import type { Lang } from "../../../locales";
 import { createTranslator } from "../../../locales";
@@ -18,13 +18,9 @@ type AdminTopToolbarProps = {
   isMenuOpen: boolean;
   onToggleMenu: (anchor: DkMenuAnchor) => void;
   onEditAnnouncement: () => void;
-};
-
-const announcementButtonLabels: Record<Lang, string> = {
-  ar: "تعديل الإعلان",
-  de: "Ankündigung",
-  en: "Announcement",
-  fr: "Annonce",
+  onOpenMainAnnouncement: () => void;
+  isParticipantAnnouncementActive: boolean;
+  isMainAnnouncementActive: boolean;
 };
 
 const languageOptions: Array<{ code: Lang; flag: string; label: string }> = [
@@ -40,6 +36,9 @@ export default function AdminTopToolbar({
   isMenuOpen,
   onToggleMenu,
   onEditAnnouncement,
+  onOpenMainAnnouncement,
+  isParticipantAnnouncementActive,
+  isMainAnnouncementActive,
 }: AdminTopToolbarProps) {
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
   const languageRef = useRef<HTMLDivElement>(null);
@@ -172,11 +171,24 @@ export default function AdminTopToolbar({
   const announcementButton = (
     <button
       type="button"
-      className="adminHomeAnnouncementEditButton"
+      className={`adminHomeAnnouncementEditButton${isParticipantAnnouncementActive ? " active" : ""}`}
       onClick={onEditAnnouncement}
+      aria-pressed={isParticipantAnnouncementActive}
     >
       <Megaphone aria-hidden="true" />
-      <span>{announcementButtonLabels[lang]}</span>
+      <span>{t("toolbar.participantAnnouncements")}</span>
+    </button>
+  );
+
+  const mainAnnouncementButton = (
+    <button
+      type="button"
+      className={`adminHomeAnnouncementEditButton${isMainAnnouncementActive ? " active" : ""}`}
+      onClick={onOpenMainAnnouncement}
+      aria-pressed={isMainAnnouncementActive}
+    >
+      <BellRing aria-hidden="true" />
+      <span>{t("toolbar.mainAnnouncement")}</span>
     </button>
   );
 
@@ -188,6 +200,7 @@ export default function AdminTopToolbar({
         {profileButton}
         {favoritesButton}
         {announcementButton}
+        {mainAnnouncementButton}
       </nav>
       <div className="publicHeaderSearchRow adminHomeToolbarSpacer" aria-hidden="true" />
       <DkToolbarGroup position="end" className="publicHeaderEndGroup">

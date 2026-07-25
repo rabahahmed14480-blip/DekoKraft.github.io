@@ -532,6 +532,8 @@ export type LocaleMessages = {
     openMarket: string;
     signIn: string;
     signOut: string;
+    participantAnnouncements: string;
+    mainAnnouncement: string;
   };
   common: {
     search: string;

@@ -139,6 +139,12 @@ export default function AdminShell() {
                 setLang={setLang}
                 isMenuOpen={isSidebarOpen}
                 onEditAnnouncement={() => setIsAnnouncementModalOpen(true)}
+                onOpenMainAnnouncement={() => {
+                  setActiveTab("offers");
+                  setIsSidebarOpen(false);
+                }}
+                isParticipantAnnouncementActive={isAnnouncementModalOpen}
+                isMainAnnouncementActive={activeTab === "offers"}
                 onToggleMenu={(anchor) => {
                   setSidebarAnchor(anchor);
                   setIsSidebarOpen((open) => !open);

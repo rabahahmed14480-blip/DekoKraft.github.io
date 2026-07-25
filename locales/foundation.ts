@@ -24,7 +24,7 @@ type FoundationMessages = Pick<
 export const foundationMessages: Record<Lang, FoundationMessages> = {
   ar: {
     welcome: welcomeTranslations.ar,
-    toolbar: { menu: "القائمة", settings: "الإعدادات", language: "اللغة", market: "السوق", login: "تسجيل الدخول", account: "الحساب", favorites: "المفضلة", cart: "سلة التسوق", search: "البحث", openMenu: "فتح القائمة", openSettings: "فتح الإعدادات", changeLanguage: "تغيير اللغة", openMarket: "فتح سوق DekoKraft", signIn: "تسجيل الدخول", signOut: "تسجيل الخروج" },
+    toolbar: { menu: "القائمة", settings: "الإعدادات", language: "اللغة", market: "السوق", login: "تسجيل الدخول", account: "الحساب", favorites: "المفضلة", cart: "سلة التسوق", search: "البحث", openMenu: "فتح القائمة", openSettings: "فتح الإعدادات", changeLanguage: "تغيير اللغة", openMarket: "فتح سوق DekoKraft", signIn: "تسجيل الدخول", signOut: "تسجيل الخروج", participantAnnouncements: "إعلان المشاركين", mainAnnouncement: "الإعلان الرئيسي" },
     homepage: { eyebrow: "DekoKraft", title: "DekoKraft", sectionsEyebrow: "أقسام المنصة", sectionsTitle: "أقسام DekoKraft", marketEyebrow: "السوق", marketTitle: "استكشف السوق", latestEyebrow: "أحدث المنتجات", latestTitle: "أحدث المنتجات" },
     categories: { notFound: "القسم غير موجود" }, products: { categoryLabel: "فئة المنتج" },
     participant: { title: "لوحة المشارك", studio: "استوديو المشارك" },
@@ -39,7 +39,7 @@ export const foundationMessages: Record<Lang, FoundationMessages> = {
   },
   en: {
     welcome: welcomeTranslations.en,
-    toolbar: { menu: "Menu", settings: "Settings", language: "Language", market: "Market", login: "Log in", account: "Account", favorites: "Favorites", cart: "Cart", search: "Search", openMenu: "Open menu", openSettings: "Open settings", changeLanguage: "Change language", openMarket: "Open DekoKraft market", signIn: "Sign in", signOut: "Sign out" },
+    toolbar: { menu: "Menu", settings: "Settings", language: "Language", market: "Market", login: "Log in", account: "Account", favorites: "Favorites", cart: "Cart", search: "Search", openMenu: "Open menu", openSettings: "Open settings", changeLanguage: "Change language", openMarket: "Open DekoKraft market", signIn: "Sign in", signOut: "Sign out", participantAnnouncements: "Participant Announcements", mainAnnouncement: "Main Announcement" },
     homepage: { eyebrow: "DekoKraft", title: "DekoKraft", sectionsEyebrow: "Platform sections", sectionsTitle: "DekoKraft sections", marketEyebrow: "Marketplace", marketTitle: "Explore the marketplace", latestEyebrow: "Latest products", latestTitle: "Latest products" },
     categories: { notFound: "Category not found" }, products: { categoryLabel: "Product category" },
     participant: { title: "Participant dashboard", studio: "Participant studio" },
@@ -54,7 +54,7 @@ export const foundationMessages: Record<Lang, FoundationMessages> = {
   },
   de: {
     welcome: welcomeTranslations.de,
-    toolbar: { menu: "Menü", settings: "Einstellungen", language: "Sprache", market: "Markt", login: "Einloggen", account: "Konto", favorites: "Favoriten", cart: "Warenkorb", search: "Suche", openMenu: "Menü öffnen", openSettings: "Einstellungen öffnen", changeLanguage: "Sprache ändern", openMarket: "DekoKraft-Markt öffnen", signIn: "Anmelden", signOut: "Abmelden" },
+    toolbar: { menu: "Menü", settings: "Einstellungen", language: "Sprache", market: "Markt", login: "Einloggen", account: "Konto", favorites: "Favoriten", cart: "Warenkorb", search: "Suche", openMenu: "Menü öffnen", openSettings: "Einstellungen öffnen", changeLanguage: "Sprache ändern", openMarket: "DekoKraft-Markt öffnen", signIn: "Anmelden", signOut: "Abmelden", participantAnnouncements: "Teilnehmeranzeigen", mainAnnouncement: "Hauptankündigung" },
     homepage: { eyebrow: "DekoKraft", title: "DekoKraft", sectionsEyebrow: "Bereiche der Plattform", sectionsTitle: "DekoKraft Bereiche", marketEyebrow: "Marktplatz", marketTitle: "Marktplatz entdecken", latestEyebrow: "Neueste Produkte", latestTitle: "Neueste Produkte" },
     categories: { notFound: "Kategorie nicht gefunden" }, products: { categoryLabel: "Produktkategorie" },
     participant: { title: "Teilnehmer-Dashboard", studio: "Teilnehmer-Studio" },
@@ -69,7 +69,7 @@ export const foundationMessages: Record<Lang, FoundationMessages> = {
   },
   fr: {
     welcome: welcomeTranslations.fr,
-    toolbar: { menu: "Menu", settings: "Paramètres", language: "Langue", market: "Marché", login: "Connexion", account: "Compte", favorites: "Favoris", cart: "Panier", search: "Recherche", openMenu: "Ouvrir le menu", openSettings: "Ouvrir les paramètres", changeLanguage: "Changer de langue", openMarket: "Ouvrir le marché DekoKraft", signIn: "Se connecter", signOut: "Se déconnecter" },
+    toolbar: { menu: "Menu", settings: "Paramètres", language: "Langue", market: "Marché", login: "Connexion", account: "Compte", favorites: "Favoris", cart: "Panier", search: "Recherche", openMenu: "Ouvrir le menu", openSettings: "Ouvrir les paramètres", changeLanguage: "Changer de langue", openMarket: "Ouvrir le marché DekoKraft", signIn: "Se connecter", signOut: "Se déconnecter", participantAnnouncements: "Annonces des participants", mainAnnouncement: "Annonce principale" },
     homepage: { eyebrow: "DekoKraft", title: "DekoKraft", sectionsEyebrow: "Sections de la plateforme", sectionsTitle: "Sections DekoKraft", marketEyebrow: "Marché", marketTitle: "Explorer le marché", latestEyebrow: "Derniers produits", latestTitle: "Derniers produits" },
     categories: { notFound: "Catégorie introuvable" }, products: { categoryLabel: "Catégorie du produit" },
     participant: { title: "Tableau du participant", studio: "Studio du participant" },
