@@ -44,6 +44,7 @@ assert.doesNotMatch(adminDeployment, /body\.(?:repository|workflow|branch|ref)/)
 const clientDeployment = read("app/participant/components/StudioUpdatesCard.tsx");
 assert.doesNotMatch(clientDeployment, /GITHUB_TOKEN|NEXT_PUBLIC_GITHUB|repository|branch/);
 assert.match(clientDeployment, /viewerRole === "admin"/);
+assert.match(clientDeployment, /href="\/studio"[\s\S]*?فتح الاستوديو/);
 const deployEnvironment = { GITHUB_REPOSITORY: "owner/project", GITHUB_DEPLOY_WORKFLOW_ID: "deploy-pages.yml", GITHUB_DEPLOY_BRANCH: "main", GITHUB_TOKEN: "test-secret", GITHUB_SHA: "1234567890" };
 const configured = deploymentConfiguration(deployEnvironment);
 assert.deepEqual({ repository: configured.repository, workflowId: configured.workflowId, branch: configured.branch }, { repository: "owner/project", workflowId: "deploy-pages.yml", branch: "main" });

@@ -6,7 +6,7 @@ import { withDekoRebuildAdmin } from "../_shared";
 const pointTypes: RecoveryPointType[] = ["automatic", "manual", "before-repair", "after-repair", "before-feature", "release", "emergency"];
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-export const maxDuration = 900;
+export const maxDuration = 300;
 
 export async function GET() {
   return withDekoRebuildAdmin(async () => ({ points: readRecoveryPoints().slice(0, 100), summary: getDekoRebuildSummary() }));

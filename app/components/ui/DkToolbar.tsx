@@ -6,6 +6,7 @@ export type DkToolbarProps = {
   className?: string;
   as?: "div" | "nav";
   "aria-label"?: string;
+  "data-dashboard-toolbar"?: string;
 };
 
 export default function DkToolbar({ children, className, as = "div", ...props }: DkToolbarProps) {

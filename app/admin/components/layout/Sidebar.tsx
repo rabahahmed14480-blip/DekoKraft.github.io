@@ -43,7 +43,7 @@ export default function Sidebar({
         direction={dir}
         label={t("admin.dashboard.pageTitle")}
         closeLabel={t("buttons.close")}
-        className={`dkSidebar dk-sidebar-panel${isOpen ? " isOpen" : ""}`}
+        className="adminNavigationDrawer dk-sidebar-panel"
         backdropClassName="dkSidebarBackdrop"
         onClose={onClose}
       >

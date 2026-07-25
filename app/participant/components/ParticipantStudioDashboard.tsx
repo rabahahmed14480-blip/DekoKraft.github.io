@@ -23,13 +23,11 @@ export default function ParticipantStudioDashboard({ viewerRole = "participant",
   }));
 
   return (
-    <section className="participantDashboard" aria-labelledby="participant-dashboard-title">
-      <h2 id="participant-dashboard-title" className="participantDashboardTitle">
-        {t("participantStudio.title")}
-      </h2>
-      <DkDashboardGrid items={items} label={t("participantStudio.navigationLabel")} />
+    <section className="participantDashboard" aria-label={t("participantStudio.title")}>
+      <DkDashboardGrid items={items} label={t("participantStudio.navigationLabel")}>
+        <StudioUpdatesCard viewerRole={viewerRole} />
+      </DkDashboardGrid>
       {viewerRole === "participant" && <ParticipantSecurityCard />}
-      <StudioUpdatesCard viewerRole={viewerRole} />
       <DkServicesCenter locale={lang} direction={direction} />
     </section>
   );

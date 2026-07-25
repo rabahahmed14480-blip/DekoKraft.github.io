@@ -7,8 +7,9 @@ export type DkButtonVariant = "glass" | "primary" | "subtle" | "transparent";
 export type DkButtonIconPosition = "start" | "end";
 
 export type DkButtonProps = {
-  children: ReactNode;
+  children?: ReactNode;
   icon?: ReactNode;
+  iconOnly?: boolean;
   iconPosition?: DkButtonIconPosition;
   href?: string;
   onClick?: MouseEventHandler<HTMLElement>;
@@ -29,6 +30,7 @@ export type DkButtonProps = {
 export default function DkButton({
   children,
   icon,
+  iconOnly = false,
   iconPosition = "start",
   href,
   onClick,
@@ -53,7 +55,9 @@ export default function DkButton({
     disabled && "dk-button--disabled",
     className,
   );
-  const content = (
+  const content = iconOnly ? (
+    <>{icon}</>
+  ) : (
     <>
       {icon && iconPosition === "start" && (
         <span className="dk-button__icon" aria-hidden="true">{icon}</span>

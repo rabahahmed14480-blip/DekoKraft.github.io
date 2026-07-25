@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
+import DekoKraftPageShell from "./DekoKraftPageShell";
 import HomeV2Footer from "./home-v2/HomeV2Footer";
 import PublicSiteHeader from "./PublicSiteHeader";
-import DkPageBackground from "./ui/DkPageBackground";
 
 export type PublicPageShellProps = {
   children: ReactNode;
@@ -21,26 +21,19 @@ export function DkPublicPageShell({
   className,
 }: PublicPageShellProps) {
   return (
-    <div
-      className={
-        className
-          ? `publicPageShell dkPublicTheme ${className}`
-          : "publicPageShell dkPublicTheme"
-      }
-      data-page-theme="dekokraft-blue"
-    >
-      <DkPageBackground />
-
-      <div className="publicPageContent">
+    <DekoKraftPageShell
+      className={className}
+      chrome={(
         <PublicSiteHeader
           showNotificationBar={showNotificationBar}
           showHeader={showHeader}
           showFloatingToolbar={showFloatingToolbar}
         />
-        <div className="publicPageBody">{children}</div>
-        {showFooter && <HomeV2Footer />}
-      </div>
-    </div>
+      )}
+      footer={showFooter ? <HomeV2Footer /> : undefined}
+    >
+      {children}
+    </DekoKraftPageShell>
   );
 }
 

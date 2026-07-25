@@ -16,10 +16,12 @@ export default function DkDashboardGrid({
   items,
   className,
   label,
+  children,
 }: {
   items: DkDashboardGridItem[];
   className?: string;
   label: string;
+  children?: ReactNode;
 }) {
   return (
     <section className={classNames("dk-dashboard-grid", className)} aria-label={label}>
@@ -40,6 +42,7 @@ export default function DkDashboardGrid({
           </DkGlassPanel>
         );
       })}
+      {children}
     </section>
   );
 }

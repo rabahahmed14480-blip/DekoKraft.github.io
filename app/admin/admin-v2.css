@@ -595,28 +595,6 @@
   overflow-wrap:anywhere;
 }
 
-.dkAdminLayout.dkAdminLayout .dk-sidebar-panel.dk-sidebar-panel{
-  position:fixed;
-  z-index:1002;
-  top:0;
-  bottom:0;
-  inset-inline-end:0;
-  inset-inline-start:auto;
-  width:min(360px,88vw);
-  max-width:100%;
-  max-height:100dvh;
-  margin:0;
-  padding:18px;
-  overflow-y:auto;
-  border:0;
-  border-inline-start:1px solid rgba(255,255,255,.28);
-  border-radius:0;
-  background:rgba(255,255,255,.1);
-  box-shadow:0 18px 50px rgba(30,40,65,.16);
-  backdrop-filter:blur(22px);
-  -webkit-backdrop-filter:blur(22px);
-}
-
 .dkAdminLayout.dkAdminLayout .dk-sidebar-link.dk-sidebar-link{
   display:grid;
   grid-template-columns:32px minmax(0,1fr);
@@ -957,12 +935,17 @@
   pointer-events:none;
 }
 
-.admin-video-overlay{
+.admin-video-page .admin-video-overlay{
   position:fixed;
   inset:0;
   z-index:1;
   pointer-events:none;
-  background:rgba(255,255,255,.26);
+  background:linear-gradient(
+    145deg,
+    rgba(79,137,255,.18) 0%,
+    rgba(184,205,248,.14) 48%,
+    rgba(112,137,219,.16) 100%
+  )!important;
 }
 
 .admin-video-content{
@@ -1528,189 +1511,6 @@
   }
 }
 
-/* Shared Admin and Studio toolbar: one DOM structure and one style source. */
-.studioTopToolbar{
-  position:relative;
-  inset:auto;
-  z-index:var(--dk-z-toolbar);
-  width:calc(100% - var(--dk-space-9));
-  max-width:var(--dk-container-wide);
-  margin:var(--dk-admin-toolbar-margin-block-start) auto var(--dk-space-panel);
-  padding:0;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:var(--dk-space-7);
-  direction:ltr;
-  transform:none;
-  box-sizing:border-box;
-}
-
-.studioTopToolbarLeft,
-.studioTopToolbarRight{
-  display:flex;
-  flex-direction:row!important;
-  flex-wrap:nowrap;
-  align-items:center;
-  gap:var(--dk-space-2);
-  position:static;
-  inset:auto;
-  transform:none;
-  direction:ltr;
-}
-
-.studioTopToolbarLeft{justify-content:flex-start}
-.studioTopToolbarRight{justify-content:flex-end}
-
-.studioTopToolbarLeft>* ,
-.studioTopToolbarRight>*{
-  position:static;
-  inset:auto;
-  transform:none;
-  order:initial!important;
-  width:auto;
-  min-width:max-content;
-  height:var(--dk-admin-control-height);
-  min-height:var(--dk-admin-control-height);
-  max-height:var(--dk-admin-control-height);
-  padding:0 var(--dk-space-4);
-  margin:0;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:5px;
-  font-size:var(--dk-font-xs);
-  line-height:var(--dk-line-height-tight);
-  font-weight:var(--dk-font-weight-bold);
-  white-space:nowrap;
-  border:1px solid var(--dk-color-border-strong);
-  border-radius:var(--dk-radius-md);
-  background:var(--dk-color-glass-medium);
-  box-shadow:var(--dk-shadow-glass-inset),var(--dk-shadow-sm);
-  -webkit-backdrop-filter:blur(var(--dk-blur-control)) saturate(135%);
-  backdrop-filter:blur(var(--dk-blur-control)) saturate(135%);
-  color:inherit;
-  text-decoration:none;
-  box-sizing:border-box;
-  flex:0 0 auto;
-}
-
-.studioTopToolbarLeft>*:hover,
-.studioTopToolbarRight>*:hover{
-  background:var(--dk-color-glass-toolbar-hover);
-}
-
-.studioTopToolbarRight>.dk-menu-anchor{
-  width:auto;
-  min-width:0;
-  height:auto;
-  min-height:0;
-  max-height:none;
-  padding:0;
-  border:0;
-  background:transparent;
-  box-shadow:none;
-  -webkit-backdrop-filter:none;
-  backdrop-filter:none;
-}
-
-.studioTopToolbarRight>.dk-menu-anchor:hover{
-  background:transparent;
-}
-
-.studioSettingsButton{
-  width:var(--dk-admin-control-height)!important;
-  min-width:var(--dk-admin-control-height)!important;
-  padding:0!important;
-}
-
-.studioTopToolbarLeft svg,
-.studioTopToolbarRight svg,
-.studioTopToolbarLeft img,
-.studioTopToolbarRight img,
-.studioTopToolbarLeft span[role="img"],
-.studioTopToolbarRight span[role="img"],
-.studioToolbarIcon{
-  width:var(--dk-admin-toolbar-icon-size);
-  height:var(--dk-admin-toolbar-icon-size);
-  min-width:var(--dk-admin-toolbar-icon-size);
-  flex:0 0 var(--dk-admin-toolbar-icon-size);
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  object-fit:contain;
-  font-size:var(--dk-admin-toolbar-icon-size);
-  line-height:1;
-}
-
-.studioLanguageButton{
-  position:relative;
-}
-
-.studioLanguageTrigger{
-  width:100%;
-  height:100%;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  border:0;
-  background:transparent;
-  color:inherit;
-  font:inherit;
-  white-space:nowrap;
-  padding:0;
-  cursor:pointer;
-}
-
-.studioLanguageCode{
-  min-width:2ch;
-  font-size:var(--dk-font-xs);
-  font-weight:var(--dk-font-weight-heavy);
-  letter-spacing:.04em;
-  line-height:1;
-}
-
-.studioTopToolbar .dkLangMenu{
-  inset-block-start:calc(100% + 6px);
-  z-index:var(--dk-z-dropdown);
-}
-
-.studioTopToolbar .studioLanguageMenu{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:var(--dk-space-1);
-  min-width:74px;
-  padding:var(--dk-space-2);
-  border:1px solid var(--dk-color-border-glass);
-  border-radius:var(--dk-radius-md);
-  background:var(--dk-color-glass-strong);
-  box-shadow:var(--dk-shadow-md);
-  -webkit-backdrop-filter:blur(var(--dk-blur-md)) saturate(140%);
-  backdrop-filter:blur(var(--dk-blur-md)) saturate(140%);
-}
-
-.studioTopToolbar .studioLanguageMenu button{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:var(--dk-space-2);
-  width:100%;
-  min-height:var(--dk-button-height-sm);
-  border:0;
-  border-radius:var(--dk-radius-sm);
-  background:transparent;
-  color:inherit;
-  padding-inline:var(--dk-space-3);
-  font-size:var(--dk-font-xs);
-  font-weight:var(--dk-font-weight-bold);
-  cursor:pointer;
-}
-
-.studioTopToolbar .studioLanguageMenu button:hover,
-.studioTopToolbar .studioLanguageMenu button:focus-visible{
-  background:var(--dk-color-glass-hover);
-}
-
 .dk-brand-subtitle{
   display:block;
   width:100%;
@@ -1751,77 +1551,9 @@
 }
 
 @media(max-width:700px){
-  .studioTopToolbar{
-    width:calc(100% - 20px);
-    flex-direction:row!important;
-    flex-wrap:wrap;
-    align-items:center;
-    justify-content:space-between;
-    gap:8px;
-    margin-top:10px;
-  }
-
-  .studioTopToolbarLeft,
-  .studioTopToolbarRight{
-    width:auto;
-    justify-content:center;
-    flex-direction:row!important;
-    flex-wrap:nowrap;
-  }
-
-  .studioTopToolbarLeft>* ,
-  .studioTopToolbarRight>*{
-    height:var(--dk-admin-control-height-mobile);
-    min-height:var(--dk-admin-control-height-mobile);
-    max-height:var(--dk-admin-control-height-mobile);
-    padding-inline:9px;
-    font-size:var(--dk-font-xs);
-  }
-
-  .studioSettingsButton{
-    width:var(--dk-admin-control-height-mobile)!important;
-    min-width:var(--dk-admin-control-height-mobile)!important;
-  }
-
   .dk-brand-subtitle{font-size:15px}
   .dk-admin-subtitle{font-size:17px}
   .dk-creator-subtitle{font-size:14px;padding-inline:18px}
-}
-
-/* The admin drawer follows the real menu control instead of a page edge. */
-.dkAdminLayout .dkSidebar.dk-anchored-menu{
-  top:var(--dk-anchored-menu-top);
-  bottom:auto;
-  max-height:calc(100dvh - var(--dk-anchored-menu-top) - 12px);
-}
-
-.dkAdminLayout[data-dir="rtl"] .dkSidebar.dk-anchored-menu{
-  right:var(--dk-anchored-menu-edge);
-  left:auto;
-}
-
-.dkAdminLayout[data-dir="ltr"] .dkSidebar.dk-anchored-menu{
-  right:auto;
-  left:var(--dk-anchored-menu-edge);
-}
-
-.dkAdminLayout[data-menu-open="true"] .studioTopToolbar{
-  z-index:calc(var(--dk-z-sidebar) + 1);
-}
-
-.studioTopToolbarRight>.dk-menu-anchor,
-.studioTopToolbarRight>.dk-menu-anchor:hover{
-  width:auto;
-  min-width:0;
-  height:auto;
-  min-height:0;
-  max-height:none;
-  padding:0;
-  border:0;
-  background:transparent;
-  box-shadow:none;
-  -webkit-backdrop-filter:none;
-  backdrop-filter:none;
 }
 
 .adminSectionPageContent{
@@ -2043,4 +1775,611 @@
 @media(prefers-reduced-motion:reduce){
   .adminAICostSummary__spinner{animation-duration:1600ms}
   .adminAICostSummary__track>span{transition:none}
+}
+
+/* Admin-only header rebuilt independently from the shared dashboard toolbar. */
+.adminTopHeader {
+  display: grid;
+  width: 100%;
+  min-width: 0;
+  gap: 8px;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.adminAnnouncementBar {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  min-height: 38px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 7px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  border-radius: 16px;
+  background: linear-gradient(100deg, rgba(42, 111, 219, 0.82), rgba(116, 72, 199, 0.8));
+  box-shadow: 0 8px 24px rgba(46, 67, 145, 0.16);
+  color: #fff;
+  box-sizing: border-box;
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+}
+
+.adminAnnouncementBar strong,
+.adminAnnouncementBar a {
+  overflow: hidden;
+  color: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1;
+  text-overflow: ellipsis;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.adminAnnouncementBar a:hover {
+  text-decoration: underline;
+}
+
+.adminAnnouncementBar a:focus-visible {
+  outline: 3px solid rgba(255, 255, 255, 0.8);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.adminTopToolbar {
+  position: relative;
+  z-index: 50;
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  min-height: 64px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin: 0;
+  padding: 7px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.38);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.16);
+  box-shadow: 0 8px 24px rgba(48, 67, 126, 0.09);
+  box-sizing: border-box;
+  -webkit-backdrop-filter: blur(18px) saturate(125%);
+  backdrop-filter: blur(18px) saturate(125%);
+}
+
+.adminTopToolbarPrimary,
+.adminTopToolbarSecondary {
+  position: static;
+  display: flex;
+  min-width: 0;
+  flex: 0 0 auto;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  transform: none;
+}
+
+.adminTopToolbar .adminTopToolbarButton {
+  position: static;
+  display: inline-flex;
+  width: 48px;
+  min-width: 48px;
+  max-width: 48px;
+  height: 48px;
+  min-height: 48px;
+  max-height: 48px;
+  flex: 0 0 48px;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.52);
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.28);
+  box-shadow: 0 6px 16px rgba(48, 67, 126, 0.08);
+  color: #20315c;
+  transform: none;
+  box-sizing: border-box;
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+}
+
+.adminTopToolbar .adminTopToolbarButton:hover {
+  background: rgba(255, 255, 255, 0.52);
+  box-shadow: 0 8px 20px rgba(48, 67, 126, 0.13);
+}
+
+.adminTopToolbar .adminTopToolbarButton:focus-visible {
+  outline: 3px solid rgba(50, 93, 220, 0.55);
+  outline-offset: 2px;
+}
+
+.adminTopToolbar .adminTopToolbarButton .dk-icon-button__icon,
+.adminTopToolbar .adminTopToolbarButton svg {
+  display: grid;
+  width: 21px;
+  height: 21px;
+  place-items: center;
+}
+
+.adminTopToolbar .adminTopToolbarButton .dk-button__label {
+  display: none;
+}
+
+.adminTopToolbarLanguage,
+.adminTopToolbarMenuAnchor {
+  position: relative;
+  display: inline-flex;
+  flex: 0 0 auto;
+}
+
+.adminTopToolbarLanguageValue {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  font-size: 11px;
+  font-weight: 900;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.adminTopToolbarLanguageMenu {
+  position: absolute;
+  z-index: 100;
+  top: calc(100% + 8px);
+  display: grid;
+  min-width: 178px;
+  gap: 4px;
+  padding: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 14px;
+  background: rgba(246, 249, 255, 0.9);
+  box-shadow: 0 14px 34px rgba(31, 48, 94, 0.18);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+}
+
+.adminTopToolbar--rtl .adminTopToolbarLanguageMenu {
+  right: 0;
+  left: auto;
+}
+
+.adminTopToolbar--ltr .adminTopToolbarLanguageMenu {
+  right: auto;
+  left: 0;
+}
+
+.adminTopToolbarLanguageMenu button {
+  display: flex;
+  width: 100%;
+  min-height: 36px;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  padding: 6px 9px;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: #20315c;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 750;
+  text-align: start;
+  cursor: pointer;
+}
+
+.adminTopToolbarLanguageMenu button:hover,
+.adminTopToolbarLanguageMenu button:focus-visible {
+  background: rgba(72, 96, 220, 0.12);
+  outline: none;
+}
+
+.dkAdminLayout[data-dir="rtl"] .adminNavigationDrawer {
+  right: auto;
+  left: 16px;
+  direction: rtl;
+}
+
+.dkAdminLayout[data-dir="ltr"] .adminNavigationDrawer {
+  right: 16px;
+  left: auto;
+  direction: ltr;
+}
+
+@media (max-width: 639px) {
+  .adminAnnouncementBar {
+    gap: 8px;
+    min-height: 34px;
+    padding: 6px 10px;
+    border-radius: 13px;
+  }
+
+  .adminAnnouncementBar strong,
+  .adminAnnouncementBar a {
+    font-size: 11px;
+  }
+
+  .adminTopToolbar {
+    min-height: 56px;
+    gap: 8px;
+    padding: 6px 8px;
+    border-radius: 17px;
+  }
+
+  .adminTopToolbarPrimary,
+  .adminTopToolbarSecondary {
+    gap: 5px;
+  }
+
+  .adminTopToolbar .adminTopToolbarButton {
+    width: 40px;
+    min-width: 40px;
+    max-width: 40px;
+    height: 40px;
+    min-height: 40px;
+    max-height: 40px;
+    flex-basis: 40px;
+    border-radius: 12px;
+  }
+}
+
+/* Admin content is hosted by the exact public Home frame and spacing tokens. */
+.adminPublicPageFrame .publicSiteChrome {
+  position: relative;
+}
+
+.adminHomeAnnouncementContent {
+  position: relative;
+  display: block;
+  width: 100%;
+  min-height: 64px;
+  overflow: hidden;
+  direction: ltr;
+}
+
+.adminAnnouncementMovingText {
+  display: inline-block;
+  width: max-content;
+  min-width: max-content;
+  color: inherit;
+  font-size: clamp(13px, 1.35vw, 18px);
+  font-weight: var(--dk-font-weight-heavy);
+  line-height: 64px;
+  white-space: nowrap;
+  will-change: transform;
+}
+
+.adminAnnouncementMovingText[data-direction="rtl"] {
+  direction: rtl;
+}
+
+.adminAnnouncementMovingText[data-direction="ltr"] {
+  direction: ltr;
+}
+
+@keyframes adminAnnouncementMoveRtl {
+  from {
+    transform: translateX(100vw);
+  }
+
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes adminAnnouncementMoveLtr {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(100vw);
+  }
+}
+
+.adminHomeToolbar .adminHomeToolbarSpacer {
+  min-height: var(--dk-button-height-md);
+}
+
+.adminHomeToolbar .adminHomeToolbarButton {
+  width: var(--dk-button-height-md);
+  min-width: var(--dk-button-height-md);
+  height: var(--dk-button-height-md);
+  min-height: var(--dk-button-height-md);
+  color: var(--dk-ink, #10213d);
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.adminHomeToolbar .adminHomeToolbarButton:hover,
+.adminHomeToolbar .adminHomeToolbarButton:focus-visible {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(49, 95, 189, 0.24);
+}
+
+.adminHomeToolbar .adminHomeToolbarButton > svg {
+  width: 21px;
+  height: 21px;
+  color: var(--dk-ink, #10213d);
+  stroke: currentColor;
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  filter: none;
+  mix-blend-mode: normal;
+}
+
+.adminHomeToolbarLanguage,
+.adminHomeToolbarMenuAnchor {
+  position: relative;
+  display: inline-flex;
+  flex: 0 0 auto;
+}
+
+.adminHomeToolbarLanguageValue {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  font-size: var(--dk-font-xs);
+  font-weight: var(--dk-font-weight-heavy);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.adminHomeToolbarLanguageMenu {
+  inset-inline-end: 0;
+  inset-inline-start: auto;
+}
+
+.adminHomeAnnouncementEditButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: var(--dk-button-height-md);
+  padding: 0 14px;
+  color: inherit;
+  font: inherit;
+  font-weight: var(--dk-font-weight-bold);
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--dk-radius-md);
+  cursor: pointer;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.adminHomeAnnouncementEditButton:hover,
+.adminHomeAnnouncementEditButton:focus-visible {
+  background: rgba(255, 255, 255, 0.26);
+}
+
+.adminHomeAnnouncementEditButton svg {
+  width: 18px;
+  height: 18px;
+}
+
+.adminAnnouncementModalBackdrop {
+  position: fixed;
+  z-index: 3000;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(20, 37, 67, 0.36);
+}
+
+.adminAnnouncementModal {
+  width: min(560px, 100%);
+  padding: clamp(22px, 4vw, 34px);
+  color: var(--dk-public-ink);
+  background: rgba(244, 248, 255, 0.84);
+  border: 1px solid rgba(255, 255, 255, 0.58);
+  border-radius: 24px;
+  box-shadow: 0 24px 70px rgba(22, 49, 91, 0.28);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+}
+
+.adminAnnouncementModal h2 {
+  margin: 0 0 18px;
+}
+
+.adminAnnouncementModal label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: var(--dk-font-weight-bold);
+}
+
+.adminAnnouncementModalFields {
+  display: grid;
+  gap: 12px;
+  max-height: min(58vh, 560px);
+  overflow-y: auto;
+}
+
+.adminAnnouncementModalFields label {
+  margin: 0;
+}
+
+.adminAnnouncementModalFields label span {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.adminAnnouncementModal textarea {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 190px;
+  padding: 14px;
+  color: inherit;
+  font: inherit;
+  line-height: 1.6;
+  resize: vertical;
+  background: rgba(255, 255, 255, 0.68);
+  border: 1px solid rgba(96, 120, 170, 0.28);
+  border-radius: 16px;
+}
+
+.adminAnnouncementModalFields textarea {
+  min-height: 88px;
+}
+
+.adminAnnouncementModalActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.adminAnnouncementModalActions button {
+  min-height: 42px;
+  padding: 0 18px;
+  color: inherit;
+  font: inherit;
+  font-weight: var(--dk-font-weight-bold);
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(96, 120, 170, 0.24);
+  border-radius: 13px;
+  cursor: pointer;
+}
+
+.adminAnnouncementModalActions .adminAnnouncementModalPreview {
+  color: #fff;
+  background: #245da8;
+}
+
+.adminPublicPageBody {
+  padding-block: var(--dk-page-padding-block);
+}
+
+.adminPublicPageBody .dkAdminLayout,
+.adminPublicPageBody .dkMain {
+  background: transparent;
+}
+
+@media (max-width: 639px) {
+  .adminHomeAnnouncementContent {
+    gap: var(--dk-space-2);
+  }
+
+  .adminAnnouncementMovingText {
+    font-size: 11px;
+  }
+}
+
+/* Keep the active ticker as the final animation owner in the admin stylesheet. */
+.adminHomeAnnouncement .adminAnnouncementMovingText[data-direction="rtl"] {
+  animation: adminAnnouncementMoveRtl 18s linear infinite;
+}
+
+.adminHomeAnnouncement .adminAnnouncementMovingText[data-direction="ltr"] {
+  animation: adminAnnouncementMoveLtr 18s linear infinite;
+}
+
+.adminHomeAnnouncement:hover .adminAnnouncementMovingText {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .adminHomeAnnouncement .adminAnnouncementMovingText {
+    animation-duration: 30s;
+  }
+}
+
+html body .adminPublicPageFrame {
+  background: transparent !important;
+  background-image: none !important;
+}
+
+html body .adminPublicPageFrame .dk-page-background__gradient {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(234, 242, 255, 0.18) 0%,
+      rgba(184, 205, 248, 0.14) 48%,
+      rgba(112, 137, 219, 0.16) 100%
+    ) !important;
+}
+
+html body .adminPublicPageFrame .dk-page-background__glow--start {
+  background: rgba(79, 137, 255, 0.20) !important;
+}
+
+html body .adminPublicPageFrame .dk-page-background__glow--end {
+  background: rgba(105, 211, 255, 0.16) !important;
+}
+
+html body .adminPublicPageFrame .dk-page-background__glow--start,
+html body .adminPublicPageFrame .dk-page-background__glow--end {
+  opacity: 0.18 !important;
+  filter: blur(48px) !important;
+}
+
+html body .adminPublicPageFrame .dk-page-background__glass {
+  background: rgba(255, 255, 255, 0.06) !important;
+  backdrop-filter: blur(12px) saturate(120%) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(120%) !important;
+}
+
+html body .adminPublicPageFrame
+.publicAnnouncement.adminHomeAnnouncement {
+  background: rgba(255, 255, 255, 0.035) !important;
+  background-color: rgba(255, 255, 255, 0.035) !important;
+  background-image:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.14) 0%,
+      rgba(255, 255, 255, 0.025) 48%,
+      rgba(255, 255, 255, 0.06) 100%
+    ) !important;
+
+  backdrop-filter: blur(3px) saturate(115%) contrast(102%) !important;
+  -webkit-backdrop-filter: blur(3px) saturate(115%) contrast(102%) !important;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.42) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.24) !important;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.24),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.06),
+    0 4px 14px rgba(50, 80, 140, 0.06) !important;
+
+  opacity: 1 !important;
+}
+
+html body .adminPublicPageFrame .publicHeader {
+  background: transparent !important;
+}
+
+html body .adminPublicPageFrame
+.publicFloatingToolbar.adminHomeToolbar {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.32);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    0 10px 30px rgba(20, 50, 100, 0.10);
+  backdrop-filter: blur(12px) saturate(120%);
+  -webkit-backdrop-filter: blur(12px) saturate(120%);
+}
+
+html body .adminPublicPageFrame
+.dkAdminLayout .admin-creator-studio,
+html body .adminPublicPageFrame
+.dkAdminLayout .dk-creator-grid .dk-creator-button {
+  background: rgba(235, 245, 252, 0.11);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  box-shadow:
+    inset 0 1px 0 rgba(235, 245, 252, 0.18),
+    0 10px 30px rgba(20, 50, 100, 0.08);
+  backdrop-filter: blur(12px) saturate(125%);
+  -webkit-backdrop-filter: blur(12px) saturate(125%);
 }

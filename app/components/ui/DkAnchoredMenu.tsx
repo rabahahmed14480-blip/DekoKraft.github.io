@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, type CSSProperties, type ReactNode } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 import { classNames } from "./classNames";
 
 export type DkMenuAnchor = {
@@ -36,7 +36,6 @@ export function readMenuAnchor(element: HTMLElement): DkMenuAnchor {
 export default function DkAnchoredMenu({
   id,
   isOpen,
-  anchor,
   direction,
   label,
   closeLabel,
@@ -46,16 +45,6 @@ export default function DkAnchoredMenu({
   children,
 }: DkAnchoredMenuProps) {
   const menuRef = useRef<HTMLElement>(null);
-  const edgeOffset = anchor
-    ? direction === "rtl"
-      ? Math.max(12, anchor.viewportWidth - anchor.right)
-      : Math.max(12, anchor.left)
-    : 12;
-  const style = {
-    "--dk-anchored-menu-top": `${Math.round((anchor?.bottom ?? 44) + 8)}px`,
-    "--dk-anchored-menu-edge": `${Math.round(edgeOffset)}px`,
-  } as CSSProperties;
-
   useEffect(() => {
     if (!isOpen) return;
 
@@ -99,7 +88,6 @@ export default function DkAnchoredMenu({
         dir={direction}
         aria-label={label}
         aria-hidden={!isOpen}
-        style={style}
       >
         {children}
       </aside>

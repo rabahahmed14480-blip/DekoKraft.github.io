@@ -483,7 +483,6 @@
 @media print {
   .financialPage .admin-background-video,
   .financialPage .admin-video-overlay,
-  .financialPage .studioTopToolbar,
   .financialPage .financialReportActions,
   .financialPage .financialActionMessage,
   .financialPage .dkAdminFooter { display: none !important; }
