@@ -3,6 +3,7 @@
 import { DkButton, DkGlassPanel } from "../../components/ui";
 import { useLanguage } from "../../components/LanguageProvider";
 import PublicPageShell from "../../components/PublicPageShell";
+import { translations } from "../../../locales";
 import WelcomeCard from "./WelcomeCard";
 
 type WelcomeCardDefinition = {
@@ -35,8 +36,9 @@ const cards: WelcomeCardDefinition[] = [
 ];
 
 export default function WelcomePortal() {
-  const { direction, t } = useLanguage();
-  const title = t("welcome.title");
+  const { lang } = useLanguage();
+  const { dir: direction, welcome } = translations[lang];
+  const title = welcome.title;
 
   return (
     <PublicPageShell className="welcomePublicShell">
@@ -47,14 +49,14 @@ export default function WelcomePortal() {
               <h1>
                 {title.replace("DekoKraft", "").trim()} <span>DekoKraft</span>
               </h1>
-              <p>{t("welcome.subtitle")}</p>
+              <p>{welcome.subtitle}</p>
             </header>
 
-            <nav className="welcomePortalGrid" aria-label={t("welcome.navigationLabel")}>
+            <nav className="welcomePortalGrid" aria-label={welcome.navigationLabel}>
               {cards.map((card) => (
                 <WelcomeCard
                   key={card.id}
-                  title={t(`welcome.cards.${card.id}`)}
+                  title={welcome.cards[card.id]}
                   icon={card.icon}
                   href={card.href}
                 />
@@ -68,7 +70,7 @@ export default function WelcomePortal() {
               variant="transparent"
               onClick={() => window.location.reload()}
             >
-              {t("welcome.replay")}
+              {welcome.replay}
             </DkButton>
           </DkGlassPanel>
         </div>
