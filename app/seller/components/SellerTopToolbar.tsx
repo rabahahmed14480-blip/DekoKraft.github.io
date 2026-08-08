@@ -1,6 +1,6 @@
 "use client";
 
-import { Menu, Settings, Store, UserRound } from "lucide-react";
+import { Megaphone, Menu, Settings, Store, UserRound } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "../../components/LanguageProvider";
@@ -13,14 +13,24 @@ import type { Lang } from "../../../locales";
 import { useSellerSession } from "./SellerSessionProvider";
 
 const languageOrder: Lang[] = ["ar", "en", "de", "fr"];
+const announcementLabels: Record<Lang, string> = {
+  ar: "إعلان المشارك",
+  de: "Teilnehmeranzeige",
+  en: "Participant Announcement",
+  fr: "Annonce du participant",
+};
 
 export default function SellerTopToolbar({
   sellerId,
   isMenuOpen,
+  isAnnouncementEditorOpen,
+  onEditAnnouncement,
   onToggleMenu,
 }: {
   sellerId: string;
   isMenuOpen: boolean;
+  isAnnouncementEditorOpen: boolean;
+  onEditAnnouncement: () => void;
   onToggleMenu: () => void;
 }) {
   const { lang, setLang, t } = useLanguage();
@@ -97,6 +107,19 @@ export default function SellerTopToolbar({
         </DkToolbarGroup>
 
         <DkToolbarGroup position="end" className="sellerToolbarPrimary toolbarPrimaryGroup">
+          <button
+            type="button"
+            className={`sellerAnnouncementEditButton${isAnnouncementEditorOpen ? " active" : ""}`}
+            aria-pressed={isAnnouncementEditorOpen}
+            onClick={() => {
+              setLanguageOpen(false);
+              setAccountOpen(false);
+              onEditAnnouncement();
+            }}
+          >
+            <Megaphone aria-hidden="true" />
+            <span>{announcementLabels[lang]}</span>
+          </button>
           <DkIconButton
             href="/home#marketplace"
             icon={<Store />}

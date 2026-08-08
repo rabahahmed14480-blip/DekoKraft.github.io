@@ -1,0 +1,125 @@
+.panel {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+  direction: inherit;
+}
+
+.panel h3,
+.panel p {
+  margin: 0;
+}
+
+.panel label {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+  color: #34415f;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.panel input,
+.panel textarea,
+.panel button {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  border: 1px solid #c5cee2;
+  border-radius: 9px;
+  background: #fff;
+  color: #213154;
+  padding: 8px 10px;
+  font: inherit;
+}
+
+.panel button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.panel textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+
+.panel button {
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.activity {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+
+.activityList {
+  display: grid;
+  gap: 5px;
+  max-height: 260px;
+  min-width: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border: 1px solid #d2daeb;
+  border-radius: 10px;
+  background: #f8faff;
+  padding: 7px;
+}
+
+.search {
+  position: sticky;
+  z-index: 1;
+  top: 0;
+}
+
+.activityList button {
+  text-align: start;
+}
+
+.primary {
+  border-color: #315fea !important;
+  background: #315fea !important;
+  color: #fff !important;
+}
+
+.suggestion {
+  display: grid;
+  gap: 7px;
+  border: 1px solid #d2daeb;
+  border-radius: 11px;
+  background: #f8faff;
+  padding: 11px;
+}
+
+.promptPreview {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+  border: 1px solid #d2daeb;
+  border-radius: 11px;
+  background: #f8faff;
+  padding: 11px;
+}
+
+.promptPreview span,
+.promptPreview p {
+  color: #65718a;
+  font-size: 12px;
+}
+
+.promptPreview textarea {
+  min-height: 150px;
+}
+
+.suggestion p {
+  color: #65718a;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.message {
+  color: #176c42;
+  font-size: 12px;
+  font-weight: 800;
+}

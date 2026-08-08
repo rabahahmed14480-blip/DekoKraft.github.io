@@ -61,7 +61,7 @@ export type DashboardMenuItem = {
 };
 
 const dashboardMenu: readonly DashboardMenuDefinition[] = [
-  { id: "products", icon: Package, roles: ["admin", "participant"], hrefByRole: { admin: routes.admin.products, participant: routes.participant.products }, labelKey: "dashboardCards.products", permission: "catalog", orderByRole: { admin: 1, participant: 1 } },
+  { id: "products", icon: Package, roles: ["admin"], hrefByRole: { admin: routes.admin.products }, labelKey: "dashboardCards.products", permission: "catalog", orderByRole: { admin: 1 } },
   { id: "orders", icon: ShoppingCart, roles: ["admin", "participant"], hrefByRole: { admin: routes.admin.orders, participant: routes.participant.orders }, labelKey: "dashboardCards.orders", permission: "commerce", orderByRole: { admin: 2, participant: 2 }, enabledByRole: { participant: false } },
   { id: "customers", icon: Users, roles: ["admin", "participant"], hrefByRole: { admin: routes.admin.customers, participant: routes.participant.customers }, labelKey: "dashboardCards.customers", permission: "commerce", orderByRole: { admin: 3, participant: 4 } },
   { id: "analytics", icon: BarChart3, roles: ["admin", "participant"], hrefByRole: { admin: routes.admin.analytics, participant: routes.participant.analytics }, labelKey: "dashboardCards.analytics", permission: "insights", orderByRole: { admin: 4, participant: 6 }, enabledByRole: { participant: false } },

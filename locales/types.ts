@@ -562,6 +562,20 @@ export type LocaleMessages = {
     marketTitle: string;
     latestEyebrow: string;
     latestTitle: string;
+    welcome: {
+      title: string;
+      highlightedTitle: string;
+      description: string;
+      primaryCTA: string;
+      secondaryCTA: string;
+    };
+    creativity: {
+      label: string;
+      limitless: string;
+      global: string;
+      supportive: string;
+      trusted: string;
+    };
   };
   categories: {
     notFound: string;

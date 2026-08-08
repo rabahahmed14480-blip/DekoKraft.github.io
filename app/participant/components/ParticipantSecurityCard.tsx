@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ShieldCheck, Sparkles } from "lucide-react";
+import HomepageSurface from "../../components/home-v2/HomepageSurface";
 
 type CleanPreview = {
   previewId: string;
@@ -44,7 +45,11 @@ export default function ParticipantSecurityCard() {
   }
 
   return (
-    <section className="participantSecurityCard" aria-labelledby="participant-security-title">
+    <HomepageSurface
+      as="section"
+      className="participantSecurityCard"
+      aria-labelledby="participant-security-title"
+    >
       <header><ShieldCheck aria-hidden="true" /><div><h3 id="participant-security-title">الأمان</h3><p>فحص وتنظيف آمنان داخل مساحة حسابك فقط.</p></div></header>
       <div>
         <button type="button" onClick={() => void cleanup()} disabled={Boolean(busy)}><Sparkles aria-hidden="true" />التنظيف</button>
@@ -52,6 +57,6 @@ export default function ParticipantSecurityCard() {
       </div>
       {message && <p role="status">{message}</p>}
       {error && <p role="alert">{error}</p>}
-    </section>
+    </HomepageSurface>
   );
 }

@@ -1,6 +1,8 @@
 import type { ParticipantId } from "../participants/types";
 
-export const CURRENT_USER_SESSION_COOKIE = "dekokraft_user_session_v1";
+export const PARTICIPANT_SESSION_COOKIE = "dekokraft_participant_session_v1";
+export const ADMIN_SESSION_COOKIE = "dekokraft_admin_session_v1";
+export const LEGACY_SHARED_SESSION_COOKIE = "dekokraft_user_session_v1";
 
 export interface CurrentUserSession {
   role: "admin" | "participant";
@@ -33,4 +35,3 @@ export function parseCurrentUserSession(value: string | undefined): CurrentUserS
 export function serializeCurrentUserSession(session: CurrentUserSession) {
   return encodeURIComponent(JSON.stringify(session));
 }
-

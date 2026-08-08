@@ -1,24 +1,32 @@
 "use client";
 
-import { BellRing, Heart, Home, Megaphone, Menu, Settings, UserRound } from "lucide-react";
+import {
+  BellRing,
+  Home,
+  MessageCircle,
+  Menu,
+  Megaphone,
+  Settings,
+  UserRound,
+} from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import type { Lang } from "../../../locales";
 import { createTranslator } from "../../../locales";
 import {
-  DkIconButton,
-  DkToolbar,
-  DkToolbarGroup,
+  DkIconButton as DKIconButton,
+  DkToolbar as DKToolbar,
+  DkToolbarGroup as DKToolbarGroup,
   readMenuAnchor,
-  type DkMenuAnchor,
+  type DkMenuAnchor as DKMenuAnchor,
 } from "../../components/ui";
 
 type AdminTopToolbarProps = {
   lang: Lang;
   setLang: (lang: Lang) => void;
   isMenuOpen: boolean;
-  onToggleMenu: (anchor: DkMenuAnchor) => void;
-  onEditAnnouncement: () => void;
-  onOpenMainAnnouncement: () => void;
+  onToggleMenu: (anchor: DKMenuAnchor) => void;
+  onEditMainAnnouncement: () => void;
+  onOpenParticipantBroadcast: () => void;
   isParticipantAnnouncementActive: boolean;
   isMainAnnouncementActive: boolean;
 };
@@ -30,13 +38,13 @@ const languageOptions: Array<{ code: Lang; flag: string; label: string }> = [
   { code: "fr", flag: "🇫🇷", label: "Français" },
 ];
 
-export default function AdminTopToolbar({
+export default function AdminSharedToolbar({
   lang,
   setLang,
   isMenuOpen,
   onToggleMenu,
-  onEditAnnouncement,
-  onOpenMainAnnouncement,
+  onEditMainAnnouncement,
+  onOpenParticipantBroadcast,
   isParticipantAnnouncementActive,
   isMainAnnouncementActive,
 }: AdminTopToolbarProps) {
@@ -70,7 +78,7 @@ export default function AdminTopToolbar({
   }, [lang]);
 
   const settingsButton = (
-    <DkIconButton
+    < DKIconButton
       href="/admin/settings"
       icon={<Settings />}
       label={t("toolbar.openSettings")}
@@ -82,7 +90,7 @@ export default function AdminTopToolbar({
 
   const languageButton = (
     <div className="publicLanguage adminHomeToolbarLanguage" ref={languageRef}>
-      <DkIconButton
+      <DKIconButton
         icon={(
                 <span className="adminHomeToolbarLanguageValue">
             <span aria-hidden="true">{activeLanguage.flag}</span>
@@ -119,19 +127,19 @@ export default function AdminTopToolbar({
     </div>
   );
 
-  const favoritesButton = (
-    <DkIconButton
-      href="/info/favorites"
-      icon={<Heart />}
-      label={t("toolbar.favorites")}
-      className="publicHeaderIconButton adminHomeToolbarButton"
-      variant="glass"
-      size="sm"
-    />
-  );
+ const companionButton = (
+    <DKIconButton
+    href="/companion"
+    icon={<MessageCircle />}
+      label="المرافق"
+    className="publicHeaderIconButton adminHomeToolbarButton"
+    variant="glass"
+    size="sm"
+  />
+);
 
   const profileButton = (
-    <DkIconButton
+    <DKIconButton
       icon={<UserRound />}
       label={t("toolbar.account")}
       className="publicHeaderIconButton adminHomeToolbarButton adminHomeToolbarAvatar"
@@ -141,7 +149,7 @@ export default function AdminTopToolbar({
   );
 
   const homeButton = (
-    <DkIconButton
+    <DKIconButton
       href="/admin"
       icon={<Home />}
       label={t("admin.dashboard.pageTitle")}
@@ -153,7 +161,7 @@ export default function AdminTopToolbar({
 
   const menuButton = (
     <span className="adminHomeToolbarMenuAnchor" ref={menuRef}>
-      <DkIconButton
+      <DKIconButton
         icon={<Menu />}
         label={t("toolbar.openMenu")}
         className="publicHeaderIconButton adminHomeToolbarButton"
@@ -168,45 +176,56 @@ export default function AdminTopToolbar({
     </span>
   );
 
-  const announcementButton = (
-    <button
-      type="button"
-      className={`adminHomeAnnouncementEditButton${isParticipantAnnouncementActive ? " active" : ""}`}
-      onClick={onEditAnnouncement}
-      aria-pressed={isParticipantAnnouncementActive}
-    >
-      <Megaphone aria-hidden="true" />
-      <span>{t("toolbar.participantAnnouncements")}</span>
-    </button>
+  const participantBroadcastButton = (
+    <DKIconButton
+      icon={<Megaphone />}
+      label={t("toolbar.participantAnnouncements")}
+      className="publicHeaderIconButton adminHomeToolbarButton"
+      variant="glass"
+      size="sm"
+      onClick={onOpenParticipantBroadcast}
+      active={isParticipantAnnouncementActive}
+    />
   );
 
   const mainAnnouncementButton = (
-    <button
-      type="button"
-      className={`adminHomeAnnouncementEditButton${isMainAnnouncementActive ? " active" : ""}`}
-      onClick={onOpenMainAnnouncement}
-      aria-pressed={isMainAnnouncementActive}
-    >
-      <BellRing aria-hidden="true" />
-      <span>{t("toolbar.mainAnnouncement")}</span>
-    </button>
+    <DKIconButton
+      icon={<BellRing />}
+      label={t("toolbar.mainAnnouncement")}
+      className="publicHeaderIconButton adminHomeToolbarButton"
+      variant="glass"
+      size="sm"
+      onClick={onEditMainAnnouncement}
+      active={isMainAnnouncementActive}
+    />
   );
 
   return (
-    <DkToolbar className="publicFloatingToolbar adminHomeToolbar" aria-label="Admin toolbar">
-      <nav className="publicSecondaryActions" dir={isArabic ? "rtl" : "ltr"} aria-label="Admin actions">
+    <DKToolbar
+      className="publicFloatingToolbar adminCleanToolbar"
+      data-dashboard-toolbar={isArabic ? "rtl" : "ltr"}
+      aria-label="Admin toolbar"
+    >
+      <nav
+        className="publicSecondaryActions adminCleanToolbarActions"
+        dir={isArabic ? "rtl" : "ltr"}
+        aria-label="Admin actions"
+      >
         {menuButton}
         {homeButton}
         {profileButton}
-        {favoritesButton}
-        {announcementButton}
+        {companionButton}
+        {participantBroadcastButton}
         {mainAnnouncementButton}
       </nav>
-      <div className="publicHeaderSearchRow adminHomeToolbarSpacer" aria-hidden="true" />
-      <DkToolbarGroup position="end" className="publicHeaderEndGroup">
+      <div className="publicHeaderSearchRow adminCleanToolbarSpacer" aria-hidden="true" />
+      <DKToolbarGroup
+        position="end"
+        className="publicHeaderEndGroup adminCleanToolbarUtilities"
+      >
         {settingsButton}
         {languageButton}
-      </DkToolbarGroup>
-    </DkToolbar>
+      </DKToolbarGroup>
+    </DKToolbar>
   );
 }

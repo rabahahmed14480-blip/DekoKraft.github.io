@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { LanguageProvider } from "./components/LanguageProvider";
 import DekoPerformanceMonitor from "./components/performance/DekoPerformanceMonitor";
+import { CompanionProvider } from "./components/companion/CompanionUI";
+import { PageContextProvider } from "./components/companion/PageContextProvider";
+import EchoWelcomeExperience from "./components/echo-welcome/EchoWelcomeExperience";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -23,7 +26,7 @@ export default function RootLayout({
       <head><script dangerouslySetInnerHTML={{ __html: "try{if(performance&&!performance.getEntriesByName('dekokraft-app-init').length)performance.mark('dekokraft-app-init')}catch(e){}" }} /></head>
       <body className="min-h-full flex flex-col">
         <DekoPerformanceMonitor />
-        <LanguageProvider>{children}</LanguageProvider>
+        <LanguageProvider><PageContextProvider><CompanionProvider>{children}<EchoWelcomeExperience /></CompanionProvider></PageContextProvider></LanguageProvider>
       </body>
     </html>
   );

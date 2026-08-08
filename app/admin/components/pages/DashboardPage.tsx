@@ -15,12 +15,12 @@ export default function DashboardPage({
   const dir = lang === "ar" ? "rtl" : "ltr";
 
   return (
-    <div className="dkDashboardPage" dir={dir}>
+    <>
       <AdminDashboardGrid />
       <AICostCompactSummary />
       <AdminSellerStores />
       <DkBrainProgressCenter compact />
       <DkServicesCenter locale={lang} direction={dir} variant="compact" />
-    </div>
+    </>
   );
 }

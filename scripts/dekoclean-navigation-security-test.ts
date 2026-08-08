@@ -22,14 +22,6 @@ assert.match(center, /finding\.severity !== "info"/);
 
 const rootCauseRoute = read("app/api/admin/dekoclean/analyze-root-cause/route.ts");
 assert.match(rootCauseRoute, /withDekoCleanAdmin/);
-const participantProductsPage = read("app/participant/products/page.tsx");
-assert.match(participantProductsPage, /requireParticipantSession/);
-assert.match(participantProductsPage, /session\.participantId/);
-assert.doesNotMatch(participantProductsPage, /searchParams|query/);
-const participantProductsApi = read("app/api/participant/products/route.ts");
-assert.match(participantProductsApi, /requireParticipantSession/);
-assert.match(participantProductsApi, /getSellerProducts\(session\.participantId\)/);
-assert.doesNotMatch(participantProductsApi, /request\.json|searchParams/);
 
 assert.match(read("app/components/home-v2/HomeHero.tsx"), /href=\{routes\.studio\}/);
 assert.match(read("app/studio/page.tsx"), /StudioV2Shell/);

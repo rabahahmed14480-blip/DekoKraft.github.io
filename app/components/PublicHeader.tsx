@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useLanguage } from "./LanguageProvider";
+import { HomepageHeaderFrame } from "./home-v2/HomepageArchitecture";
 import PublicFloatingToolbar from "./PublicFloatingToolbar";
 
 export function DkPublicHeader({
@@ -23,14 +24,9 @@ export function DkPublicHeader({
   }, []);
 
   return (
-    <header
-      className={hasScrolled ? "publicHeader scrolled" : "publicHeader"}
-      dir={direction}
-    >
-      <div className="publicHeaderMain publicContentContainer">
-        {showFloatingToolbar && <PublicFloatingToolbar />}
-      </div>
-    </header>
+    <HomepageHeaderFrame scrolled={hasScrolled} dir={direction}>
+      {showFloatingToolbar && <PublicFloatingToolbar />}
+    </HomepageHeaderFrame>
   );
 }
 

@@ -192,7 +192,6 @@ export default function ParticipantInventory({ participantId }: { participantId:
           {inspection.confidence < PRODUCT_MATCH_SUGGESTION_THRESHOLD && <p className="participantInventory__warning"><AlertTriangle aria-hidden="true" /> نسبة المطابقة لا تسمح بالتأكيد. اختر منتجًا مؤكدًا مناسبًا أو أنشئ منتجًا جديدًا.</p>}
           <div className="participantInventory__actions">
             <DkButton variant="primary" icon={<CheckCircle2 />} disabled={inspection.status !== "pending-confirmation" || !selectedCandidate} onClick={confirmStock}>تأكيد وإضافة للمخزون</DkButton>
-            <DkButton href={routes.participant.products} variant="glass">إنشاء منتج جديد</DkButton>
             <DkButton variant="subtle" icon={<XCircle />} disabled={inspection.status === "confirmed" || inspection.status === "rejected"} onClick={rejectInspection}>رفض</DkButton>
           </div>
         </div>}

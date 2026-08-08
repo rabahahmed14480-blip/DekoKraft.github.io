@@ -344,6 +344,37 @@
   height:var(--dk-icon-size-md);
 }
 
+.sellerAnnouncementEditButton{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  min-height:var(--dk-button-height-md);
+  padding:0 14px;
+  color:inherit;
+  font:inherit;
+  font-weight:var(--dk-font-weight-bold);
+  white-space:nowrap;
+  background:rgba(255,255,255,.16);
+  border:1px solid rgba(255,255,255,.3);
+  border-radius:var(--dk-radius-md);
+  cursor:pointer;
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+}
+
+.sellerAnnouncementEditButton:hover,
+.sellerAnnouncementEditButton:focus-visible,
+.sellerAnnouncementEditButton.active,
+.sellerAnnouncementEditButton[aria-pressed="true"]{
+  background:rgba(255,255,255,.26);
+}
+
+.sellerAnnouncementEditButton svg{
+  width:18px;
+  height:18px;
+}
+
 .sellerToolbarPopover{
   position:relative;
   display:inline-flex;

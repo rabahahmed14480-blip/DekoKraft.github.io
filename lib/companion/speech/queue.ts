@@ -1,0 +1,16 @@
+import{randomUUID}from"node:crypto";import type{SpeechDocument,SpeechEvent,SpeechQueueItem}from"./types.ts";import type{SpeechPlayer}from"./player.ts";
+export class SpeechQueue{
+ private items:SpeechQueueItem[]=[];private current?:SpeechQueueItem;private listeners=new Set<(event:SpeechEvent)=>void>();private player:SpeechPlayer;
+ constructor(player:SpeechPlayer){this.player=player;this.player.setLifecycleListener((event,document,error)=>{if(!this.current)return;if(event==="completed"){this.current.status="completed";this.emit("completed",document?.id);this.current=undefined;void this.play();}else if(event==="paused"){this.current.status="paused";this.emit("paused",document?.id);}else if(event==="resumed"){this.current.status="playing";this.emit("resumed",document?.id);}else if(event==="stopped"){this.current.status="stopped";this.emit("stopped",document?.id);}else if(event==="error"){this.current.status="error";this.emit("error",document?.id,{error:error instanceof Error?error.message:"speech-error"});this.current=undefined;void this.play();}else{this.current.status="playing";this.emit("started",document?.id);}});}
+ async enqueue(document:SpeechDocument){const item:SpeechQueueItem={id:randomUUID(),document,status:"queued",enqueuedAt:new Date().toISOString()};if(document.priority==="emergency"){await this.interrupt("emergency_notification");this.items.unshift(item);}else this.items.push(item);this.emit("queue_changed",document.id,{size:this.items.length});return structuredClone(item);}
+ async play(){if(this.current?.status==="paused")return this.resume();if(this.current||!this.items.length)return;this.current=this.items.shift();if(!this.current)return;this.current.status="synthesizing";this.emit("queue_changed",this.current.document.id,{size:this.items.length});await this.player.play(this.current.document);}
+ async pause(){await this.player.pause();}
+ async resume(){await this.player.resume();}
+ async stop(){if(this.current)await this.player.stop();this.current=undefined;this.emit("queue_changed",undefined,{size:this.items.length});}
+ async clear(){await this.stop();this.items=[];this.emit("queue_changed",undefined,{size:0});}
+ async skip(){if(this.current)await this.player.stop();this.current=undefined;this.emit("queue_changed",undefined,{size:this.items.length});await this.play();}
+ async interrupt(reason:"user_stop"|"user_speaking"|"conversation_changed"|"navigation_changed"|"emergency_notification"){if(this.current){await this.player.stop();this.emit("interrupted",this.current.document.id,{reason});this.current.status="stopped";this.current=undefined;}if(reason!=="emergency_notification")this.items=[];this.emit("queue_changed",undefined,{size:this.items.length});}
+ snapshot(){return{current:this.current?structuredClone(this.current):undefined,items:structuredClone(this.items),progress:this.player.progress()};}
+ subscribe(listener:(event:SpeechEvent)=>void){this.listeners.add(listener);return()=>this.listeners.delete(listener);}
+ private emit(type:SpeechEvent["type"],documentId?:string,metadata:Record<string,unknown>={}){const event:SpeechEvent={type,documentId,occurredAt:new Date().toISOString(),metadata};for(const listener of this.listeners)listener(event);}
+}

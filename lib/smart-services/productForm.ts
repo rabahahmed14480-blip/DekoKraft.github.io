@@ -1,0 +1,4 @@
+export function analyzeProductDraft(draft:Record<string,unknown>){
+ const required=["title","description","price","images"];const missing=required.filter(key=>!draft[key]||(Array.isArray(draft[key])&&!(draft[key]as unknown[]).length));const title=String(draft.title??"");const description=String(draft.description??"");const score=Math.max(0,100-missing.length*20-(description.length<80?10:0)-(title.length<10?10:0));
+ return{missingFields:missing,completenessScore:score,seoRecommendations:[title.length<10?"Use a more descriptive title":null,description.length<80?"Add benefits and material details":null].filter(Boolean),imageQualityHints:missing.includes("images")?["Add at least one clear product image"]:["Check sharpness, neutral lighting, and alternate angles"],pricingHints:missing.includes("price")?["Add a price before review"]:["Compare the price with material and production costs"],advisoryOnly:true};
+}

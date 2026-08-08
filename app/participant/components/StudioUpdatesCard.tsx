@@ -2,7 +2,8 @@
 
 import { useCallback, useEffect, useId, useState } from "react";
 import { CloudUpload, ExternalLink, RefreshCw, X } from "lucide-react";
-import { DkButton, DkGlassPanel } from "../../components/ui";
+import HomepageSurface from "../../components/home-v2/HomepageSurface";
+import { DkButton } from "../../components/ui";
 
 type Status = {
   configured: boolean;
@@ -80,7 +81,7 @@ export default function StudioUpdatesCard({ viewerRole }: { viewerRole: "partici
 
   return (
     <>
-      <DkGlassPanel as="article" strength="normal" className="dk-dashboard-grid__card participantStudioUpdatesCard">
+      <HomepageSurface as="article" className="dk-dashboard-grid__card participantStudioUpdatesCard" interactive>
         <DkButton
           onClick={() => setIsOpen(true)}
           aria-label="تحديثات الاستوديو"
@@ -95,7 +96,7 @@ export default function StudioUpdatesCard({ viewerRole }: { viewerRole: "partici
             <small>متابعة حالة GitHub وآخر تحديث ونشر الاستوديو.</small>
           </span>
         </DkButton>
-      </DkGlassPanel>
+      </HomepageSurface>
 
       {isOpen && (
         <div

@@ -10,6 +10,7 @@ export type DkGlassPanelProps = {
   className?: string;
   role?: string;
   "aria-label"?: string;
+  "data-testid"?: string;
 };
 
 export default function DkGlassPanel({

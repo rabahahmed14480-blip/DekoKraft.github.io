@@ -1,7 +1,8 @@
 "use client";
 
 import {
-  CURRENT_USER_SESSION_COOKIE,
+  LEGACY_SHARED_SESSION_COOKIE,
+  PARTICIPANT_SESSION_COOKIE,
   parseCurrentUserSession,
   serializeCurrentUserSession,
   type CurrentUserSession,
@@ -17,10 +18,27 @@ export interface SellerSession {
 
 export const SELLER_SESSION_KEY = "dekokraft_current_seller_v1";
 
+export function ensureParticipantSessionCookie(session: CurrentUserSession) {
+  if (
+    typeof document === "undefined" ||
+    session.role !== "participant" ||
+    !session.participantId
+  ) {
+    return;
+  }
+  document.cookie = `${PARTICIPANT_SESSION_COOKIE}=${serializeCurrentUserSession(session)}; Path=/; SameSite=Lax`;
+}
+
 export function saveSellerSession(session: SellerSession) {
   if (typeof window === "undefined") return;
   localStorage.setItem(SELLER_SESSION_KEY, JSON.stringify(session));
-  document.cookie = `${CURRENT_USER_SESSION_COOKIE}=${serializeCurrentUserSession({ role: "participant", participantId: session.participantId, name: session.sellerId, email: session.email })}; Path=/; SameSite=Lax`;
+  ensureParticipantSessionCookie({
+    role: "participant",
+    participantId: session.participantId,
+    name: session.sellerId,
+    email: session.email,
+  });
+  document.cookie = `${LEGACY_SHARED_SESSION_COOKIE}=; Path=/; Max-Age=0; SameSite=Lax`;
 }
 
 export function loadSellerSession(): SellerSession | null {
@@ -35,16 +53,22 @@ export function loadSellerSession(): SellerSession | null {
       email: value.email,
       loggedInAt: typeof value.loggedInAt === "string" ? value.loggedInAt : new Date().toISOString(),
     };
-    if (!document.cookie.includes(`${CURRENT_USER_SESSION_COOKIE}=`)) {
-      document.cookie = `${CURRENT_USER_SESSION_COOKIE}=${serializeCurrentUserSession({ role: "participant", participantId: session.participantId, name: session.sellerId, email: session.email })}; Path=/; SameSite=Lax`;
+    if (!document.cookie.includes(`${PARTICIPANT_SESSION_COOKIE}=`)) {
+      ensureParticipantSessionCookie({
+        role: "participant",
+        participantId: session.participantId,
+        name: session.sellerId,
+        email: session.email,
+      });
     }
+    document.cookie = `${LEGACY_SHARED_SESSION_COOKIE}=; Path=/; Max-Age=0; SameSite=Lax`;
     return session;
   } catch { return null; }
 }
 
 export function loadCurrentUserSession(): CurrentUserSession | null {
   if (typeof document === "undefined") return null;
-  const prefix = `${CURRENT_USER_SESSION_COOKIE}=`;
+  const prefix = `${PARTICIPANT_SESSION_COOKIE}=`;
   const raw = document.cookie.split("; ").find((item) => item.startsWith(prefix))?.slice(prefix.length);
   return parseCurrentUserSession(raw);
 }
@@ -52,7 +76,8 @@ export function loadCurrentUserSession(): CurrentUserSession | null {
 export function clearSellerSession() {
   if (typeof window === "undefined") return;
   localStorage.removeItem(SELLER_SESSION_KEY);
-  document.cookie = `${CURRENT_USER_SESSION_COOKIE}=; Path=/; Max-Age=0; SameSite=Lax`;
+  document.cookie = `${PARTICIPANT_SESSION_COOKIE}=; Path=/; Max-Age=0; SameSite=Lax`;
+  document.cookie = `${LEGACY_SHARED_SESSION_COOKIE}=; Path=/; Max-Age=0; SameSite=Lax`;
 }
 
 export function getCurrentSellerId() {

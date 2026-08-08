@@ -1,5 +1,9 @@
 import "server-only";
-import { getCurrentUserSession } from "./currentUserSession";
+import {
+  getAdminSession,
+  getCurrentUserSession,
+  getParticipantSession,
+} from "./currentUserSession";
 import { normalizeParticipantId, type LegacyParticipantRecord } from "../participants/types";
 import type { CurrentUserSession } from "./sessionTypes";
 
@@ -14,14 +18,15 @@ export async function requireAuthenticatedUser() {
 }
 
 export async function requireParticipantSession() {
-  const session = await requireAuthenticatedUser();
-  if (session.role !== "participant" || !session.participantId) throw new ParticipantAccessError(403, "غير مسموح لك بالوصول إلى بيانات هذا المشارك.");
+  const session = await getParticipantSession();
+  if (!session) throw new ParticipantAccessError(401, "يجب تسجيل الدخول أولًا.");
+  if (!session.participantId) throw new ParticipantAccessError(403, "غير مسموح لك بالوصول إلى بيانات هذا المشارك.");
   return session as CurrentUserSession & { role: "participant"; participantId: string };
 }
 
 export async function requireAdminSession() {
-  const session = await requireAuthenticatedUser();
-  if (session.role !== "admin") throw new ParticipantAccessError(403, "غير مسموح لك بالوصول إلى بيانات هذا المشارك.");
+  const session = await getAdminSession();
+  if (!session) throw new ParticipantAccessError(401, "يجب تسجيل الدخول أولًا.");
   return session as CurrentUserSession & { role: "admin" };
 }
 
@@ -42,13 +47,17 @@ export function participantAccessResponse(error: unknown) {
 }
 
 export async function resolveRequestParticipantId(requestedParticipantId?: string) {
-  const session = await getCurrentUserSession();
-  if (session?.role === "participant") {
-    if (!session.participantId) throw new ParticipantAccessError(401, "يجب تسجيل الدخول أولًا.");
-    if (requestedParticipantId && requestedParticipantId !== session.participantId) throw new ParticipantAccessError(403, "غير مسموح لك بالوصول إلى بيانات هذا المشارك.");
-    return session.participantId;
+  const [participantSession, adminSession] = await Promise.all([
+    getParticipantSession(),
+    getAdminSession(),
+  ]);
+  if (requestedParticipantId && adminSession) return requestedParticipantId;
+  if (participantSession) {
+    if (!participantSession.participantId) throw new ParticipantAccessError(401, "يجب تسجيل الدخول أولًا.");
+    if (requestedParticipantId && requestedParticipantId !== participantSession.participantId) throw new ParticipantAccessError(403, "غير مسموح لك بالوصول إلى بيانات هذا المشارك.");
+    return participantSession.participantId;
   }
-  if (session?.role === "admin") return requestedParticipantId;
+  if (adminSession) return requestedParticipantId;
   if (requestedParticipantId) throw new ParticipantAccessError(401, "يجب تسجيل الدخول أولًا.");
   return undefined;
 }

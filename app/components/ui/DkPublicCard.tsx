@@ -1,6 +1,7 @@
 import Image, { type ImageProps } from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
+import HomepageSurface from "../home-v2/HomepageSurface";
 
 export type DkPublicCardProps = {
   title: ReactNode;
@@ -37,7 +38,11 @@ export default function DkPublicCard({
     .join(" ");
 
   const card = (
-    <article className={classes}>
+    <HomepageSurface
+      as="article"
+      className={classes}
+      interactive={Boolean(href)}
+    >
       {image && (
         <div className={`dk-public-card__media dk-public-card__media--${mediaFit}`}>
           <Image src={image} alt={imageAlt} fill sizes="(max-width: 767px) 100vw, (max-width: 1199px) 50vw, 300px" />
@@ -49,7 +54,7 @@ export default function DkPublicCard({
         {description && <div className="dk-public-card__description">{description}</div>}
         {footer && <div className="dk-public-card__footer">{footer}</div>}
       </div>
-    </article>
+    </HomepageSurface>
   );
 
   return href ? (

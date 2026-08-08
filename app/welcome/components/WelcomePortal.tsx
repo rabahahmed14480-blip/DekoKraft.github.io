@@ -12,10 +12,7 @@ type WelcomeCardDefinition = {
     | "market"
     | "artisans"
     | "join"
-    | "login"
-    | "about"
     | "comments"
-    | "suggestions"
     | "services"
     | "studio";
   icon: string;
@@ -23,16 +20,13 @@ type WelcomeCardDefinition = {
 };
 
 const cards: WelcomeCardDefinition[] = [
-  { id: "home", icon: "🏠", href: "/" },
-  { id: "market", icon: "🛍️", href: "/market" },
+  { id: "home", icon: "🏛", href: "/about" },
+  { id: "market", icon: "🛍", href: "/market" },
   { id: "artisans", icon: "🎨", href: "/info/artisans" },
-  { id: "join", icon: "🧑‍🎨", href: "/register" },
-  { id: "login", icon: "🔑", href: "/seller/login" },
-  { id: "about", icon: "ℹ️", href: "/info/about" },
+  { id: "join", icon: "👤", href: "/register" },
   { id: "comments", icon: "💬", href: "/info/comments" },
-  { id: "suggestions", icon: "💡", href: "/info/suggestions" },
-  { id: "services", icon: "🛠️", href: "/info/services" },
   { id: "studio", icon: "🧠", href: "/studio" },
+  { id: "services", icon: "🛠", href: "/info/services" },
 ];
 
 export default function WelcomePortal() {

@@ -1,10 +1,11 @@
-import type { ReactNode } from "react";
+import type { HTMLAttributes, ReactNode } from "react";
 import { classNames } from "./classNames";
 
 export type DkToolbarProps = {
   children: ReactNode;
   className?: string;
   as?: "div" | "nav";
+  dir?: HTMLAttributes<HTMLElement>["dir"];
   "aria-label"?: string;
   "data-dashboard-toolbar"?: string;
 };

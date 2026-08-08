@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "project": "Echo Platform / DekoKraft",
+  "current": {
+    "home": "EH-HOME-000"
+  },
+  "history": [
+    {
+      "id": "EH-HOME-000",
+      "area": "home",
+      "name": "Original Home",
+      "status": [
+        "Current",
+        "Restart Point"
+      ],
+      "path": "home/EH-HOME-000-original",
+      "gitTag": null,
+      "previous": null,
+      "next": "EH-HOME-001"
+    }
+  ]
+}

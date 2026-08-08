@@ -2,11 +2,22 @@
 
 import Image from "next/image";
 import type { CSSProperties } from "react";
-import type { Lang } from "../../locales";
+import { translations, type Lang } from "../../locales";
+import {
+  DEFAULT_ANNOUNCEMENT_BACKGROUND_COLOR,
+  DEFAULT_ANNOUNCEMENT_TEXT_COLOR,
+  DEFAULT_BANNER_LENGTH,
+  DEFAULT_BANNER_THICKNESS,
+  getAnnouncementDuration,
+  type AnnouncementPayload,
+  type AnnouncementSpeed,
+} from "../../lib/announcements/types";
 import { publicPath } from "../lib/publicPath";
 import { useLanguage } from "./LanguageProvider";
 
 export type AnnouncementStory = readonly [string, string, string, string];
+type LocalizedAnnouncementText = Partial<Record<Lang, string>>;
+type AnnouncementMessages = AnnouncementStory | LocalizedAnnouncementText;
 
 export type AnnouncementTheme =
   | "default"
@@ -100,6 +111,7 @@ type AnnouncementThemeProperties = CSSProperties & {
   "--announcement-text-color": string;
   "--announcement-border-color": string;
   "--announcement-accent-color": string;
+  "--announcement-duration"?: string;
 };
 
 function AnnouncementLogo() {
@@ -116,12 +128,12 @@ function AnnouncementLogo() {
 }
 
 function AnnouncementSequence({
-  messages,
+  text,
   lang,
   showLogo,
   duplicate = false,
 }: {
-  messages: AnnouncementStory;
+  text: string;
   lang: Lang;
   showLogo: boolean;
   duplicate?: boolean;
@@ -132,15 +144,7 @@ function AnnouncementSequence({
       dir={lang === "ar" ? "rtl" : "ltr"}
       aria-hidden={duplicate || undefined}
     >
-      <span className="announcementMessage">{messages[0]}</span>
-      <span className="announcementGap announcementGapSmall" aria-hidden="true" />
-      <span className="announcementMessage">{messages[1]}</span>
-      <span className="announcementGap announcementGapLarge" aria-hidden="true" />
-      {showLogo && <AnnouncementLogo />}
-      <span className="announcementGap announcementGapLarge" aria-hidden="true" />
-      <span className="announcementMessage">{messages[2]}</span>
-      <span className="announcementGap announcementGapSmall" aria-hidden="true" />
-      <span className="announcementMessage">{messages[3]}</span>
+      <span className="announcementMessage">{text}</span>
       <span className="announcementGap announcementGapLarge" aria-hidden="true" />
       {showLogo && <AnnouncementLogo />}
       <span className="announcementGap announcementGapLarge" aria-hidden="true" />
@@ -151,20 +155,42 @@ function AnnouncementSequence({
 export type DkNotificationBarProps = {
   theme?: AnnouncementTheme;
   variant?: AnnouncementTheme;
-  messages?: AnnouncementStory;
+  messages?: AnnouncementMessages;
+  announcement?: AnnouncementPayload | null;
+  lang?: Lang;
+  animationRevision?: number;
   direction?: "rtl" | "ltr";
   showLogo?: boolean;
+  speed?: AnnouncementSpeed;
 };
+
+function readAnnouncementText(
+  messages: AnnouncementMessages | null | undefined,
+  language: Lang,
+) {
+  if (!messages) return "";
+  if (Array.isArray(messages)) {
+    return messages
+      .map((message) => message.trim())
+      .filter(Boolean)
+      .join(" • ");
+  }
+  return (messages as LocalizedAnnouncementText)[language]?.trim() ?? "";
+}
 
 export function DkNotificationBar({
   theme,
   variant = "default",
   messages: customMessages,
+  announcement,
+  lang: language,
+  animationRevision = 0,
   direction,
   showLogo = true,
+  speed,
 }: DkNotificationBarProps) {
-  const { lang, dictionary } = useLanguage();
-  const messages = customMessages ?? dictionary.announcement;
+  const { lang: contextLanguage, dictionary } = useLanguage();
+  const lang = language ?? contextLanguage;
   const activeTheme = theme ?? variant;
   const activeLanguage: Lang = direction
     ? direction === "rtl"
@@ -173,6 +199,18 @@ export function DkNotificationBar({
         ? "en"
         : lang
     : lang;
+  const defaultMessages = dictionary.announcement;
+  const customText = readAnnouncementText(
+    announcement?.messages ?? customMessages,
+    activeLanguage,
+  );
+  const defaultText = readAnnouncementText(defaultMessages, activeLanguage);
+  const fallbackText =
+    readAnnouncementText(translations.ar.announcement, "ar") ||
+    readAnnouncementText(translations.en.announcement, "en") ||
+    "";
+  const text = customText || defaultText || fallbackText;
+  const activeSpeed = speed ?? announcement?.speed ?? "normal";
   const themeSettings = announcementThemes[activeTheme];
   const themeProperties: AnnouncementThemeProperties = {
     "--announcement-bg-image": themeSettings.image,
@@ -180,20 +218,47 @@ export function DkNotificationBar({
     "--announcement-text-color": themeSettings.textColor,
     "--announcement-border-color": themeSettings.borderColor,
     "--announcement-accent-color": themeSettings.accentColor,
+    "--announcement-duration": getAnnouncementDuration(activeSpeed),
   };
+  const bannerLength =
+    announcement?.bannerLength ??
+    announcement?.bannerWidth ??
+    DEFAULT_BANNER_LENGTH;
+  const bannerThickness =
+    announcement?.bannerThickness ??
+    announcement?.bannerHeight ??
+    DEFAULT_BANNER_THICKNESS;
 
   return (
     <div
       className="publicAnnouncement"
       data-announcement-direction={activeLanguage === "ar" ? "rtl" : "ltr"}
       data-announcement-theme={activeTheme}
-      style={themeProperties}
+      style={{
+        ...themeProperties,
+        inlineSize: `min(100%, ${bannerLength}px)`,
+        blockSize: `${bannerThickness}px`,
+        minBlockSize: `${bannerThickness}px`,
+        marginInline: "auto",
+        overflow: "auto",
+        color:
+          announcement?.textColor ?? DEFAULT_ANNOUNCEMENT_TEXT_COLOR,
+        backgroundColor:
+          announcement?.backgroundColor ??
+          DEFAULT_ANNOUNCEMENT_BACKGROUND_COLOR,
+        backgroundImage: announcement?.imageReference
+          ? `url(${announcement.imageReference})`
+          : undefined,
+      }}
       tabIndex={0}
     >
       <div className="announcementViewport">
-        <div className="announcementTrack">
-          <AnnouncementSequence messages={messages} lang={activeLanguage} showLogo={showLogo} />
-          <AnnouncementSequence messages={messages} lang={activeLanguage} showLogo={showLogo} duplicate />
+        <div
+          className="announcementTrack"
+          key={`main-${activeLanguage}-${animationRevision}`}
+        >
+          <AnnouncementSequence text={text} lang={activeLanguage} showLogo={showLogo} />
+          <AnnouncementSequence text={text} lang={activeLanguage} showLogo={showLogo} duplicate />
         </div>
       </div>
     </div>

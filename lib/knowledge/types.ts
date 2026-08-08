@@ -1,0 +1,25 @@
+export type KnowledgeDomain = "platform"|"design"|"component"|"participant"|"product"|"marketing"|"ai"|"service"|"analytics"|"incident";
+export type KnowledgeKind = "fact"|"decision"|"procedure"|"lesson"|"recommendation"|"warning"|"definition"|"result"|"relationship"|"summary";
+export type KnowledgeStatus = "draft"|"verified"|"deprecated"|"archived"|"superseded";
+export type KnowledgeConfidence = "low"|"medium"|"high"|"verified";
+export type KnowledgeVisibility = "platform_admin"|"admin_team"|"participant_group"|"individual_participant"|"system_internal";
+export type KnowledgeScope = {visibility:KnowledgeVisibility;pageType?:"admin"|"participant";participantId?:string;groupId?:string;organizationId?:string;designId?:string;serviceId?:string;componentId?:string};
+export type KnowledgeSourceType = "design_version"|"proposal"|"test_result"|"snapshot"|"publish_event"|"rollback_event"|"analytics_event"|"service_event"|"admin_note"|"participant_request"|"component_version"|"documentation";
+export type KnowledgeSourceReference = {sourceType:KnowledgeSourceType;sourceId:string;sourceVersion?:string;capturedAt:string;immutableHash?:string};
+export type KnowledgeEntityReference = {entityType:"design"|"design_version"|"component"|"participant"|"participant_group"|"product"|"service"|"proposal"|"snapshot"|"incident";entityId:string};
+export type KnowledgeReview = {reviewer:string;decision:"verified"|"rejected"|"correction_requested"|"deprecated"|"superseded"|"archived";timestamp:string;notes?:string;evidenceReviewed:string[]};
+export type KnowledgeEntry = {
+ id:string;domain:KnowledgeDomain;kind:KnowledgeKind;title:string;summary:string;content?:string;
+ status:KnowledgeStatus;confidence:KnowledgeConfidence;scope:KnowledgeScope;
+ sourceRefs:KnowledgeSourceReference[];relatedEntityRefs:KnowledgeEntityReference[];
+ tags:string[];locale?:string;createdAt:string;updatedAt:string;createdBy:string;
+ verifiedAt?:string;verifiedBy?:string;expiresAt?:string;supersededById?:string;
+ aiGenerated?:boolean;fingerprint:string;reviews:KnowledgeReview[];
+};
+export type KnowledgeRelation = "explains"|"depends_on"|"derived_from"|"applies_to"|"supersedes"|"contradicts"|"validated_by"|"caused"|"resolved_by"|"recommended_for"|"performed_better_than"|"similar_to";
+export type KnowledgeRelationship = {id:string;sourceEntryId:string;targetEntryId?:string;targetEntityType?:KnowledgeEntityReference["entityType"];targetEntityId?:string;relation:KnowledgeRelation;createdAt:string};
+export type KnowledgeEvent = {id:string;eventType:string;domain:KnowledgeDomain;sourceService:string;sourceEntityId?:string;scope:KnowledgeScope;payload:Record<string,unknown>;occurredAt:string;actorType:"user"|"admin"|"ai"|"system";actorId?:string;sourceRefs:KnowledgeSourceReference[]};
+export type KnowledgePermission = "knowledge.view"|"knowledge.search"|"knowledge.create"|"knowledge.edit_draft"|"knowledge.verify"|"knowledge.deprecate"|"knowledge.archive"|"knowledge.manage_relationships"|"knowledge.view_conflicts"|"knowledge.manage_ingestion"|"knowledge.view_health"|"knowledge.view_participant_scope";
+export type KnowledgeStore = {version:1;entries:KnowledgeEntry[];relationships:KnowledgeRelationship[];failedEvents:{event:unknown;error:string;failedAt:string}[];readAudit:{entryId:string;actorId:string;readAt:string}[]};
+export type KnowledgeSearchFilters = {query?:string;domain?:KnowledgeDomain;kind?:KnowledgeKind;status?:KnowledgeStatus;confidence?:KnowledgeConfidence;participantId?:string;groupId?:string;designId?:string;componentId?:string;serviceId?:string;tag?:string;locale?:string;sourceType?:KnowledgeSourceType;from?:string;to?:string;page?:number;pageSize?:number;includeDeprecated?:boolean};
+export const knowledgeDomains:KnowledgeDomain[]=["platform","design","component","participant","product","marketing","ai","service","analytics","incident"];

@@ -16,6 +16,7 @@ import {
 import { useState } from "react";
 import { createTranslator, getTextDirection, type Direction, type Lang } from "../../../locales";
 import { useLanguage } from "../LanguageProvider";
+import HomepageSurface from "../home-v2/HomepageSurface";
 import { DkCreatorButton, DkGlassPanel } from "../ui";
 import { classNames } from "../ui/classNames";
 import { routes } from "../../config/routes";
@@ -57,6 +58,7 @@ type DkServicesCenterProps = {
   className?: string;
   variant?: "default" | "compact";
   items?: DkServiceItem[];
+  surface?: "glass" | "homepage";
 };
 
 export default function DkServicesCenter({
@@ -65,6 +67,7 @@ export default function DkServicesCenter({
   className,
   variant = "default",
   items = dkServicesCenterItems,
+  surface = "glass",
 }: DkServicesCenterProps) {
   const language = useLanguage();
   const activeLocale = locale ?? language.lang;
@@ -72,17 +75,13 @@ export default function DkServicesCenter({
   const activeDirection = direction ?? getTextDirection(activeLocale);
   const [notice, setNotice] = useState("");
 
-  return (
-    <DkGlassPanel
-      as="section"
-      strength="subtle"
-      className={classNames(
-        "dk-services-center",
-        `dk-services-center--${variant}`,
-        className,
-      )}
-      aria-label={t("servicesCenter.navigationLabel")}
-    >
+  const surfaceClassName = classNames(
+    "dk-services-center",
+    `dk-services-center--${variant}`,
+    className,
+  );
+  const content = (
+    <>
       <header className="dk-services-center__header" dir={activeDirection}>
         <h2>{t("servicesCenter.title")}</h2>
         <p>{t("servicesCenter.description")}</p>
@@ -113,6 +112,25 @@ export default function DkServicesCenter({
           {notice}
         </p>
       )}
+    </>
+  );
+
+  return surface === "homepage" ? (
+    <HomepageSurface
+      as="section"
+      className={surfaceClassName}
+      aria-label={t("servicesCenter.navigationLabel")}
+    >
+      {content}
+    </HomepageSurface>
+  ) : (
+    <DkGlassPanel
+      as="section"
+      strength="subtle"
+      className={surfaceClassName}
+      aria-label={t("servicesCenter.navigationLabel")}
+    >
+      {content}
     </DkGlassPanel>
   );
 }

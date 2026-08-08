@@ -23,6 +23,12 @@ export type DkButtonProps = {
   "aria-controls"?: string;
   "aria-expanded"?: boolean;
   "aria-haspopup"?: "menu" | "listbox" | "tree" | "grid" | "dialog" | true | false;
+  "data-participant-action"?:
+    | "menu"
+    | "profile"
+    | "home"
+    | "favorite"
+    | "notifications";
   title?: string;
   dir?: "rtl" | "ltr" | "auto";
 };
@@ -44,6 +50,7 @@ export default function DkButton({
   "aria-controls": ariaControls,
   "aria-expanded": ariaExpanded,
   "aria-haspopup": ariaHasPopup,
+  "data-participant-action": participantAction,
   title,
   dir,
 }: DkButtonProps) {
@@ -88,6 +95,7 @@ export default function DkButton({
         aria-haspopup={ariaHasPopup}
         aria-current={active ? "page" : undefined}
         aria-disabled={disabled || undefined}
+        data-participant-action={participantAction}
         tabIndex={disabled ? -1 : undefined}
         title={title}
         dir={dir}
@@ -107,6 +115,7 @@ export default function DkButton({
       aria-expanded={ariaExpanded}
       aria-haspopup={ariaHasPopup}
       aria-pressed={active || undefined}
+      data-participant-action={participantAction}
       disabled={disabled}
       title={title}
       dir={dir}

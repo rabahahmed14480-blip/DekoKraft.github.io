@@ -2,7 +2,6 @@ import type { ComponentType } from "react";
 import { getDashboardMenu } from "../config/dashboardMenu";
 
 export type ParticipantSection =
-  | "products"
   | "orders"
   | "customers"
   | "analytics"

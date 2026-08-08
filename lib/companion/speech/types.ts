@@ -1,0 +1,13 @@
+export type SpeechLanguage="ar"|"en"|"fr"|"de";
+export type SpeechTone="neutral"|"greeting"|"friendly"|"professional"|"explanation"|"question"|"confirmation"|"warning"|"celebration";
+export type SpeechPriority="low"|"normal"|"high"|"emergency";
+export type VoiceProfile={id:string;language:SpeechLanguage;gender?:"female"|"male"|"neutral";style:"professional"|"friendly"|"calm"|"natural"|string;speed:number;pitch:number;provider:string};
+export type SpeechSegment={id:string;text:string;pauseBefore:number;pauseAfter:number;tone:SpeechTone;importance:"low"|"normal"|"high";canInterrupt:boolean;estimatedDuration:number};
+export type SpeechDocument={id:string;segments:SpeechSegment[];language:SpeechLanguage;voice:VoiceProfile;style:string;speed:number;priority:SpeechPriority;estimatedDuration:number;createdAt:string;source:{type:"conversation_reply"|"page_reading"|"knowledge_article"|"notification"|"report"|"help"|"settings"|"product"|"about";sourceId?:string}};
+export type SpeechEventType="started"|"paused"|"resumed"|"completed"|"stopped"|"interrupted"|"error"|"queue_changed";
+export type SpeechEvent={type:SpeechEventType;speechSessionId?:string;documentId?:string;occurredAt:string;metadata:Record<string,unknown>};
+export type SpeechQueueItem={id:string;document:SpeechDocument;status:"queued"|"synthesizing"|"playing"|"paused"|"completed"|"stopped"|"error";enqueuedAt:string};
+export type SpeechSessionMode="introduction"|"follow"|"stopped";
+export type SpeechSession={id:string;conversationSessionId:string;mode:SpeechSessionMode;language:SpeechLanguage;createdAt:string;updatedAt:string;state:"idle"|"queued"|"speaking"|"paused"|"stopped"|"completed";currentDocumentId?:string;introductionAccepted?:boolean};
+export type SpeechProgress={state:"idle"|"loading"|"playing"|"paused"|"stopped"|"completed"|"error";currentTime:number;duration:number;percentage:number;currentSegment:number;remainingTime:number;documentId?:string};
+export type SynthesizedSpeech={documentId:string;provider:string;mimeType:string;audioData:ArrayBuffer;duration:number};

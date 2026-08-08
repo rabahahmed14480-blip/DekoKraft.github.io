@@ -1,4 +1,3 @@
-import HomeHero from "./HomeHero";
 import HomeSections from "./HomeSections";
 import HomeV2Shell from "./HomeV2Shell";
 import LatestProducts from "./LatestProducts";
@@ -7,12 +6,9 @@ import MarketplaceShowcase from "./MarketplaceShowcase";
 export default function HomePage() {
   return (
     <HomeV2Shell>
-      <main className="homeV2Main">
-        <HomeHero />
-        <HomeSections />
-        <MarketplaceShowcase />
-        <LatestProducts />
-      </main>
+      <HomeSections />
+      <MarketplaceShowcase />
+      <LatestProducts />
     </HomeV2Shell>
   );
 }

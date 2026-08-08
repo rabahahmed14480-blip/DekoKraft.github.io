@@ -10,7 +10,213 @@
 }
 
 .homeV2Main {
+  padding-block-start: 0;
   padding-bottom: clamp(56px, 8vw, 108px);
+}
+
+.publicHeader:has(.homeToolbar) .publicHeaderMain {
+  padding-block-end: 0;
+}
+
+.homeHero {
+  position: relative;
+  z-index: 2;
+  min-height: auto;
+  justify-content: flex-start;
+  padding-block: 16px 32px;
+}
+
+.echoMediaPageShell > .dk-page-background {
+  display: none;
+}
+
+.echoMediaPageShell .publicPageContent,
+.echoMediaPageShell .homeV2Shell,
+.echoMediaPageShell .homeV2Main {
+  background: transparent;
+}
+
+.echoHeroMediaStage {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: var(--dk-panel-radius);
+  background: #f8efe3;
+}
+
+.echoHeroMediaStage .homeHero {
+  border: 0;
+  background: var(--dk-glass-bg);
+}
+
+.echoWelcomeCard {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  align-items: stretch;
+  min-height: clamp(300px, 38vw, 480px);
+  overflow: hidden;
+  border: 1px solid var(--dk-glass-border);
+  border-radius: var(--dk-panel-radius);
+  background: #f8efe3;
+  box-shadow: var(--dk-shadow-soft);
+}
+
+.echoWelcomeCard__content {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  width: min(62%, 720px);
+  padding: clamp(24px, 5vw, 64px);
+}
+
+.echoWelcomeCard__brand {
+  align-items: flex-start;
+  margin-block-end: clamp(16px, 2vw, 24px);
+}
+
+.echoWelcomeCard__brand .dk-brand__media {
+  width: clamp(48px, 6vw, 64px);
+  height: clamp(48px, 6vw, 64px);
+  border-radius: 14px;
+}
+
+.echoWelcomeCard__brand .dk-brand__name {
+  color: var(--dk-public-text);
+  font-size: clamp(1.35rem, 2.5vw, 2rem);
+}
+
+.echoWelcomeContent h2 {
+  max-width: 680px;
+  margin: 0;
+  color: var(--dk-public-text);
+  font-size: clamp(2rem, 5vw, 4.25rem);
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+.echoWelcomeContent h2 span {
+  color: var(--dk-public-accent);
+}
+
+.echoWelcomeContent > p {
+  max-width: 620px;
+  margin: var(--dk-space-5) 0 0;
+  color: var(--dk-public-text-muted);
+  font-size: var(--dk-subtitle-size);
+  line-height: var(--dk-line-height-relaxed);
+  text-wrap: balance;
+}
+
+.echoWelcomeContent__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--dk-space-3);
+  margin-block-start: var(--dk-space-5);
+}
+
+.echoCreativityBar {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  overflow: hidden;
+  border: 1px solid var(--dk-glass-border);
+  border-radius: var(--dk-card-radius);
+  background: var(--dk-glass-bg);
+  box-shadow: var(--dk-shadow-sm);
+}
+
+.echoCreativityBar span {
+  display: grid;
+  min-height: clamp(64px, 8vw, 92px);
+  place-items: center;
+  padding: 14px;
+  color: var(--dk-public-text);
+  font-weight: var(--dk-font-weight-heavy);
+  text-align: center;
+}
+
+.echoCreativityBar span + span {
+  border-inline-start: 1px solid var(--dk-glass-border);
+}
+
+@media (max-width: 767px) {
+  .echoWelcomeCard__content {
+    width: 100%;
+    min-height: 360px;
+    padding: 24px 20px;
+  }
+
+  .echoWelcomeCard__brand .dk-brand__row {
+    gap: 12px;
+  }
+
+  .echoCreativityBar {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .echoCreativityBar span:nth-child(3) {
+    border-inline-start: 0;
+  }
+
+  .echoCreativityBar span:nth-child(n + 3) {
+    border-block-start: 1px solid var(--dk-glass-border);
+  }
+}
+
+.homeToolbar .toolbarUtilityActions {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-areas: "language settings";
+  align-items: center;
+  gap: 8px;
+  direction: inherit;
+}
+
+.homeToolbar .toolbarUtilityLanguage {
+  grid-area: language;
+}
+
+.homeToolbar .toolbarUtilitySettings {
+  grid-area: settings;
+}
+
+[dir="rtl"] .homeToolbar .toolbarUtilityActions {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.dekokraftBrand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dekokraftBrandImage {
+  width: clamp(68px, 8vw, 94px);
+  height: clamp(68px, 8vw, 94px);
+  object-fit: cover;
+  border-radius: 18px;
+  flex: 0 0 auto;
+}
+
+.dekokraftBrandText {
+  display: inline-flex;
+  align-items: baseline;
+  line-height: 0.88;
+  font-weight: 700;
+}
+
+.dekokraftBrandInitial {
+  display: inline-block;
+  font-size: clamp(72px, 9vw, 102px);
+  line-height: 0.72;
+}
+
+.dekokraftBrandRest {
+  font-size: clamp(44px, 5.8vw, 70px);
+  line-height: 0.9;
 }
 
 .homeV2ServicesCenter {

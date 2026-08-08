@@ -1538,11 +1538,16 @@ body {
   direction: ltr;
   white-space: nowrap;
   will-change: transform;
-  animation: announcement-scroll-rtl 30s linear infinite;
+  animation: announcementMoveRightToLeft
+    var(--announcement-duration, 28s) linear infinite;
+}
+
+.publicAnnouncement[data-announcement-direction="rtl"] .announcementTrack {
+  animation-name: announcementMoveLeftToRight;
 }
 
 .publicAnnouncement[data-announcement-direction="ltr"] .announcementTrack {
-  animation-name: announcement-scroll-ltr;
+  animation-name: announcementMoveRightToLeft;
 }
 
 .announcementSequence {
@@ -1612,7 +1617,7 @@ body {
   outline-offset: -3px;
 }
 
-@keyframes announcement-scroll-rtl {
+@keyframes announcementMoveRightToLeft {
   from {
     transform: translate3d(0, 0, 0);
   }
@@ -1622,7 +1627,7 @@ body {
   }
 }
 
-@keyframes announcement-scroll-ltr {
+@keyframes announcementMoveLeftToRight {
   from {
     transform: translate3d(-50%, 0, 0);
   }

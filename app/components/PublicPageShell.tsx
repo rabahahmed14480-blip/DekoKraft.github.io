@@ -5,6 +5,7 @@ import PublicSiteHeader from "./PublicSiteHeader";
 
 export type PublicPageShellProps = {
   children: ReactNode;
+  chrome?: ReactNode;
   showNotificationBar?: boolean;
   showHeader?: boolean;
   showFloatingToolbar?: boolean;
@@ -14,6 +15,7 @@ export type PublicPageShellProps = {
 
 export function DkPublicPageShell({
   children,
+  chrome,
   showNotificationBar = true,
   showHeader = true,
   showFloatingToolbar = true,
@@ -24,11 +26,13 @@ export function DkPublicPageShell({
     <DekoKraftPageShell
       className={className}
       chrome={(
-        <PublicSiteHeader
-          showNotificationBar={showNotificationBar}
-          showHeader={showHeader}
-          showFloatingToolbar={showFloatingToolbar}
-        />
+        chrome ?? (
+          <PublicSiteHeader
+            showNotificationBar={showNotificationBar}
+            showHeader={showHeader}
+            showFloatingToolbar={showFloatingToolbar}
+          />
+        )
       )}
       footer={showFooter ? <HomeV2Footer /> : undefined}
     >

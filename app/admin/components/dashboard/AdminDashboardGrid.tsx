@@ -14,5 +14,5 @@ export default function AdminDashboardGrid() {
     indicators: item.id === "dekoclean" ? <DekoCleanDashboardIndicators /> : undefined,
   }));
 
-  return <DkDashboardGrid items={items} label={t("admin.dashboard.quickTitle")} className="adminDashboardGrid" />;
+  return <DkDashboardGrid items={items} label={t("admin.dashboard.quickTitle")} />;
 }

@@ -1,0 +1,11 @@
+import {participantAccessResponse,requireAdminSession}from"../../../../lib/auth/participantAccess";
+import{buildMissionControlDashboard}from"../../../../lib/mission-control/dashboard";
+import{createMissionTask,requestCriticalCommand,updateMissionTask}from"../../../../lib/mission-control/store";
+import type{MissionTaskPriority,MissionTaskStatus}from"../../../../lib/mission-control/types";
+export async function GET(){try{const session=await requireAdminSession();return Response.json({dashboard:buildMissionControlDashboard(session)});}catch(error){return participantAccessResponse(error);}}
+export async function POST(request:Request){try{const session=await requireAdminSession();const body=await request.json()as Record<string,unknown>;const by=session.name||"Admin";
+ if(body.action==="create_task"){const priority=["low","medium","high","critical"].includes(String(body.priority))?body.priority as MissionTaskPriority:"medium";return Response.json({task:createMissionTask({title:String(body.title??""),description:typeof body.description==="string"?body.description:undefined,priority,owner:String(body.owner??by),status:"open",relatedDesignId:typeof body.relatedDesignId==="string"?body.relatedDesignId:undefined,relatedParticipantId:typeof body.relatedParticipantId==="string"?body.relatedParticipantId:undefined,dueDate:typeof body.dueDate==="string"?body.dueDate:undefined,createdBy:by})});}
+ if(body.action==="update_task"){const status=["open","in_progress","blocked","awaiting_approval","completed","cancelled"].includes(String(body.status))?body.status as MissionTaskStatus:undefined;return Response.json({task:updateMissionTask(String(body.id??""),{status})});}
+ if(body.action==="request_command")return Response.json({command:requestCriticalCommand({commandType:String(body.commandType??""),scope:String(body.scope??""),impact:String(body.impact??""),snapshotId:String(body.snapshotId??""),approvalId:String(body.approvalId??""),confirmed:body.confirmed===true,createdBy:by})});
+ return Response.json({error:"invalid-mission-control-action"},{status:400});
+ }catch(error){const message=error instanceof Error?error.message:"mission-control-failed";if(message.startsWith("MISSION_"))return Response.json({error:message},{status:400});return participantAccessResponse(error);}}

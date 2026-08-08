@@ -26,6 +26,10 @@ export const routes = {
   store: (slug: string) => `/store/${slug}`,
   admin: {
     root: "/admin",
+    pageDesigns: "/admin/page-designs",
+    smartServices: "/admin/page-designs/smart-services",
+    knowledge: "/admin/knowledge",
+    missionControl: "/admin/mission-control",
     products: "/admin/products",
     orders: "/admin/orders",
     customers: "/admin/customers",
@@ -51,7 +55,7 @@ export const routes = {
   },
   participant: {
     root: "/participant",
-    products: "/participant/products",
+    brandStudio: "/participant/brand-studio",
     orders: "/participant/orders",
     customers: "/participant/customers",
     analytics: "/participant/analytics",
@@ -101,6 +105,7 @@ export const requiredPublicRoutes = [
   routes.studios.threeDForm,
   routes.studios.embroidery,
   routes.admin.root,
+  routes.admin.pageDesigns,
   routes.admin.studio,
   routes.participant.root,
   routes.participant.studio,
@@ -118,6 +123,7 @@ export const requiredPublicRoutes = [
 export const routeAuditPaths = [
   ...requiredPublicRoutes,
   routes.admin.products,
+  routes.admin.pageDesigns,
   routes.admin.orders,
   routes.admin.customers,
   routes.admin.analytics,
@@ -132,7 +138,6 @@ export const routeAuditPaths = [
   routes.admin.registrations,
   routes.admin.participants,
   routes.admin.newSeller,
-  routes.participant.products,
   routes.participant.orders,
   routes.participant.customers,
   routes.participant.analytics,
